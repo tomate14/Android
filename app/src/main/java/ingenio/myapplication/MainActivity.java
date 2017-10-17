@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnIngresar;
     private ImageView gorrito;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
