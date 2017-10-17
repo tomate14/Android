@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#dc0211</color>
+    <color name="colorAccent">#dc0211</color>
+    <color name="colorBotones">#dc0211</color>
+    <color name="colorBarraEstado">#91020c</color>
+</resources>

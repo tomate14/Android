@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item android:title="Becas">
+            <menu>
+                <item
+                    android:id="@+id/nav_buscarBecas"
+                    android:title="Buscar Becas" />
+                <item
+                    android:id="@+id/nav_becasSugeridas"
+                    android:title="Becas Sugeridas" />
+
+            </menu>
+        </item>
+        <item android:title="Subscripciones">
+            <menu>
+                <item
+                    android:id="@+id/nav_misBecas"
+                    android:title="Becas de interes" />
+
+            </menu>
+        </item>
+        <item android:title="Datos Personales">
+            <menu>
+                <item
+                    android:id="@+id/nav_editarDatos"
+                    android:title="Editar mis datos" />
+                <item
+                    android:id="@+id/nav_historialNotificaciones"
+                    android:title="Notificaciones" />
+
+                <item
+                    android:id="@+id/nav_verPerfil"
+                    android:title="Ver Perfil" />
+
+            </menu>
+        </item>
+        <item android:title="Acerca de">
+            <menu>
+                <item
+                    android:id="@+id/nav_quienesSomos"
+                    android:title="Quienes Somos" />
+                <item
+                    android:id="@+id/nav_dondeEstamos"
+                    android:title="Donde Estamos" />
+                <item
+                    android:id="@+id/nav_contacto"
+                    android:title="Contactos" />
+                <item
+                    android:id="@+id/nav_reglamento"
+                    android:title="Reglamento" />
+
+            </menu>
+        </item>
+
+    </group>
+
+
+
+</menu>
