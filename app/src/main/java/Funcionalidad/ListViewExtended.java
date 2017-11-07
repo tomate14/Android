@@ -23,12 +23,6 @@ public abstract class ListViewExtended extends BaseExpandableListAdapter{
     protected String[]subHeader;
     protected String[][] footer;
 
-    //public ListViewExtended(Context contexto) {
-     //   this.contexto = contexto;
-    //    this.header = new Servicios().getHeaderBecas();
-    //    this.subHeader = new Servicios().getSubHeaderBecas();
-   //     this.footer = new Servicios().getFooterBecas();
-   // }
 
     @Override
     public int getGroupCount() {

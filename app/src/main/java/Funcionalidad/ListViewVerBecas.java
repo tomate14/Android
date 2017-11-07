@@ -1,6 +1,8 @@
 package Funcionalidad;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,7 +15,7 @@ import ingenio.myapplication.R;
  * Created by Maxi on 6/11/2017.
  */
 
-public class ListViewVerBecas extends ListViewExtended implements Serializable{
+public class ListViewVerBecas extends ListViewExtended implements Parcelable{
 
     public static final int ID_LISTVIEW = 1;
 
@@ -47,5 +49,17 @@ public class ListViewVerBecas extends ListViewExtended implements Serializable{
         txtTexto.setText(footer[groupPosition][childPosition]);
         tv.setTextSize(12);
         return inflate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeArray(this.header);
+        dest.writeArray(this.subHeader);
+        dest.writeArray(this.footer);
     }
 }

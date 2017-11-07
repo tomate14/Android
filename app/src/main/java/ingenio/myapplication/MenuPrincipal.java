@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+import Funcionalidad.ListViewSubscripciones;
 import Funcionalidad.ListViewVerBecas;
 
 public class MenuPrincipal extends AppCompatActivity
@@ -105,7 +106,7 @@ public class MenuPrincipal extends AppCompatActivity
         }
         if (id == R.id.nav_becasSugeridas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            //mostrar.putExtra("",);
+            mostrar.putExtra("listview",new ListViewSubscripciones(this));
             startActivity(mostrar);
         }
         if (id == R.id.nav_editarDatos) {

@@ -1,6 +1,7 @@
 package ingenio.myapplication;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
@@ -17,11 +18,12 @@ public class MostrarBecas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_becas);
-
+        Intent intent = getIntent();
+        ListViewExtended mostrarInfo = (ListViewExtended) intent.getSerializableExtra("listview");
         setTitle(getString(R.string.activity_verbecas));
-        ListViewExtended mostrarInfo
+
         this.listView = (ExpandableListView) findViewById(R.id.listView);
-        this.listView.setAdapter(new ListViewVerBecas(this));
+        this.listView.setAdapter(mostrarInfo);
 
 
 
