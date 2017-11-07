@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login() {
-        // sino hay login activo muestro splash y luego pantalla de registro
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
