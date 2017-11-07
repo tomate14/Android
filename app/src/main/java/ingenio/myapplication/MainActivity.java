@@ -1,39 +1,36 @@
 package ingenio.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-
 import android.content.Intent;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnIngresar;
-    private ImageView gorrito;
+    private static final long SPLASH_SCREEN_DELAY = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("INFORMACION DE BECAS");
-        this.gorrito = (ImageView)findViewById(R.id.imgGorrito);
-        this.gorrito.setOnClickListener(new View.OnClickListener() {
+        login();
+    }
+
+    private void login() {
+        // sino hay login activo muestro splash y luego pantalla de registro
+        TimerTask task = new TimerTask() {
             @Override
-            public void onClick(View v) {
+            public void run() {
+                // Start the next activity
                 Intent login = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(login);
+                finish();
             }
-        });
+        };
 
-
-
-
+        Timer timer = new Timer();
+        timer.schedule(task, SPLASH_SCREEN_DELAY);
     }
 }
