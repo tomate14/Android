@@ -4,13 +4,11 @@ package ingenio.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SwitchCompat;
 import android.widget.ExpandableListView;
-import android.widget.Toolbar;
 
-import Funcionalidad.ListViewExtended;
-import Funcionalidad.ListViewSubscripciones;
-import Funcionalidad.ListViewVerBecas;
+import Adapters.ListViewExtended;
+import Adapters.ListViewSubscripciones;
+import Adapters.ListViewVerBecas;
 
 public class MostrarBecas extends AppCompatActivity {
 

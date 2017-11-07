@@ -13,13 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
-
-import java.io.Serializable;
-
-import Funcionalidad.ListViewSubscripciones;
-import Funcionalidad.ListViewVerBecas;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

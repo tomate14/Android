@@ -1,4 +1,4 @@
-package Funcionalidad;
+package Adapters;
 
 import android.content.Context;
 import android.os.Parcelable;
