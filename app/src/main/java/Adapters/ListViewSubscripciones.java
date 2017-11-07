@@ -1,21 +1,19 @@
-package Funcionalidad;
+package Adapters;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.Serializable;
-
+import Adapters.ListViewExtended;
+import Funcionalidad.Servicios;
 import ingenio.myapplication.R;
 
 /**
  * Created by Maxi on 6/11/2017.
  */
 
-public class ListViewSubscripciones extends ListViewExtended{
+public class ListViewSubscripciones extends ListViewExtended {
 
 
     public ListViewSubscripciones(Context contexto) {
