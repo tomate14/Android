@@ -2,8 +2,8 @@ package ingenio.myapplication;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.widget.ExpandableListView;
 
 import Adapters.ListViewExtended;
@@ -19,6 +19,7 @@ public class MostrarBecas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_becas);
         setTitle(getString(R.string.activity_verbecas));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         /*********************************************
           CREAR ADAPTADOR PARA MOSTRAR LA INFORMACION
          *********************************************/
@@ -35,10 +36,16 @@ public class MostrarBecas extends AppCompatActivity {
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         this.listView.setAdapter(mostrarInfo);
+    }
 
-
-
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
