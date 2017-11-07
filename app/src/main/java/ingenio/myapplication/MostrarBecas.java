@@ -3,6 +3,7 @@ package ingenio.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
@@ -28,11 +29,14 @@ public class MostrarBecas extends AppCompatActivity {
         int accion = intent.getIntExtra("listview",0);
         switch (accion){
             case MenuPrincipal.ID_VERBECAS:
+                //Armar un vector de becas
                 mostrarInfo= new ListViewVerBecas(this);
                 break;
-            case MenuPrincipal.ID_VERSUBSCRIPCIONES:
-                mostrarInfo = new ListViewSubscripciones(this);
+            case MenuPrincipal.ID_VERSUGERENCIAS:
+                mostrarInfo = new ListViewVerBecas(this);
                 break;
+            case MenuPrincipal.ID_VERBECASINTERES:
+                mostrarInfo = new ListViewSubscripciones(this);
         }
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
