@@ -16,10 +16,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
+import Funcionalidad.ListViewVerBecas;
+
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView txtNombre;
     private TextView txtEmail;
+    private static final int ID_EXTENDED = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +99,19 @@ public class MenuPrincipal extends AppCompatActivity
 
         if (id == R.id.nav_buscarBecas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
+            //CREAR EL LISTVIEW VERBECAS Y PASARLO POR PARAMETRO
+            mostrar.putExtra("listview", new ListViewVerBecas(this));
             startActivity(mostrar);
-        } else if (id == R.id.nav_editarDatos) {
+        }
+        if (id == R.id.nav_becasSugeridas) {
+            Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
+            //mostrar.putExtra("",);
+            startActivity(mostrar);
+        }
+        if (id == R.id.nav_editarDatos) {
 
-        } else if (id == R.id.nav_misBecas) {
+        }
+        if (id == R.id.nav_misBecas) {
 
         }
 
