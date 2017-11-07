@@ -20,7 +20,8 @@ public class MenuPrincipal extends AppCompatActivity
     private TextView txtNombre;
     private TextView txtEmail;
     public static final int ID_VERBECAS = 1;
-    public static final int ID_VERSUBSCRIPCIONES = 2;
+    public static final int ID_VERBECASINTERES = 2;
+    public static final int ID_VERSUGERENCIAS = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +101,16 @@ public class MenuPrincipal extends AppCompatActivity
         }
         if (id == R.id.nav_becasSugeridas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview",ID_VERSUBSCRIPCIONES);
+            mostrar.putExtra("listview",ID_VERSUGERENCIAS);
             startActivity(mostrar);
         }
         if (id == R.id.nav_editarDatos) {
 
         }
         if (id == R.id.nav_misBecas) {
-
+            Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
+            mostrar.putExtra("listview",ID_VERBECASINTERES);
+            startActivity(mostrar);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
