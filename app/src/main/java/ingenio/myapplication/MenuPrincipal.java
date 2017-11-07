@@ -25,7 +25,8 @@ public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView txtNombre;
     private TextView txtEmail;
-    private static final int ID_EXTENDED = 0;
+    public static final int ID_VERBECAS = 1;
+    public static final int ID_VERSUBSCRIPCIONES = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +101,12 @@ public class MenuPrincipal extends AppCompatActivity
 
         if (id == R.id.nav_buscarBecas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            //CREAR EL LISTVIEW VERBECAS Y PASARLO POR PARAMETRO
-            mostrar.putExtra("listview", new ListViewVerBecas(this));
+            mostrar.putExtra("listview", ID_VERBECAS);
             startActivity(mostrar);
         }
         if (id == R.id.nav_becasSugeridas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview",new ListViewSubscripciones(this));
+            mostrar.putExtra("listview",ID_VERSUBSCRIPCIONES);
             startActivity(mostrar);
         }
         if (id == R.id.nav_editarDatos) {

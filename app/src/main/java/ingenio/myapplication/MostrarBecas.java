@@ -9,21 +9,35 @@ import android.widget.ExpandableListView;
 import android.widget.Toolbar;
 
 import Funcionalidad.ListViewExtended;
+import Funcionalidad.ListViewSubscripciones;
 import Funcionalidad.ListViewVerBecas;
 
 public class MostrarBecas extends AppCompatActivity {
 
     private ExpandableListView listView;
+    private ListViewExtended mostrarInfo = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_becas);
-        Intent intent = getIntent();
-        ListViewExtended mostrarInfo = (ListViewExtended) intent.getSerializableExtra("listview");
         setTitle(getString(R.string.activity_verbecas));
+        /*********************************************
+          CREAR ADAPTADOR PARA MOSTRAR LA INFORMACION
+         *********************************************/
+        Intent intent = getIntent();
+        int accion = intent.getIntExtra("listview",0);
+        switch (accion){
+            case MenuPrincipal.ID_VERBECAS:
+                mostrarInfo= new ListViewVerBecas(this);
+                break;
+            case MenuPrincipal.ID_VERSUBSCRIPCIONES:
+                mostrarInfo = new ListViewSubscripciones(this);
+                break;
+        }
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         this.listView.setAdapter(mostrarInfo);
+
 
 
 

@@ -15,7 +15,7 @@ import ingenio.myapplication.R;
  * Created by Maxi on 6/11/2017.
  */
 
-public class ListViewSubscripciones extends ListViewExtended implements Parcelable{
+public class ListViewSubscripciones extends ListViewExtended{
 
 
     public ListViewSubscripciones(Context contexto) {
@@ -50,13 +50,4 @@ public class ListViewSubscripciones extends ListViewExtended implements Parcelab
         return inflate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
 }

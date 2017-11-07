@@ -15,7 +15,7 @@ import ingenio.myapplication.R;
  * Created by Maxi on 6/11/2017.
  */
 
-public class ListViewVerBecas extends ListViewExtended implements Parcelable{
+public class ListViewVerBecas extends ListViewExtended{
 
     public static final int ID_LISTVIEW = 1;
 
@@ -51,15 +51,10 @@ public class ListViewVerBecas extends ListViewExtended implements Parcelable{
         return inflate;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
+    /*@Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeArray(this.header);
         dest.writeArray(this.subHeader);
         dest.writeArray(this.footer);
-    }
+    }*/
 }
