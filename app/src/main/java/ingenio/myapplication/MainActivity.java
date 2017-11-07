@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         setTitle("INFORMACION DE BECAS");
         this.gorrito = (ImageView)findViewById(R.id.imgGorrito);
         this.gorrito.setOnClickListener(new View.OnClickListener() {
