@@ -84,6 +84,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button btnRegister = (Button) findViewById(R.id.btnRegistrase);
+
+        btnRegister.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent userRegister = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(userRegister);
+            }
+        });
+
         Button btnGmail = (Button) findViewById(R.id.btnGmail);
         btnGmail.setOnClickListener(new OnClickListener() {
             @Override
