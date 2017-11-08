@@ -1,19 +1,12 @@
 package Adapters;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewExtended;
-import Funcionalidad.Servicios;
 import entity.Beca;
 import ingenio.myapplication.R;
 
@@ -36,7 +29,8 @@ public class ListViewVerBecas extends ListViewExtended {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView txtTitle;
-        TextView txtNombre;
+        TextView txtTipo;
+        TextView txtEstudiante;
 
         View inflate = View.inflate(contexto, R.layout.infobecas,null);
        /* inflate.setOnClickListener(new View.OnClickListener() {
@@ -46,10 +40,12 @@ public class ListViewVerBecas extends ListViewExtended {
 
             }
         });*/
-        txtTitle  = (TextView) inflate.findViewById(R.id.txtTexto);
-        txtNombre = (TextView) inflate.findViewById(R.id.txtSubTitulo);
+        txtTitle  = (TextView) inflate.findViewById(R.id.txtTitle);
+        txtTipo = (TextView) inflate.findViewById(R.id.txttipo);
+        txtEstudiante = (TextView) inflate.findViewById(R.id.txtEstudiante);
         txtTitle.setText(becas.get(groupPosition).getNombre());
-        txtNombre.setText(becas.get(groupPosition).getTipoBeca());
+        txtTipo.setText(becas.get(groupPosition).getTipoBeca());
+        txtEstudiante.setText(becas.get(groupPosition).getTipoEstudiante());
         return inflate;
     }
 

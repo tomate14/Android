@@ -1,60 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <LinearLayout android:id="@+id/thumbnail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="3dip"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="5dip"
-        android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_weight="5.50"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@mipmap/iso" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="5.50"
-        android:orientation="vertical"
-        android:layout_alignBottom="@+id/thumbnail"
-        android:id="@+id/linearLayout2"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/thumbnail">
-
-        <TextView
-            android:id="@+id/txtTexto"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/thumbnail"
-            android:layout_weight="1"
-            android:text="title"
-            android:textColor="#040404"
-            android:textSize="26dp"
-            android:typeface="sans" />
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
 
-        <TextView
-            android:id="@+id/txtSubTitulo"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/txtTexto"
-            android:layout_toEndOf="@+id/thumbnail"
-            android:layout_weight="4.97"
-            android:text="title"
-            android:textColor="#a6a3a3"
-            android:typeface="sans" />
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/thumbnail"
+                android:layout_weight="1"
+                android:text="title"
+                android:textColor="#040404"
+                android:textSize="26dp"
+                android:typeface="sans" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/TextView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tipo: "
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/thumbnail"
+                    android:textColor="#a6a3a3"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/txttipo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/txtTexto"
+                    android:layout_toEndOf="@+id/thumbnail"
+                    android:layout_weight="4.97"
+                    android:text="tipo de beca"
+                    android:textColor="#a6a3a3"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/TextView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estudiante: "
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@+id/thumbnail"
+                    android:textColor="#a6a3a3"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/txtEstudiante"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/txtTexto"
+                    android:layout_toEndOf="@+id/thumbnail"
+                    android:layout_weight="4.97"
+                    android:text="tipo de estudiante"
+                    android:textColor="#a6a3a3"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
