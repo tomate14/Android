@@ -30,7 +30,6 @@ public class MenuPrincipal extends AppCompatActivity
     public static final int ID_VERBECAS = 1;
     public static final int ID_VERBECASINTERES = 2;
     public static final int ID_VERSUGERENCIAS = 3;
-    public static final int ID_DESARROLLADO_POR = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +70,7 @@ public class MenuPrincipal extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            if (pantallaActual == ID_DESARROLLADO_POR) {
-                pantallaActual=0;
-                setContentView(R.layout.activity_menu_principal);
-            }
-            else {
                 super.onBackPressed();
-            }
         }
     }
 
@@ -144,7 +137,7 @@ public class MenuPrincipal extends AppCompatActivity
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 
         // Inflate the custom layout/view
-        View customView = inflater.inflate(R.layout.info_desarrollado_por, null);
+        View customView = inflater.inflate(R.layout.info_reglamento, null);
         final PopupWindow mPopupWindow = new PopupWindow(
                 customView,
                 ViewGroup.LayoutParams.MATCH_PARENT,

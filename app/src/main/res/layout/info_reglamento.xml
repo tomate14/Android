@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="15dp"
+        android:layout_marginLeft="40dp"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="left"
+        android:text="REGLAMENTO"
+        android:textColor="#000000"
+        android:textSize="20dip"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"/>
+
+        <ScrollView android:id="@+id/textAreaScroller"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_x="0px"
+            android:layout_y="25px"
+            android:scrollbars="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-thin"
+            android:gravity="left"
+            android:text="Es una historia que se recordará por mucho tiempo. Por la grandeza del que finalmente triunfó y por la del caído, que había llegado al Sur con impronta copera bien ganada y se llevó una frustración durísima. Lanús, el que nunca perdió la fe, hizo los cuatro goles que necesitaba después de haber quedado 2-0 abajo en el marcador demasiado pronto en el partido, ganó 4-2 y jugará por primera vez la final de la Libertadores. Una alegría merecida para un equipo que se supo ganar su fiesta inolvidable.
+
+Lanús sabía que necesitaba una victoria en la revancha de la semifinal de la Copa Libertadores, y se hizo cargo de entrada. El equipo de Jorge Almirón, sin descontrolarse, arrancó con la clara intención ofensiva que le había faltado en el choque de ida y antes de los 10 minutos ya dispuso de dos buenas chances para equilibrar la serie, en la que River arrancó arriba por el 1-0 que consiguió en el Monumental.Los de Gallardo estaban para liquidar definitivamente la historia. si no lo hicieron fue por algo de falta de puntería, acaso cierta relajación por la holgada ventaja en el resultado y también por un error ajeno: el árbitro colombiano Wilmar Roldán omitió un penal por una clara mano de Marcone que privó a River de una clara posibilidad para meter el tercer gol.
+
+Pero el local también sabe a lo que juega y siempre mantuvo su libreto de buen juego para tratar de llegar hasta un Lux que por momentos pareció quedarle demasiado lejos. Sobre el cierre de la etapa, encontró su consuelo cuando Sand entró por la derecha del área con la pelota dominada y sacó un remate al primer palo que encontró una floja respuesta del arquero. Era el descuento y a los del Sur les aparecía una tibia llama de esperanza, pero todavía tenían que hacer tres goles."
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="normal" />
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
