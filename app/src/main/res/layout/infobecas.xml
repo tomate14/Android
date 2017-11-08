@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout android:id="@+id/thumbnail"
@@ -15,32 +15,46 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="70dp"
-            android:layout_height="55dp"
+            android:layout_height="70dp"
             android:layout_weight="5.50"
             app:srcCompat="@mipmap/iso" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtTexto"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
-        android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="26dp"
+        android:layout_weight="5.50"
+        android:orientation="vertical"
+        android:layout_alignBottom="@+id/thumbnail"
+        android:id="@+id/linearLayout2"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/thumbnail" />
+        android:layout_toEndOf="@+id/thumbnail">
 
-    <TextView
-        android:id="@+id/txtSubTitulo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="title"
-        android:textColor="#a6a3a3"
-        android:typeface="sans"
-        android:layout_below="@+id/txtTexto"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/thumbnail" />
+        <TextView
+            android:id="@+id/txtTexto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/thumbnail"
+            android:layout_weight="1"
+            android:text="title"
+            android:textColor="#040404"
+            android:textSize="26dp"
+            android:typeface="sans" />
+
+        <TextView
+            android:id="@+id/txtSubTitulo"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/txtTexto"
+            android:layout_toEndOf="@+id/thumbnail"
+            android:layout_weight="4.97"
+            android:text="title"
+            android:textColor="#a6a3a3"
+            android:typeface="sans" />
+
+    </LinearLayout>
 
 </RelativeLayout>
