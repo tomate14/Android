@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    protected static final int ID_REGISTER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 Intent userRegister = new Intent(LoginActivity.this,RegisterActivity.class);
+                userRegister.putExtra("AccionDatos",ID_REGISTER);
                 startActivity(userRegister);
             }
         });
