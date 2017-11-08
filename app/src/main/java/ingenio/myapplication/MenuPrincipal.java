@@ -30,7 +30,11 @@ public class MenuPrincipal extends AppCompatActivity
     public static final int ID_VERBECAS = 1;
     public static final int ID_VERBECASINTERES = 2;
     public static final int ID_VERSUGERENCIAS = 3;
+    public static final int ID_EDITARDATOS = 4;
     public static final int ID_DESARROLLADO_POR = 5;
+
+    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +124,9 @@ public class MenuPrincipal extends AppCompatActivity
             startActivity(mostrar);
         }
         if (id == R.id.nav_editarDatos) {
-
+            Intent editarDatos = new Intent(MenuPrincipal.this,RegisterActivity.class);
+            editarDatos.putExtra("AccionDatos",ID_EDITARDATOS);
+            startActivity(editarDatos);
         }
         if (id == R.id.nav_misBecas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);

@@ -58,41 +58,16 @@
             <LinearLayout
                 android:id="@+id/NacimientoLayout"
                 android:layout_width="match_parent"
-                android:layout_height="97dp"
+                android:layout_height="90dp"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/diaLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/diaRegister"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="día" />
-                </android.support.design.widget.TextInputLayout>
-
-                <Spinner
-                    android:id="@+id/mesRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/anoLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/anoRegister"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="año" />
-                </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/editBirthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="date" />
             </LinearLayout>
 
             <LinearLayout
@@ -235,10 +210,10 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnRegistroCompleto"
+                android:id="@+id/btnConfirmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registrarse" />
+                android:text="@string/btnConfirmar" />
 
         </LinearLayout>
 
