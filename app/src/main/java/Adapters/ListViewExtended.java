@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import entity.Beca;
 import ingenio.myapplication.R;
 
 /**
@@ -19,20 +22,21 @@ public abstract class ListViewExtended extends BaseExpandableListAdapter{
     //Se usa un arreglo header y un arreglo hijo para cargar cosas adentro
     //Arreglo header viene con codigo de barra y nombre
     //Arreglo hijo viene con los supermercados y el valor
+    protected ArrayList<Beca> becas;
+    //protected String[] header;
+    //protected String[]subHeader;
+    //protected String[][] footer;
 
-    protected String[] header;
-    protected String[]subHeader;
-    protected String[][] footer;
 
 
     @Override
     public int getGroupCount() {
-        return header.length;
+        return becas.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return footer[groupPosition].length;
+        return 1;
     }
 
     @Override

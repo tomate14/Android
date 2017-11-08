@@ -8,9 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 import Adapters.ListViewExtended;
 import Adapters.ListViewSubscripciones;
 import Adapters.ListViewVerBecas;
+import Funcionalidad.Servicios;
+import entity.Beca;
 
 public class MostrarBecas extends AppCompatActivity {
 
@@ -27,16 +32,20 @@ public class MostrarBecas extends AppCompatActivity {
          *********************************************/
         Intent intent = getIntent();
         int accion = intent.getIntExtra("listview",0);
+        ArrayList<Beca> becas;
         switch (accion){
             case MenuPrincipal.ID_VERBECAS:
                 //Armar un vector de becas
-                mostrarInfo= new ListViewVerBecas(this);
+                becas = new Servicios().getBecasAll();
+                mostrarInfo= new ListViewVerBecas(this,becas);
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
-                mostrarInfo = new ListViewVerBecas(this);
+                becas = new Servicios().getBecasSugeridas();
+                mostrarInfo = new ListViewVerBecas(this,becas);
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
-                mostrarInfo = new ListViewSubscripciones(this);
+                becas = new Servicios().getSubscripciones();
+                mostrarInfo = new ListViewSubscripciones(this,becas);
         }
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
