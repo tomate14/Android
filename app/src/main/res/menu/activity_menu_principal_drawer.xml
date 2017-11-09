@@ -39,14 +39,8 @@
         <item android:title="Acerca de">
             <menu>
                 <item
-                    android:id="@+id/nav_quienesSomos"
-                    android:title="Quienes Somos" />
-                <item
-                    android:id="@+id/nav_dondeEstamos"
-                    android:title="Donde Estamos" />
-                <item
                     android:id="@+id/nav_contacto"
-                    android:title="Contactos" />
+                    android:title="Contacto" />
                 <item
                     android:id="@+id/nav_reglamento"
                     android:title="Reglamento" />
