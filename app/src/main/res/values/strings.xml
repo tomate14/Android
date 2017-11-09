@@ -23,6 +23,6 @@
     <string name="activity_verbecas">BECAS SUGERIDAS</string>
     <string name="btnConfirmar">Confirmar</string>
 
-    <item name="visible" type="id"/>
-    <item name="masked" type="id"/>
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
 </resources>
