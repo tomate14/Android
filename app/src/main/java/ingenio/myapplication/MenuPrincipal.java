@@ -1,9 +1,6 @@
 package ingenio.myapplication;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,13 +10,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 public class MenuPrincipal extends AppCompatActivity
@@ -131,52 +124,11 @@ public class MenuPrincipal extends AppCompatActivity
             case R.id.nav_reglamento:
                 cargarPantallaReglamento();
                 break;
-        }
+            }     
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void cargarPantallaReglamento() {
-        // Initialize a new instance of LayoutInflater service
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        // Inflate the custom layout/view
-        View customView = inflater.inflate(R.layout.info_reglamento, null);
-        final PopupWindow mPopupWindow = new PopupWindow(
-                customView,
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        );
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            mPopupWindow.setElevation(5.0f);
-        }
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        mPopupWindow.setOutsideTouchable(true);
-        mPopupWindow.setFocusable(true);
-        mPopupWindow.showAtLocation(customView, Gravity.CENTER, 0, 0);
-    }
-
-    private void cargarPantallaContacto() {
-        // Initialize a new instance of LayoutInflater service
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-
-        // Inflate the custom layout/view
-        View customView = inflater.inflate(R.layout.info_desarrollado_por, null);
-        final PopupWindow mPopupWindow = new PopupWindow(
-                customView,
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        );
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            mPopupWindow.setElevation(5.0f);
-        }
-        mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        mPopupWindow.setOutsideTouchable(true);
-        mPopupWindow.setFocusable(true);
-        mPopupWindow.showAtLocation(customView, Gravity.CENTER, 0, 0);
-    }
 }
