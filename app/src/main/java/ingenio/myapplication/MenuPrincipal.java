@@ -26,7 +26,6 @@ public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView txtNombre;
     private TextView txtEmail;
-    private int pantallaActual=0;
     public static final int ID_VERBECAS = 1;
     public static final int ID_VERBECASINTERES = 2;
     public static final int ID_VERSUGERENCIAS = 3;
