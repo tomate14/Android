@@ -3,13 +3,11 @@ package ingenio.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import Adapters.ListViewExtended;
 import Adapters.ListViewSubscripciones;
@@ -25,7 +23,6 @@ public class MostrarBecas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_becas);
-        setTitle(getString(R.string.activity_verbecas));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         /*********************************************
           CREAR ADAPTADOR PARA MOSTRAR LA INFORMACION
@@ -36,14 +33,17 @@ public class MostrarBecas extends AppCompatActivity {
         switch (accion){
             case MenuPrincipal.ID_VERBECAS:
                 //Armar un vector de becas
+                setTitle(getString(R.string.activity_verbecas_buscar));
                 becas = new Servicios().getBecasAll();
                 mostrarInfo= new ListViewVerBecas(this,becas);
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
+                setTitle(getString(R.string.activity_verbecas_sugeridas));
                 becas = new Servicios().getBecasSugeridas();
                 mostrarInfo = new ListViewVerBecas(this,becas);
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
+                setTitle(getString(R.string.activity_verbecas_interes));
                 becas = new Servicios().getSubscripciones();
                 mostrarInfo = new ListViewSubscripciones(this,becas);
         }

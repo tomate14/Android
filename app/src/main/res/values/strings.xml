@@ -20,7 +20,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Cerrar Sesion</string>
-    <string name="activity_verbecas">BECAS SUGERIDAS</string>
+    <string name="activity_verbecas_sugeridas">BECAS SUGERIDAS</string>
+    <string name="activity_verbecas_buscar">BECAS </string>
+    <string name="activity_verbecas_interes">BECAS DE INTERES</string>
     <string name="btnConfirmar">Confirmar</string>
 
     <item name="visible" type="id" />

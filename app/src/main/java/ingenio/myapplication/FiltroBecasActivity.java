@@ -12,7 +12,7 @@ public class FiltroBecasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filtro_becas);
-
+        setTitle("BUSCAR BECAS");
 
         Button btnBuscar = (Button) findViewById(R.id.btnBuscarFiltro);
 
