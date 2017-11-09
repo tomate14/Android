@@ -32,7 +32,8 @@
         <activity android:name=".MostrarBecas" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FiltroBecasActivity" />
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".PerfilActivity" />
+        <activity android:name=".MostrarAnuncios"></activity>
     </application>
 
 </manifest>

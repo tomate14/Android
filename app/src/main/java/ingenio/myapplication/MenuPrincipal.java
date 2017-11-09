@@ -101,37 +101,36 @@ public class MenuPrincipal extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_buscarBecas) {
-            Intent filtro = new Intent(MenuPrincipal.this,FiltroBecasActivity.class);
-            startActivity(filtro);
-
-        }
-        if (id == R.id.nav_becasSugeridas) {
-            Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview", ID_VERSUGERENCIAS);
-            startActivity(mostrar);
-        }
-        if (id == R.id.nav_editarDatos) {
-            Intent editarDatos = new Intent(MenuPrincipal.this,RegisterActivity.class);
-            editarDatos.putExtra("AccionDatos",ID_EDITARDATOS);
-            startActivity(editarDatos);
-        }
-
-        if (id == R.id.nav_verPerfil){
-            Intent verPerfil = new Intent(MenuPrincipal.this,PerfilActivity.class);
-            startActivity(verPerfil);
-        }
-        if (id == R.id.nav_misBecas) {
-            Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview",ID_VERBECASINTERES);
-            startActivity(mostrar);
-        }
-        if (id == R.id.nav_contacto){
-            cargarPantallaContacto();
-        }
-        if (id == R.id.nav_reglamento){
-            cargarPantallaReglamento();
+        switch (id){
+            case R.id.nav_buscarBecas:
+                Intent filtro = new Intent(MenuPrincipal.this,FiltroBecasActivity.class);
+                startActivity(filtro);
+                break;
+            case R.id.nav_becasSugeridas:
+                Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
+                mostrar.putExtra("listview", ID_VERSUGERENCIAS);
+                startActivity(mostrar);
+                break;
+            case R.id.nav_editarDatos:
+                Intent editarDatos = new Intent(MenuPrincipal.this,RegisterActivity.class);
+                editarDatos.putExtra("AccionDatos",ID_EDITARDATOS);
+                startActivity(editarDatos);
+                break;
+            case R.id.nav_verPerfil:
+                Intent verPerfil = new Intent(MenuPrincipal.this,PerfilActivity.class);
+                startActivity(verPerfil);
+                break;
+            case R.id.nav_misBecas:
+                Intent mostrarse = new Intent(MenuPrincipal.this,MostrarBecas.class);
+                mostrarse.putExtra("listview",ID_VERBECASINTERES);
+                startActivity(mostrarse);
+                break;
+            case R.id.nav_contacto:
+                cargarPantallaContacto();
+                break;
+            case R.id.nav_reglamento:
+                cargarPantallaReglamento();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
