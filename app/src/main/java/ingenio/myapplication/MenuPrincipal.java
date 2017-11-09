@@ -95,17 +95,22 @@ public class MenuPrincipal extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_buscarBecas) {
-            Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview", ID_VERBECAS);
-            startActivity(mostrar);
+            Intent filtro = new Intent(MenuPrincipal.this,FiltroBecasActivity.class);
+            startActivity(filtro);
+
         }
         if (id == R.id.nav_becasSugeridas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
-            mostrar.putExtra("listview",ID_VERSUGERENCIAS);
+            mostrar.putExtra("listview", ID_VERSUGERENCIAS);
             startActivity(mostrar);
         }
         if (id == R.id.nav_editarDatos) {
 
+        }
+
+        if (id == R.id.nav_verPerfil){
+            Intent verPerfil = new Intent(MenuPrincipal.this,PerfilActivity.class);
+            startActivity(verPerfil);
         }
         if (id == R.id.nav_misBecas) {
             Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);

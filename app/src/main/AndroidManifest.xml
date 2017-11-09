@@ -30,7 +30,9 @@
             android:label="@string/title_activity_menu_principal"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MostrarBecas" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".FiltroBecasActivity" />
+        <activity android:name=".PerfilActivity"></activity>
     </application>
 
 </manifest>

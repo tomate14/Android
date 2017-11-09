@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ingenio.myapplication.FiltroBecasActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tipoEstFiltroText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Tipo de Estudiante"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@+id/tipoEstFiltro"
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/tipoBecaFiltroText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:text="Tipo de Estudiante"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@+id/tipoBecaFiltro"
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/paisFiltroText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:text="País"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <Spinner
+                android:id="@+id/paisFiltro"
+                android:layout_width="190dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/ciudadFiltroLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/ciudadFiltro"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Ciudad" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/entidadFiltroLayout"
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/entidadFiltro"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Entidad emisora de beca" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnBuscarFiltro"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Buscar" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
