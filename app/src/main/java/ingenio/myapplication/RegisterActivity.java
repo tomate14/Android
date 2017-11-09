@@ -7,6 +7,7 @@ import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.contexto = this;
         Button btnConfirmar = (Button)findViewById(R.id.btnConfirmar);
         editBirthday = (EditText) findViewById(R.id.editBirthday);
@@ -70,6 +72,16 @@ public class RegisterActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void updateDisplay(int year, int month, int day) {
         editBirthday.setText(new StringBuilder().append(day).append("/").append(month + 1).append("/").append(year).append(" "));
