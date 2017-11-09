@@ -119,10 +119,12 @@ public class MenuPrincipal extends AppCompatActivity
                 startActivity(mostrarse);
                 break;
             case R.id.nav_contacto:
-                cargarPantallaContacto();
+                Intent contacto = new Intent(MenuPrincipal.this, ContactoActivity.class);
+                startActivity(contacto);
                 break;
             case R.id.nav_reglamento:
-                cargarPantallaReglamento();
+                Intent reglamento = new Intent(MenuPrincipal.this, ReglamentoActivity.class);
+                startActivity(reglamento);
                 break;
             }     
 
