@@ -24,6 +24,9 @@
     <string name="activity_verbecas_buscar">BECAS </string>
     <string name="activity_verbecas_interes">BECAS DE INTERES</string>
     <string name="btnConfirmar">Confirmar</string>
+    <string name="getTituloAnuncio">Titulo</string>
+    <string name="getEntidad">Entidad:</string>
+    <string name="getFecha">Fecha</string>
 
     <item name="visible" type="id" />
     <item name="masked" type="id" />
