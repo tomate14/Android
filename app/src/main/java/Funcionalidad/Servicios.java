@@ -57,10 +57,10 @@ public class Servicios {
     public ArrayList<Beca> getBecasAll(){
         Beca primera = new Beca("Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         Beca segunda = new Beca("FONCyT",
                 "La Agencia Nacional de Promoción Científica y Tecnológica (ANPCyT) apoya, a través del Fondo para la Investigación Científica y Tecnológica (FonCyT), proyectos de investigación cuya finalidad sea la generación de nuevos conocimientos científicos y tecnológicos.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         ArrayList<Beca>becas = new ArrayList<Beca>();
         becas.add(primera);
         becas.add(segunda);
@@ -73,10 +73,10 @@ public class Servicios {
     public ArrayList<Beca> getBecasSugeridas(){
         Beca primera = new Beca("Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         Beca segunda = new Beca("FONCyT",
                 "La Agencia Nacional de Promoción Científica y Tecnológica (ANPCyT) apoya, a través del Fondo para la Investigación Científica y Tecnológica (FonCyT), proyectos de investigación cuya finalidad sea la generación de nuevos conocimientos científicos y tecnológicos.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         ArrayList<Beca>becas = new ArrayList<Beca>();
         becas.add(primera);
         becas.add(segunda);
@@ -86,10 +86,10 @@ public class Servicios {
     public ArrayList<Beca> getSubscripciones(){
         Beca primera = new Beca("Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         Beca segunda = new Beca("FONCyT",
                 "La Agencia Nacional de Promoción Científica y Tecnológica (ANPCyT) apoya, a través del Fondo para la Investigación Científica y Tecnológica (FonCyT), proyectos de investigación cuya finalidad sea la generación de nuevos conocimientos científicos y tecnológicos.",
-                null,null,null,null,null,"Ingenieria","Universitario");
+                null,null,null,null,null,"Ingenieria","Universitario",false);
         ArrayList<Beca>becas = new ArrayList<Beca>();
         becas.add(primera);
         becas.add(segunda);

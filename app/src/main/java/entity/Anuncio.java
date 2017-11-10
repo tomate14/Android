@@ -11,11 +11,19 @@ public class Anuncio {
     private String titulo;
     private String entidad;
     private Date fecha;
+    private String informacion;
 
     public Anuncio(String titulo, String entidad, Date fecha) {
         this.titulo = titulo;
         this.entidad = entidad;
         this.fecha = fecha;
+        this.informacion = null;
+    }
+    public Anuncio(String titulo, String entidad, Date fecha, String informacion) {
+        this.titulo = titulo;
+        this.entidad = entidad;
+        this.fecha = fecha;
+        this.informacion = informacion;
     }
 
     public String getTitulo() {
@@ -40,5 +48,13 @@ public class Anuncio {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
 }
