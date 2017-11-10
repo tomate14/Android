@@ -18,21 +18,7 @@ import ingenio.myapplication.R;
 
 public abstract class ListViewExtended extends BaseExpandableListAdapter{
     protected Context contexto;
-
-    //Se usa un arreglo header y un arreglo hijo para cargar cosas adentro
-    //Arreglo header viene con codigo de barra y nombre
-    //Arreglo hijo viene con los supermercados y el valor
     protected ArrayList<Beca> becas;
-    //protected String[] header;
-    //protected String[]subHeader;
-    //protected String[][] footer;
-
-
-
-    @Override
-    public int getGroupCount() {
-        return becas.size();
-    }
 
     @Override
     public int getChildrenCount(int groupPosition) {
@@ -68,6 +54,10 @@ public abstract class ListViewExtended extends BaseExpandableListAdapter{
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+
+    @Override
+    public abstract int getGroupCount();
 
     @Override
     public abstract View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent);

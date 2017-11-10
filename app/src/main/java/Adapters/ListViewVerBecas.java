@@ -27,6 +27,11 @@ public class ListViewVerBecas extends ListViewExtended {
     }
 
     @Override
+    public int getGroupCount() {
+        return becas.size();
+    }
+
+    @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         TextView txtTitle;
         TextView txtTipo;

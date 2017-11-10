@@ -8,7 +8,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewAnuncios;
+import Adapters.ListViewAnuncio;
 import Adapters.ListViewExtended;
 import Adapters.ListViewVerBecas;
 import entity.Anuncio;
@@ -26,11 +26,12 @@ public class MostrarAnuncios extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayList<Anuncio> anuncios = new Servicios().getAnunciosNotificaciones();
-        mostrarInfo= new ListViewAnuncios(this,anuncios);
+        mostrarInfo= new ListViewAnuncio(this,anuncios);
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
-        //this.listView.setAdapter();
+        this.listView.setAdapter(mostrarInfo);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

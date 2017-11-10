@@ -18,17 +18,19 @@ public class Beca {
     private Date fecha_inicio_inscripcion;
     private String tipoBeca;
     private String tipoEstudiante;
+    private boolean subscripta;
 
-    public Beca(String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.telefono = telefono;
-        this.banner = banner;
-        this.pagina = pagina;
-        this.fecha_fin_inscripcion = fecha_fin_inscripcion;
+    public Beca(String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante, boolean subscripta) {
+        this.nombre                   = nombre;
+        this.descripcion              = descripcion;
+        this.telefono                 = telefono;
+        this.banner                   = banner;
+        this.pagina                   = pagina;
+        this.fecha_fin_inscripcion    = fecha_fin_inscripcion;
         this.fecha_inicio_inscripcion = fecha_inicio_inscripcion;
-        this.tipoBeca = tipoBeca;
-        this.tipoEstudiante = tipoEstudiante;
+        this.tipoBeca                 = tipoBeca;
+        this.tipoEstudiante           = tipoEstudiante;
+        this.subscripta               = subscripta;
     }
 
     public String getNombre() {
@@ -109,5 +111,13 @@ public class Beca {
             return (this.getNombre().equals(((Beca) object).getNombre()));
         }
         return false;
+    }
+
+    public boolean isSubscripta() {
+        return subscripta;
+    }
+
+    public void setSubscripta(boolean subscripta) {
+        this.subscripta = subscripta;
     }
 }
