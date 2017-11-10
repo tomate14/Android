@@ -1,11 +1,14 @@
 package Adapters;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Adapters.ListViewExtended;
 import Funcionalidad.Servicios;
@@ -28,6 +31,27 @@ public class ListViewSubscripciones extends ListViewExtended {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
+        if (convertView == null) {
+            convertView = View.inflate(contexto, R.layout.infosubscripciones,null);
+            final Button button = (Button) convertView.findViewById(R.id.button);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    button.setBackgroundResource(R.drawable.ic_star_black_24dp);
+                }
+            });
+
+        }
+        TextView txtTitle;
+        TextView txtNombre;
+
+        txtTitle  = (TextView) convertView.findViewById(R.id.txtTexto);
+        txtNombre = (TextView) convertView.findViewById(R.id.txtSubTitulo);
+        txtTitle.setText(becas.get(groupPosition).getNombre());
+        txtNombre.setText(becas.get(groupPosition).getTipoBeca());
+        return convertView;
+        /*
         TextView txtTitle;
         TextView txtNombre;
 
@@ -38,6 +62,7 @@ public class ListViewSubscripciones extends ListViewExtended {
         txtTitle.setText(becas.get(groupPosition).getNombre());
         txtNombre.setText(becas.get(groupPosition).getTipoBeca());
         return inflate;
+        */
     }
 
     @Override
