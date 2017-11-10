@@ -118,6 +118,10 @@ public class MenuPrincipal extends AppCompatActivity
                 mostrarse.putExtra("listview",ID_VERBECASINTERES);
                 startActivity(mostrarse);
                 break;
+            case R.id.nav_historialNotificaciones:
+                Intent anuncios = new Intent(MenuPrincipal.this,MostrarAnuncios.class);
+                startActivity(anuncios);
+                break;
             case R.id.nav_contacto:
                 Intent contacto = new Intent(MenuPrincipal.this, ContactoActivity.class);
                 startActivity(contacto);

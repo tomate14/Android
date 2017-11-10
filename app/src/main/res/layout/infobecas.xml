@@ -45,9 +45,9 @@
                     android:id="@+id/TextView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tipo: "
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@+id/thumbnail"
+                    android:text="Tipo: "
                     android:textColor="#a6a3a3"
                     android:typeface="sans" />
 

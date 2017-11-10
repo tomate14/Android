@@ -21,7 +21,6 @@ import ingenio.myapplication.R;
 
 public class ListViewSubscripciones extends ListViewExtended {
 
-
     public ListViewSubscripciones(Context contexto, ArrayList<Beca>becas) {
         this.contexto = contexto;
         this.becas = becas;
