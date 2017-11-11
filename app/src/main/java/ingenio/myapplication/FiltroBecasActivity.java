@@ -14,15 +14,16 @@ public class FiltroBecasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filtro_becas);
         setTitle("BUSCAR BECAS");
 
-        Button btnBuscar = (Button) findViewById(R.id.btnBuscarFiltro);
+        //Button btnBuscar = (Button) findViewById(R.id.btnBuscarFiltro);
 
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        /*btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mostrar = new Intent(FiltroBecasActivity.this,MostrarBecas.class);
                 mostrar.putExtra("listview", MenuPrincipal.ID_VERBECAS);
                 startActivity(mostrar);
             }
-        });
+        });*/
     }
+
 }

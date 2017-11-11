@@ -96,7 +96,8 @@ public class MenuPrincipal extends AppCompatActivity
         int id = item.getItemId();
         switch (id){
             case R.id.nav_buscarBecas:
-                Intent filtro = new Intent(MenuPrincipal.this,FiltroBecasActivity.class);
+                Intent filtro = new Intent(MenuPrincipal.this,MostrarBecas.class);
+                filtro.putExtra("listview", ID_VERBECAS);
                 startActivity(filtro);
                 break;
             case R.id.nav_becasSugeridas:
