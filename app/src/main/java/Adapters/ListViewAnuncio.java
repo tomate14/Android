@@ -39,7 +39,9 @@ public class ListViewAnuncio extends ListViewExtended {
 
         View inflate = View.inflate(contexto, R.layout.infoanuncio,null);
 
+        txtTitulo  = (TextView) inflate.findViewById(R.id.txtTitulo);
         txtFecha = (TextView) inflate.findViewById(R.id.txtFecha);
+        txtEntidad = (TextView) inflate.findViewById(R.id.txtEntidad);
         txtEntidad.setText(anuncios.get(groupPosition).getEntidad());
         txtTitulo.setText(anuncios.get(groupPosition).getTitulo());
         txtFecha.setText(anuncios.get(groupPosition).getFecha().toString());
@@ -51,7 +53,7 @@ public class ListViewAnuncio extends ListViewExtended {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         TextView tv = new TextView(contexto);
         TextView txtTexto;
-        View inflate = View.inflate(contexto, R.layout.infosubscripcioneshijo,null);
+        View inflate = View.inflate(contexto, R.layout.infobecashijo,null);
         txtTexto  = (TextView) inflate.findViewById(R.id.txtTexto);
         txtTexto.setText(anuncios.get(groupPosition).getInformacion());
         tv.setTextSize(12);

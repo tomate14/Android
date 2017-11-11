@@ -1,20 +1,30 @@
 package ingenio.myapplication;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import Adapters.ListViewExtended;
-import Adapters.ListViewSubscripciones;
+import Adapters.ListViewAnuncio;
 import Adapters.ListViewVerBecas;
 import Funcionalidad.Servicios;
+import entity.Anuncio;
 import entity.Beca;
 
 public class MostrarBecas extends AppCompatActivity {
@@ -49,7 +59,7 @@ public class MostrarBecas extends AppCompatActivity {
             case MenuPrincipal.ID_VERBECASINTERES:
                 setTitle(getString(R.string.activity_verbecas_interes));
                 becas = new Servicios().getSubscripciones();
-                mostrarInfo = new ListViewSubscripciones(this,becas);
+                mostrarInfo = new ListViewVerBecas(this,becas);
         }
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
@@ -71,8 +81,26 @@ public class MostrarBecas extends AppCompatActivity {
     }
 
     private void openSearch() {
-        Intent filtro = new Intent(MostrarBecas.this,FiltroBecasActivity.class);
-        startActivity(filtro);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.activity_filtro_becas, null));
+        AlertDialog ad = builder.create();
+        ad.setTitle("Filtros");
+        ad.setButton(AlertDialog.BUTTON_POSITIVE, "Buscar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Buscar y cerrar el popup
+                    }
+                });
+
+        ad.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        ad.show();
+        //Intent filtro = new Intent(MostrarBecas.this,FiltroBecasActivity.class);
+        //startActivity(filtro);
     }
 
     @Override
@@ -93,5 +121,10 @@ public class MostrarBecas extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void onButtonShowPopupWindowClick(View view) {
+
+
     }
 }
