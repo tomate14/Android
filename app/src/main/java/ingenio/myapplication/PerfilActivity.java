@@ -12,7 +12,7 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
