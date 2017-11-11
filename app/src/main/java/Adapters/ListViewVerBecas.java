@@ -3,6 +3,8 @@ package Adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,9 +23,6 @@ public class ListViewVerBecas extends ListViewExtended {
     public ListViewVerBecas(Context contexto, ArrayList<Beca> becas) {
         this.becas = becas;
         this.contexto = contexto;
-        //this.header = new Servicios().getHeaderBecas();
-        //this.subHeader = new Servicios().getSubHeaderBecas();
-        //this.footer = new Servicios().getFooterBecas();
     }
 
     @Override
@@ -33,25 +32,35 @@ public class ListViewVerBecas extends ListViewExtended {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        final int posicion = groupPosition;
+        if (convertView == null) {
+            convertView = View.inflate(contexto, R.layout.infobecas,null);
+            final Button button = (Button) convertView.findViewById(R.id.btnbutton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (becas.get(posicion).isSubscripta()){
+                        button.setBackgroundResource(android.R.drawable.btn_star_big_off);
+                        becas.get(posicion).setSubscripta(false);
+                    }else{
+                        button.setBackgroundResource(android.R.drawable.btn_star_big_on);
+                        becas.get(posicion).setSubscripta(true);
+                    }
+                }
+            });
+
+        }
         TextView txtTitle;
         TextView txtTipo;
         TextView txtEstudiante;
 
-        View inflate = View.inflate(contexto, R.layout.infobecas,null);
-       /* inflate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button aux = (Button)v.findViewById(R.id.btnSubscribirme);
-
-            }
-        });*/
-        txtTitle  = (TextView) inflate.findViewById(R.id.txtTitle);
-        txtTipo = (TextView) inflate.findViewById(R.id.txttipo);
-        txtEstudiante = (TextView) inflate.findViewById(R.id.txtEstudiante);
+        txtTitle  = (TextView) convertView.findViewById(R.id.txtTitle);
+        txtTipo = (TextView) convertView.findViewById(R.id.txttipo);
+        txtEstudiante = (TextView) convertView.findViewById(R.id.txtEstudiante);
         txtTitle.setText(becas.get(groupPosition).getNombre());
         txtTipo.setText(becas.get(groupPosition).getTipoBeca());
         txtEstudiante.setText(becas.get(groupPosition).getTipoEstudiante());
-        return inflate;
+        return convertView;
     }
 
     @Override
