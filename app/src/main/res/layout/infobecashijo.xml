@@ -18,12 +18,11 @@
 
     <LinearLayout
         android:id="@+id/thumbnail"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="5dip"
+        android:background="?attr/colorControlHighlight"
         android:orientation="horizontal"
-        android:padding="3dip"
         android:weightSum="1">
 
         <Button

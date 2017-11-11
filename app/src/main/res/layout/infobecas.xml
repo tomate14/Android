@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -17,7 +18,7 @@
             app:srcCompat="@mipmap/iso" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
@@ -74,9 +75,9 @@
                     android:id="@+id/TextView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estudiante: "
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@+id/thumbnail"
+                    android:text="Estudiante: "
                     android:textColor="#a6a3a3"
                     android:typeface="sans" />
 
@@ -95,6 +96,19 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnbutton"
+            android:layout_width="15dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="17dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_star_big_off"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+             />
+
     </LinearLayout>
 
 </LinearLayout>
