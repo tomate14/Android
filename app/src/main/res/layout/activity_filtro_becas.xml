@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Tipo de Estudiante"
+                android:text="Nivel educativo"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
 
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="start"
-                android:text="Tipo de Estudiante"
+                android:text="Orientación vocacional"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
 
