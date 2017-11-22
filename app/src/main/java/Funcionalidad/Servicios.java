@@ -2,11 +2,14 @@ package Funcionalidad;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.InsetDrawable;
 import android.widget.ImageView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -120,22 +123,23 @@ public class Servicios {
     }
 
     public ArrayList<Anuncio> getAnuncios(Context contexto){
-        Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.bannerbecas));
-        ImageView imagen1 = new ImageView(contexto);
-        imagen1.setImageDrawable(drawable);
-        //imagen1.setImageResource(R.mipmap.bannerbecas);
-        Anuncio a1 = new Anuncio(imagen1);
+        /*Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.banner1));
+        Drawable drawable2 = new BitmapDrawable(String.valueOf(R.drawable.banner2));*/
 
-        Anuncio a2 = new Anuncio(imagen1);
+            Bitmap b1 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner1);
+            Bitmap b2 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner2);
+            Anuncio a1 = new Anuncio(b1);
 
-        Anuncio a3 = new Anuncio(imagen1);
+            Anuncio a2 = new Anuncio(b2);
 
-        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
-        anuncios.add(a1);
-        anuncios.add(a2);
-        anuncios.add(a3);
+            Anuncio a3 = new Anuncio(b2);
 
-        return anuncios;
+            ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+            anuncios.add(a1);
+            anuncios.add(a2);
+            anuncios.add(a3);
+
+            return anuncios;
     }
 
 
