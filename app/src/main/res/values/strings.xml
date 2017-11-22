@@ -28,6 +28,70 @@
     <string name="getEntidad">Entidad:</string>
     <string name="getFecha">Fecha</string>
 
+    <string name="becasTitleMenu">Becas</string>
+    <string name="buscar_becasTitleMenu">Buscar Becas</string>
+    <string name="becas_sugeridasTitleMenu">Becas Sugeridas</string>
+    <string name="becas_de_interesTitleMenu">Becas de interes</string>
+    <string name="editar_mis_datosTitleMenu">Editar mis datos</string>
+    <string name="notificacionesTitleMenu">Notificaciones</string>
+    <string name="ver_perfilTitleMenu">Ver Perfil</string>
+    <string name="contactoTitleMenu">Contacto</string>
+    <string name="reglamentoTitleMenu">Terminos y Condiciones</string>
+    <string name="suscripcionesTitleMenu">Suscripciones</string>
+    <string name="datos_personalesTitleMenu">Datos Personales</string>
+    <string name="acerca_deTitleMenu">Acerca de</string>
+
+    <string name="tipo_de_estudianteTitleFiltro">Tipo de Estudiante</string>
+    <string name="orientacionTitleFiltro">Tipo de Estudiante</string>
+    <string name="paisTitleFiltro">País</string>
+    <string name="ciudadTitleFiltro">Ciudad</string>
+    <string name="institucionTitleFiltro">Institución emisora</string>
+
+    <string name="desarrollado_porTextContacto">Desarrollado por</string>
+    <string name="contactanos_aTextContacto">Contactanos a</string>
+    <string name="mailTextContacto">grupo.ingenio.2017@gmail.com</string>
+
+    <string name="ingresarButtonLogin">Ingresar</string>
+    <string name="gmailButtonLogin">Registrase con Gmail</string>
+    <string name="nombreTextPerfil">Nombre:</string>
+    <string name="apellidoTextPerfil">Apellido:</string>
+    <string name="edadTextPerfil">Edad:</string>
+    <string name="fechaNacimientoTextPerfil">Fecha de nacimiento:</string>
+    <string name="paisTextPerfil">País:</string>
+    <string name="provinciaTextPerfil">Provincia:</string>
+    <string name="ciudadTextPerfil">Ciudad :</string>
+    <string name="direccionTextPerfil">Dirección:</string>
+    <string name="emailTextPerfil">Email:</string>
+    <string name="tipo_de_estudianteTextPerfil">Tipo de Estudiante:</string>
+    <string name="orientacionTextPerfil">Orientación de Estudio:</string>
+    <string name="editar_mis_datosButtonPerfil">Editar mis datos</string>
+
+    <string name="informacion_personalTitleRegistro">Información Personal</string>
+    <string name="nombreTextRegistro">Nombre</string>
+    <string name="apellidoTextRegistro">Apellido</string>
+    <string name="fecha_nacimientoTextRegistro">Fecha de Nacimiento</string>
+    <string name="paisTextRegistro">País</string>
+    <string name="provinciaTextRegistro">Provincia</string>
+    <string name="ciudadTextRegistro">Ciudad</string>
+    <string name="direccionTextRegistro">Dirección</string>
+    <string name="infoCuentaTitleRegistro">Información de Cuenta</string>
+    <string name="emailTextRegistro">Email</string>
+    <string name="contrasenaTextRegistro">Contraseña</string>
+    <string name="confirme_contrasenaTextRegistro">Confirme Contraseña</string>
+    <string name="infoInteresTitleRegistro">Informacion de Interés</string>
+    <string name="tipo_de_estudianteTextRegistro">Tipo de estudiante</string>
+    <string name="orientacion_de_estudiosTextRegistro">Orientacion de Estudios</string>
+
+    <string name="reglamentoTextReglamento">REGLAMENTO</string>
+
+    <string name="tipoTextInfoBecas">Tipo:</string>
+    <string name="tipo_becaTextInfoBecas">tipo de beca</string>
+    <string name="estudianteTextInfoBecas">Estudiante:</string>
+    <string name="tipo_estudianteTextInfoBecas">tipo de estudiante</string>
+
+    <string name="usuario_logueadoTextMenu">USUARIO LOGUEADO</string>
+    <string name="mailTextMenu">usuario@gmail.com</string>
+
     <item name="visible" type="id" />
     <item name="masked" type="id" />
     <string name="title_activity_pruebaactivity">pruebaactivity</string>

@@ -37,28 +37,29 @@
         <activity
             android:name=".MostrarBecas"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".FiltroBecasActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".PerfilActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MostrarAnuncios"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".ReglamentoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ContactoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".pruebaactivity"
-            android:label="@string/title_activity_pruebaactivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            />
+        <activity android:name=".FiltroBecasActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".PerfilActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".MostrarAnuncios"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".ReglamentoActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ContactoActivity"
+            android:screenOrientation="portrait"
+            ></activity>
+
     </application>
 
 </manifest>

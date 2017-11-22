@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="none">
-        <item android:title="Becas">
+        <item android:title="@string/becasTitleMenu">
             <menu>
                 <item
                     android:id="@+id/nav_buscarBecas"
-                    android:title="Buscar Becas" />
+                    android:icon="?android:attr/actionModeWebSearchDrawable"
+                    android:title="@string/buscar_becasTitleMenu" />
                 <item
                     android:id="@+id/nav_becasSugeridas"
-                    android:title="Becas Sugeridas" />
+                    android:icon="?android:attr/actionModeFindDrawable"
+                    android:title="@string/becas_sugeridasTitleMenu" />
 
             </menu>
         </item>
-        <item android:title="Subscripciones">
+        <item android:title="@string/suscripcionesTitleMenu">
             <menu>
                 <item
                     android:id="@+id/nav_misBecas"
-                    android:title="Becas de interes" />
+                    android:icon="@drawable/ic_star_border_black_24dp"
+                    android:title="@string/becas_de_interesTitleMenu" />
 
             </menu>
         </item>
-        <item android:title="Datos Personales">
+        <item android:title="@string/datos_personalesTitleMenu">
             <menu>
                 <item
                     android:id="@+id/nav_editarDatos"
-                    android:title="Editar mis datos" />
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="@string/editar_mis_datosTitleMenu" />
                 <item
                     android:id="@+id/nav_historialNotificaciones"
-                    android:title="Notificaciones" />
+                    android:icon="@drawable/ic_menu_send"
+                    android:title="@string/notificacionesTitleMenu" />
 
                 <item
                     android:id="@+id/nav_verPerfil"
-                    android:title="Ver Perfil" />
+                    android:icon="?android:attr/fingerprintAuthDrawable"
+                    android:title="@string/ver_perfilTitleMenu" />
 
             </menu>
         </item>
-        <item android:title="Acerca de">
+        <item android:title="@string/acerca_deTitleMenu">
             <menu>
                 <item
                     android:id="@+id/nav_contacto"
-                    android:title="Contacto" />
+                    android:icon="@android:drawable/ic_menu_call"
+                    android:title="@string/contactoTitleMenu" />
                 <item
                     android:id="@+id/nav_reglamento"
-                    android:title="Reglamento" />
+                    android:icon="?android:attr/actionModeCopyDrawable"
+                    android:title="@string/reglamentoTitleMenu" />
 
             </menu>
         </item>

@@ -78,7 +78,7 @@ public class MostrarBecas extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.activity_filtro_becas, null));
         AlertDialog ad = builder.create();
-        ad.setTitle("Filtros");
+        ad.setTitle("Buscar");
         ad.setButton(AlertDialog.BUTTON_POSITIVE, "Buscar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

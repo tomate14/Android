@@ -7,7 +7,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +19,7 @@
                 android:id="@+id/InfoPersonalText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Información Personal"
+                android:text="@string/informacion_personalTitleRegistro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -31,7 +32,7 @@
                     android:id="@+id/nombreRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre" />
+                    android:hint="@string/nombreTextRegistro" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -43,7 +44,7 @@
                     android:id="@+id/apellidoRegister"
                     android:layout_width="match_parent"
                     android:layout_height="58dp"
-                    android:hint="Apellido" />
+                    android:hint="@string/apellidoTextRegistro" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Fecha de Nacimiento"
+                android:text="@string/fecha_nacimientoTextRegistro"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -81,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="País" />
+                    android:text="@string/paisTextRegistro" />
 
                 <Spinner
                     android:id="@+id/paisRegister"
@@ -94,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Provincia" />
+                    android:text="@string/provinciaTextRegistro" />
 
                 <Spinner
                     android:id="@+id/provinciaRegister"
@@ -107,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Ciudad" />
+                    android:text="@string/ciudadTextRegistro" />
 
                 <Spinner
                     android:id="@+id/ciudadRegister"
@@ -125,14 +126,14 @@
                     android:id="@+id/direccionRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Dirección" />
+                    android:hint="@string/direccionTextRegistro" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/infoCuentaText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Información de Cuenta"
+                android:text="@string/infoCuentaTitleRegistro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -145,7 +146,7 @@
                     android:id="@+id/emailRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email" />
+                    android:hint="@string/emailTextRegistro" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -157,7 +158,7 @@
                     android:id="@+id/passwordRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contraseña" />
+                    android:hint="@string/contrasenaTextRegistro" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -169,14 +170,14 @@
                     android:id="@+id/passwordValRegister"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirme Contraseña" />
+                    android:hint="@string/confirme_contrasenaTextRegistro" />
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/infoInteresText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informacion de Interés"
+                android:text="@string/infoInteresTitleRegistro"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -189,7 +190,7 @@
                     android:id="@+id/tipoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tipo de estudiante" />
+                    android:text="@string/tipo_de_estudianteTextRegistro" />
 
                 <Spinner
                     android:id="@+id/tipoRegister"
@@ -200,7 +201,7 @@
                     android:id="@+id/orientacionText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Orientacion de Estudios" />
+                    android:text="@string/orientacion_de_estudiosTextRegistro" />
 
                 <Spinner
                     android:id="@+id/orientacionRegister"

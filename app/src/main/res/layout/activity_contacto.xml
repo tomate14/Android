@@ -18,7 +18,7 @@
             android:gravity="center"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
-            android:text="Desarrollado por"
+            android:text="@string/desarrollado_porTextContacto"
             android:textColor="#000"
             android:textSize="10pt" />
 
@@ -35,7 +35,7 @@
             android:gravity="center"
             android:paddingLeft="15dip"
             android:paddingRight="15dip"
-            android:text="Contactanos a"
+            android:text="@string/contactanos_aTextContacto"
             android:textColor="#000"
             android:textSize="10pt" />
 
@@ -45,7 +45,7 @@
             android:layout_marginTop="10dp"
             android:autoLink="email"
             android:gravity="center"
-            android:text="grupo.ingenio.2017@gmail.com"
+            android:text="@string/mailTextContacto"
             android:textColorLink="#047CAA"
             android:textSize="10pt" />
 
