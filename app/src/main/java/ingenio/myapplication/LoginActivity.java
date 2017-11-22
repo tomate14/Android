@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 //Login con gmail y muestro pantalla principal
                 Intent menuPrincipal = new Intent(LoginActivity.this,MenuPrincipal.class);
                 startActivity(menuPrincipal);
+                finish();
                 //attemptLogin();
             }
         });
