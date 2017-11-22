@@ -6,25 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import Adapters.ListViewExtended;
-import Adapters.ListViewAnuncio;
 import Adapters.ListViewVerBecas;
 import Funcionalidad.Servicios;
-import entity.Anuncio;
 import entity.Beca;
 
 public class MostrarBecas extends AppCompatActivity {

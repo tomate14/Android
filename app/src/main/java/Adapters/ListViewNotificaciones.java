@@ -3,22 +3,21 @@ package Adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import entity.Anuncio;
+import entity.Notificacion;
 import ingenio.myapplication.R;
 
 /**
  * Created by Maxi on 10/11/2017.
  */
 
-public class ListViewAnuncio extends ListViewExtended {
-    private ArrayList<Anuncio> anuncios;
+public class ListViewNotificaciones extends ListViewExtended {
+    private ArrayList<Notificacion> anuncios;
 
-    public ListViewAnuncio(Context contexto, ArrayList<Anuncio> anuncios){
+    public ListViewNotificaciones(Context contexto, ArrayList<Notificacion> anuncios){
         this.anuncios = anuncios;
         this.contexto = contexto;
 
