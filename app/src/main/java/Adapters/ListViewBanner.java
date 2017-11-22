@@ -53,9 +53,9 @@ public class ListViewBanner extends BaseAdapter {
 
         View itemView = inflater.inflate(R.layout.infoanuncio, parent, false);
 
-        ImageView imagen = (ImageView) itemView.findViewById(R.id.imageBanner);
 
-        imagen = anuncios.get(position).getImagen();
+        ImageView image = (ImageView) itemView.findViewById(R.id.imageBanner);
+        image.setImageBitmap(anuncios.get(position).getImagen());
 
         return itemView;
     }

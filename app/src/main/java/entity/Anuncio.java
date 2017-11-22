@@ -1,5 +1,7 @@
 package entity;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import java.util.Vector;
@@ -10,17 +12,17 @@ import java.util.Vector;
  */
 
 public class Anuncio {
-    private ImageView imagen;
+    private Bitmap imagen;
 
-    public Anuncio(ImageView imagen) {
+    public Anuncio(Bitmap imagen) {
         this.imagen = imagen;
     }
 
-    public ImageView getImagen() {
+    public Bitmap getImagen() {
         return imagen;
     }
 
-    public void setImagen(ImageView imagen) {
+    public void setImagen(Bitmap imagen) {
         this.imagen = imagen;
     }
 }
