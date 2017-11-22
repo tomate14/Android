@@ -9,6 +9,12 @@
     tools:context="com.example.maxi.becas.MenuPrincipal"
     tools:showIn="@layout/app_bar_menu_principal">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     <ListView
         android:id="@+id/listViewBanners"
         android:layout_width="match_parent"

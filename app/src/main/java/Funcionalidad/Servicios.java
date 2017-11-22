@@ -126,18 +126,29 @@ public class Servicios {
         /*Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.banner1));
         Drawable drawable2 = new BitmapDrawable(String.valueOf(R.drawable.banner2));*/
 
-            Bitmap b1 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner1);
-            Bitmap b2 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner2);
+            Bitmap b1 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.bannerbecas1);
+            Bitmap b2 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.bannerbecas2);
+            Bitmap b3 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.bannerbecas3);
+            Bitmap b4 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.bannerbecas4);
             Anuncio a1 = new Anuncio(b1);
 
             Anuncio a2 = new Anuncio(b2);
 
-            Anuncio a3 = new Anuncio(b2);
+            Anuncio a3 = new Anuncio(b3);
+
+            Anuncio a4 = new Anuncio(b4);
+
+            Anuncio a5 = new Anuncio(b1);
+
+            Anuncio a6 = new Anuncio(b2);
 
             ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
             anuncios.add(a1);
             anuncios.add(a2);
             anuncios.add(a3);
+            anuncios.add(a4);
+            anuncios.add(a5);
+            anuncios.add(a6);
 
             return anuncios;
     }
