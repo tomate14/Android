@@ -36,7 +36,7 @@ public class ListViewNotificaciones extends ListViewExtended {
         TextView txtFecha;
         TextView txtEntidad;
 
-        View inflate = View.inflate(contexto, R.layout.infoanuncio,null);
+        View inflate = View.inflate(contexto, R.layout.infonotificacion,null);
 
         txtTitulo  = (TextView) inflate.findViewById(R.id.txtTitulo);
         txtFecha = (TextView) inflate.findViewById(R.id.txtFecha);

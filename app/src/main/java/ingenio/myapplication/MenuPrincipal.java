@@ -13,12 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import Adapters.ListViewBanner;
+import Funcionalidad.Servicios;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView txtNombre;
     private TextView txtEmail;
+    private ListView listView;
     public static final int ID_VERBECAS = 1;
     public static final int ID_VERBECASINTERES = 2;
     public static final int ID_VERSUGERENCIAS = 3;
@@ -41,6 +46,8 @@ public class MenuPrincipal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        this.listView = (ListView) findViewById(R.id.listViewBanners);
+        this.listView.setAdapter(new ListViewBanner(new Servicios().getAnuncios(this),this));
         //Informacion del login
         this.txtNombre = (TextView) findViewById(R.id.txtNombre);
         //this.txtNombre.setText("USUARIO LOGUEADO");

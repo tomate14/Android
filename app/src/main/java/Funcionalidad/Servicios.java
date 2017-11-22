@@ -1,10 +1,20 @@
 package Funcionalidad;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.widget.ImageView;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
+import entity.Anuncio;
 import entity.Notificacion;
 import entity.Beca;
+import ingenio.myapplication.R;
 
 /**
  * Created by Maxi on 6/11/2017.
@@ -95,6 +105,7 @@ public class Servicios {
         becas.add(segunda);
         return becas;
     }
+
     public ArrayList<Notificacion> getAnunciosNotificaciones(){
         Notificacion primera = new Notificacion("Pago Beca TICs",
                 "Santander Rio",
@@ -105,6 +116,25 @@ public class Servicios {
         ArrayList<Notificacion> anuncios = new ArrayList<Notificacion>();
         anuncios.add(primera);
         anuncios.add(segunda);
+        return anuncios;
+    }
+
+    public ArrayList<Anuncio> getAnuncios(Context contexto){
+        Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.bannerbecas));
+        ImageView imagen1 = new ImageView(contexto);
+        imagen1.setImageDrawable(drawable);
+        //imagen1.setImageResource(R.mipmap.bannerbecas);
+        Anuncio a1 = new Anuncio(imagen1);
+
+        Anuncio a2 = new Anuncio(imagen1);
+
+        Anuncio a3 = new Anuncio(imagen1);
+
+        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+        anuncios.add(a1);
+        anuncios.add(a2);
+        anuncios.add(a3);
+
         return anuncios;
     }
 
