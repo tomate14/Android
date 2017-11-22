@@ -1,10 +1,23 @@
 package Funcionalidad;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
+import android.widget.ImageView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
 import entity.Anuncio;
+import entity.Notificacion;
 import entity.Beca;
+import ingenio.myapplication.R;
 
 /**
  * Created by Maxi on 6/11/2017.
@@ -95,17 +108,38 @@ public class Servicios {
         becas.add(segunda);
         return becas;
     }
-    public ArrayList<Anuncio> getAnunciosNotificaciones(){
-        Anuncio primera = new Anuncio("Pago Beca TICs",
+
+    public ArrayList<Notificacion> getAnunciosNotificaciones(){
+        Notificacion primera = new Notificacion("Pago Beca TICs",
                 "Santander Rio",
                 new Date());
-        Anuncio segunda = new Anuncio("Pago Beca FONCyT",
+        Notificacion segunda = new Notificacion("Pago Beca FONCyT",
                 "Ministerio de Educacion",
                 new Date());
-        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+        ArrayList<Notificacion> anuncios = new ArrayList<Notificacion>();
         anuncios.add(primera);
         anuncios.add(segunda);
         return anuncios;
+    }
+
+    public ArrayList<Anuncio> getAnuncios(Context contexto){
+        /*Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.banner1));
+        Drawable drawable2 = new BitmapDrawable(String.valueOf(R.drawable.banner2));*/
+
+            Bitmap b1 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner1);
+            Bitmap b2 = BitmapFactory.decodeResource(contexto.getResources(),R.drawable.banner2);
+            Anuncio a1 = new Anuncio(b1);
+
+            Anuncio a2 = new Anuncio(b2);
+
+            Anuncio a3 = new Anuncio(b2);
+
+            ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+            anuncios.add(a1);
+            anuncios.add(a2);
+            anuncios.add(a3);
+
+            return anuncios;
     }
 
 

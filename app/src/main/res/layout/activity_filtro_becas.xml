@@ -22,7 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="start"
+                android:text="Nivel educativo"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
 
                 <TextView
                     android:id="@+id/tipoEstFiltroText"
@@ -32,7 +37,6 @@
                     android:text="@string/tipo_de_estudianteTitleFiltro"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
-
                 <Spinner
                     android:id="@+id/tipoEstFiltro"
                     android:layout_width="190dp"

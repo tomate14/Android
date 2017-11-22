@@ -1,60 +1,28 @@
 package entity;
 
-import java.util.Date;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+
+import java.util.Vector;
 
 /**
- * Created by Maxi on 9/11/2017.
+ * Created by Maxi on 22/11/2017.
+ * Aca adentro van los banners que aparecen en la pantalla principal
  */
 
 public class Anuncio {
+    private Bitmap imagen;
 
-    private String titulo;
-    private String entidad;
-    private Date fecha;
-    private String informacion;
-
-    public Anuncio(String titulo, String entidad, Date fecha) {
-        this.titulo = titulo;
-        this.entidad = entidad;
-        this.fecha = fecha;
-        this.informacion = null;
-    }
-    public Anuncio(String titulo, String entidad, Date fecha, String informacion) {
-        this.titulo = titulo;
-        this.entidad = entidad;
-        this.fecha = fecha;
-        this.informacion = informacion;
+    public Anuncio(Bitmap imagen) {
+        this.imagen = imagen;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public Bitmap getImagen() {
+        return imagen;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getEntidad() {
-        return entidad;
-    }
-
-    public void setEntidad(String entidad) {
-        this.entidad = entidad;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getInformacion() {
-        return informacion;
-    }
-
-    public void setInformacion(String informacion) {
-        this.informacion = informacion;
+    public void setImagen(Bitmap imagen) {
+        this.imagen = imagen;
     }
 }

@@ -4,14 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewAnuncio;
+import Adapters.ListViewNotificaciones;
 import Adapters.ListViewExtended;
-import Adapters.ListViewVerBecas;
-import entity.Anuncio;
+import entity.Notificacion;
 import Funcionalidad.Servicios;
 
 public class MostrarAnuncios extends AppCompatActivity {
@@ -25,8 +23,8 @@ public class MostrarAnuncios extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ArrayList<Anuncio> anuncios = new Servicios().getAnunciosNotificaciones();
-        mostrarInfo= new ListViewAnuncio(this,anuncios);
+        ArrayList<Notificacion> anuncios = new Servicios().getAnunciosNotificaciones();
+        mostrarInfo= new ListViewNotificaciones(this,anuncios);
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         this.listView.setAdapter(mostrarInfo);
