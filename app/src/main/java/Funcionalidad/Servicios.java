@@ -3,7 +3,7 @@ package Funcionalidad;
 import java.util.ArrayList;
 import java.util.Date;
 
-import entity.Anuncio;
+import entity.Notificacion;
 import entity.Beca;
 
 /**
@@ -95,14 +95,14 @@ public class Servicios {
         becas.add(segunda);
         return becas;
     }
-    public ArrayList<Anuncio> getAnunciosNotificaciones(){
-        Anuncio primera = new Anuncio("Pago Beca TICs",
+    public ArrayList<Notificacion> getAnunciosNotificaciones(){
+        Notificacion primera = new Notificacion("Pago Beca TICs",
                 "Santander Rio",
                 new Date());
-        Anuncio segunda = new Anuncio("Pago Beca FONCyT",
+        Notificacion segunda = new Notificacion("Pago Beca FONCyT",
                 "Ministerio de Educacion",
                 new Date());
-        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+        ArrayList<Notificacion> anuncios = new ArrayList<Notificacion>();
         anuncios.add(primera);
         anuncios.add(segunda);
         return anuncios;

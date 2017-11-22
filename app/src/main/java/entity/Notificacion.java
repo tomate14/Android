@@ -6,20 +6,20 @@ import java.util.Date;
  * Created by Maxi on 9/11/2017.
  */
 
-public class Anuncio {
+public class Notificacion {
 
     private String titulo;
     private String entidad;
     private Date fecha;
     private String informacion;
 
-    public Anuncio(String titulo, String entidad, Date fecha) {
+    public Notificacion(String titulo, String entidad, Date fecha) {
         this.titulo = titulo;
         this.entidad = entidad;
         this.fecha = fecha;
         this.informacion = null;
     }
-    public Anuncio(String titulo, String entidad, Date fecha, String informacion) {
+    public Notificacion(String titulo, String entidad, Date fecha, String informacion) {
         this.titulo = titulo;
         this.entidad = entidad;
         this.fecha = fecha;
