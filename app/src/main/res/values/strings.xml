@@ -41,8 +41,8 @@
     <string name="datos_personalesTitleMenu">Datos Personales</string>
     <string name="acerca_deTitleMenu">Acerca de</string>
 
-    <string name="tipo_de_estudianteTitleFiltro">Tipo de Estudiante</string>
-    <string name="orientacionTitleFiltro">Tipo de Estudiante</string>
+    <string name="tipo_de_estudianteTitleFiltro">Nivel educativo</string>
+    <string name="orientacionTitleFiltro">Orientación vocacional</string>
     <string name="paisTitleFiltro">País</string>
     <string name="ciudadTitleFiltro">Ciudad</string>
     <string name="institucionTitleFiltro">Institución emisora</string>
