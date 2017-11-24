@@ -24,6 +24,7 @@ import ingenio.myapplication.R;
  */
 
 public class Servicios {
+
     /*
      /getBecas con parametros
         --> Tiene de Input
@@ -78,6 +79,7 @@ public class Servicios {
         becas.add(primera);
         becas.add(segunda);
         return becas;
+        //return new BecasLoader(contexto);//becas;
     }
 
     /**************************************************************************
