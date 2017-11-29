@@ -1,62 +1,75 @@
 package ingenio.myapplication;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ExpandableListView;
+
 
 import java.util.ArrayList;
 
 import Adapters.ListViewExtended;
 import Adapters.ListViewVerBecas;
+import Funcionalidad.BecasLoader;
 import Funcionalidad.Servicios;
 import entity.Beca;
 
-public class MostrarBecas extends AppCompatActivity {
+public class MostrarBecas extends AppCompatActivity implements
+        LoaderManager.LoaderCallbacks<ArrayList<Beca>> {
 
-
+    private Context contexto;
     private ExpandableListView listView;
     private ListViewExtended mostrarInfo = null;
+    private ArrayList<Beca> becas;
+    private int seleccion_usuario;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mostrar_becas);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         /*********************************************
-          CREAR ADAPTADOR PARA MOSTRAR LA INFORMACION
+         CREAR ADAPTADOR PARA MOSTRAR LA INFORMACION
          *********************************************/
         Intent intent = getIntent();
-        int accion = intent.getIntExtra("listview",0);
-        ArrayList<Beca> becas;
+        this.seleccion_usuario = intent.getIntExtra("listview", 0);
+        this.contexto = this;
+        //generarAccion(seleccion_usuario);
+        this.listView = (ExpandableListView) findViewById(R.id.listView);
+        getLoaderManager().initLoader(0,null,MostrarBecas.this);
+        //this.listView.setAdapter(mostrarInfo);
+    }
 
-        switch (accion){
+    private void generarAccion(int accion) {
+        switch (accion) {
             case MenuPrincipal.ID_VERBECAS:
                 //Armar un vector de becas
                 setTitle(getString(R.string.activity_verbecas_buscar));
-                becas = new Servicios().getBecasAll();
-                mostrarInfo= new ListViewVerBecas(this,becas);
+                //becas = new Servicios().getBecasAll();
+                mostrarInfo = new ListViewVerBecas(this, becas);
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
                 setTitle(getString(R.string.activity_verbecas_sugeridas));
                 becas = new Servicios().getBecasSugeridas();
-                mostrarInfo = new ListViewVerBecas(this,becas);
+                mostrarInfo = new ListViewVerBecas(this, becas);
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
                 setTitle(getString(R.string.activity_verbecas_interes));
                 becas = new Servicios().getSubscripciones();
-                mostrarInfo = new ListViewVerBecas(this,becas);
+                mostrarInfo = new ListViewVerBecas(this, becas);
         }
-
-        this.listView = (ExpandableListView) findViewById(R.id.listView);
-        this.listView.setAdapter(mostrarInfo);
     }
 
     @Override
@@ -107,17 +120,35 @@ public class MostrarBecas extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         Intent intent = getIntent();
-        int accion = intent.getIntExtra("listview",0);
+        int accion = intent.getIntExtra("listview", 0);
         MenuItem register = menu.findItem(R.id.action_search);
-        if (accion == MenuPrincipal.ID_VERBECAS){
+        if (accion == MenuPrincipal.ID_VERBECAS) {
             register.setVisible(true);
         }
 
         return true;
     }
 
-    public void onButtonShowPopupWindowClick(View view) {
 
+    @Override
+    public Loader<ArrayList<Beca>> onCreateLoader(int id, Bundle args) {
+        generarAccion(seleccion_usuario);
+        return new BecasLoader(contexto,this.seleccion_usuario);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<ArrayList<Beca>> loader, ArrayList<Beca> data) {
+        Log.d("","ENTRANDO AL FINISH LOADER"+data.size());
+        for(int i = 0; i < data.size(); i++){
+            Log.d("RESULTADO= ",data.get(i).toString());
+        }
+        this.becas = data;
+        this.listView = (ExpandableListView) findViewById(R.id.listView);
+        this.listView.setAdapter(mostrarInfo);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<ArrayList<Beca>> loader) {
 
     }
 }

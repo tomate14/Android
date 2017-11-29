@@ -19,8 +19,10 @@ public class Beca {
     private String tipoBeca;
     private String tipoEstudiante;
     private boolean subscripta;
+    private int id;
 
-    public Beca(String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante, boolean subscripta) {
+    public Beca(int id,String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante, boolean subscripta) {
+        this.id                       = id;
         this.nombre                   = nombre;
         this.descripcion              = descripcion;
         this.telefono                 = telefono;
@@ -31,6 +33,18 @@ public class Beca {
         this.tipoBeca                 = tipoBeca;
         this.tipoEstudiante           = tipoEstudiante;
         this.subscripta               = subscripta;
+    }
+    public Beca(int id,String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante) {
+        this.id                       = id;
+        this.nombre                   = nombre;
+        this.descripcion              = descripcion;
+        this.telefono                 = telefono;
+        this.banner                   = banner;
+        this.pagina                   = pagina;
+        this.fecha_fin_inscripcion    = fecha_fin_inscripcion;
+        this.fecha_inicio_inscripcion = fecha_inicio_inscripcion;
+        this.tipoBeca                 = tipoBeca;
+        this.tipoEstudiante           = tipoEstudiante;
     }
 
     public String getNombre() {
@@ -113,11 +127,36 @@ public class Beca {
         return false;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public boolean isSubscripta() {
         return subscripta;
     }
 
     public void setSubscripta(boolean subscripta) {
         this.subscripta = subscripta;
+    }
+
+    @Override
+    public String toString() {
+        return "Beca{" +
+                "nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", banner=" + banner +
+                ", pagina='" + pagina + '\'' +
+                ", fecha_fin_inscripcion=" + fecha_fin_inscripcion +
+                ", fecha_inicio_inscripcion=" + fecha_inicio_inscripcion +
+                ", tipoBeca='" + tipoBeca + '\'' +
+                ", tipoEstudiante='" + tipoEstudiante + '\'' +
+                ", subscripta=" + subscripta +
+                ", id=" + id +
+                '}';
     }
 }
