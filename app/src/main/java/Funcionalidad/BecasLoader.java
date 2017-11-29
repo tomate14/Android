@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
 import entity.Beca;
+import ingenio.myapplication.MenuPrincipal;
 
 /**
  * Created by Maxi on 23/11/2017.
@@ -31,27 +32,30 @@ import entity.Beca;
 public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
 
     private static final String TAG = "ADP_AppListLoader";
+    private static final String BASE_URL = "http://ing.exa.unicen.edu.ar/becas";
     private static final boolean DEBUG = true;
-    //f/inal PackageManager mPm;
     private ArrayList<Beca> mApps;
     private int seleccion_usuario;
+    private String params;
 
-    public BecasLoader(Context context, int seleccion_usuario) {
+    public BecasLoader(Context context, int seleccion_usuario, String params) {
         super(context);
         this.seleccion_usuario = seleccion_usuario;
+        this.params            = params;
     }
 
     @Override
     public ArrayList<Beca> loadInBackground() {
-        Uri builtURI = Uri.parse("http://ing.exa.unicen.edu.ar/becas").buildUpon().build();
+
+        Uri builtURI = Uri.parse(BASE_URL + params).buildUpon().build();
         InputStream is = null;
         HttpURLConnection conn = null;
         String contentAsString = null;
         ArrayList<Beca> becas = new ArrayList<>();
         try {
             URL requestURL = new URL(builtURI.toString());
-
             conn = (HttpURLConnection) requestURL.openConnection();
+
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
             conn.connect();
@@ -117,4 +121,15 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
         cancelLoad();
     }
 
+    private void setPorAccion(HttpURLConnection conn){
+        switch (seleccion_usuario){
+            case MenuPrincipal.ID_VERBECAS:
+
+                break;
+            case MenuPrincipal.ID_VERSUGERENCIAS:
+
+                break;
+            case MenuPrincipal.ID_VERBECASINTERES:
+        }
+    }
 }
