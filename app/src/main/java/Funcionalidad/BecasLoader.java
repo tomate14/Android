@@ -20,30 +20,34 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import entity.Pais;
+import javax.net.ssl.HttpsURLConnection;
+
+import entity.Beca;
 
 /**
  * Created by Maxi on 23/11/2017.
  */
 
-public class PaisLoader extends AsyncTaskLoader<ArrayList<Pais>> {
+public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
 
     private static final String TAG = "ADP_AppListLoader";
     private static final boolean DEBUG = true;
     //f/inal PackageManager mPm;
-    private ArrayList<Pais> mApps;
+    private ArrayList<Beca> mApps;
+    private int seleccion_usuario;
 
-    public PaisLoader(Context context) {
+    public BecasLoader(Context context, int seleccion_usuario) {
         super(context);
+        this.seleccion_usuario = seleccion_usuario;
     }
 
     @Override
-    public ArrayList<Pais> loadInBackground() {
-        Uri builtURI = Uri.parse("http://ing.exa.unicen.edu.ar/paises").buildUpon().build();
+    public ArrayList<Beca> loadInBackground() {
+        Uri builtURI = Uri.parse("http://ing.exa.unicen.edu.ar/becas").buildUpon().build();
         InputStream is = null;
         HttpURLConnection conn = null;
         String contentAsString = null;
-        ArrayList<Pais> paises = new ArrayList<>();
+        ArrayList<Beca> becas = new ArrayList<>();
         try {
             URL requestURL = new URL(builtURI.toString());
 
@@ -53,24 +57,34 @@ public class PaisLoader extends AsyncTaskLoader<ArrayList<Pais>> {
             conn.connect();
             int responseCode = conn.getResponseCode();
 
-            is = conn.getInputStream();
-            contentAsString = convertIsToString(is);
-            Log.d(TAG, contentAsString);
-
-            JSONArray jsonArray = new JSONArray(contentAsString);
-
-            for(int i = 0; i < jsonArray.length(); i++){
-                JSONObject json = jsonArray.getJSONObject(i);
-                Pais p1 = new Pais(json.getInt("idPais"),json.getString("nombre_pais"),json.getString("codigo"));
-                paises.add(p1);
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                is = conn.getInputStream();
+                contentAsString = convertIsToString(is);
+                Log.d(TAG, contentAsString);
+                JSONArray jsonArray = new JSONArray(contentAsString);
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject json = jsonArray.getJSONObject(i);
+                    Beca p1 = new Beca(json.getInt("idBeca"),
+                            json.getString("nombre"),
+                            json.getString("descripcion"),
+                            "25487956655",
+                            null,
+                            json.getString("pagina_web"),
+                            null,
+                            null,
+                            json.getString("idTipoBeca"),
+                            json.getString("idTipoEstudiante")
+                    );
+                    becas.add(p1);
+                }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if(paises.size()>0){
-            return paises;
+        if(becas.size()>0){
+            return becas;
         }
         return null;
     }
@@ -78,17 +92,16 @@ public class PaisLoader extends AsyncTaskLoader<ArrayList<Pais>> {
     public String convertIsToString(InputStream stream)
             throws IOException, UnsupportedEncodingException {
 
-
         Reader reader = null;
         reader = new InputStreamReader(stream, "UTF-8");
         BufferedReader buffer = new BufferedReader(reader);
         String line = buffer.readLine();
-        line = buffer.readLine();
+        //line = buffer.readLine();
         return line;
     }
 
     @Override
-    public void deliverResult(ArrayList<Pais> apps) {
+    public void deliverResult(ArrayList<Beca> apps) {
         if (isStarted()) {
             super.deliverResult(apps);
         }
