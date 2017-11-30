@@ -2,9 +2,7 @@ package ingenio.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,20 +18,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-import Adapters.ListViewBanner;
 import Funcionalidad.Servicios;
 import entity.Anuncio;
 import entity.Usuario;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private TextView txtNombre;
-    private TextView txtEmail;
+
     //private ListView listView;
     public static final int ID_VERBECAS        = 1;
     public static final int ID_VERBECASINTERES = 2;
@@ -43,13 +39,16 @@ public class MenuPrincipal extends AppCompatActivity
     public static final String OPERACION_VERBECAS            = "";
     //public static final String OPERACION_VERBECAS            = "/verbecas";
     public static final String OPERACION_VERBECASINTERES     = "/verbecasinteres";
-    public static final String OPERACION_VERBECASSUGERENCIAS = "/verbecasinteres";
+    public static final String OPERACION_VERBECASSUGERENCIAS = "/verbecassugeridas";
 
 
     private MenuPrincipal.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static ArrayList<Anuncio> anuncios;
-    public static final Usuario user = null;
+    public static Usuario user = null;
+
+    private TextView txtNombre;
+    private TextView txtEmail;
 
 
 
@@ -70,7 +69,19 @@ public class MenuPrincipal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View datosUsuario = navigationView.getHeaderView(0);
+
         //Informacion del login
+        Intent intUsuario =  getIntent();
+        //user = (Usuario) intUsuario.getSerializableExtra("usuario");
+        user = new Usuario(10,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana");
+
+        this.txtNombre = (TextView) datosUsuario.findViewById(R.id.txtNombreNav);
+        this.txtEmail = (TextView) datosUsuario.findViewById(R.id.txtEmailNav);
+
+        txtNombre.setText(user.getNombre());
+        txtEmail.setText(user.getEmail());
+
         this.anuncios = new Servicios().getAnuncios(this);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -78,9 +89,8 @@ public class MenuPrincipal extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        this.txtNombre = (TextView) findViewById(R.id.txtNombre);
 
-        this.txtEmail = (TextView) findViewById(R.id.txtEmail);
+
     }
 
     @Override
