@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +19,9 @@ public class RegisterActivity extends AppCompatActivity{
     private int accion_a_realizar;
     private Context contexto;
     private EditText editBirthday;
+    private TextInputEditText nombre;
+    private TextInputEditText apellido;
+    private TextInputEditText email;
 
 
     @Override
@@ -29,15 +33,26 @@ public class RegisterActivity extends AppCompatActivity{
         this.contexto = this;
         Button btnConfirmar = (Button)findViewById(R.id.btnConfirmar);
         editBirthday = (EditText) findViewById(R.id.editBirthday);
+        nombre = (TextInputEditText) findViewById(R.id.nombreRegister);
+        apellido = (TextInputEditText) findViewById(R.id.apellidoRegister);
+        email = (TextInputEditText) findViewById(R.id.emailRegister);
 
         Intent intent = getIntent();
-        this.accion_a_realizar = intent.getIntExtra("Accion_Datos",0);
+        this.accion_a_realizar = intent.getIntExtra("AccionDatos",0);
         switch (this.accion_a_realizar){
             case LoginActivity.ID_REGISTER:
                 break;
             case MenuPrincipal.ID_EDITARDATOS:
                 //disableElements();
                 break;
+            case LoginActivity.ID_REGISTERGOOGLE:
+            {
+                nombre.setText(intent.getStringExtra("nombre"));
+                apellido.setText(intent.getStringExtra("apellido"));
+                email.setText(intent.getStringExtra("email"));
+                break;
+            }
+
         }
 
         btnConfirmar.setOnClickListener(new View.OnClickListener(){

@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
@@ -72,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     protected static final int ID_REGISTER = 1;
+    protected static final int ID_REGISTERGOOGLE = 3;
     private GoogleApiClient googleApiClient;
 
     private SignInButton signInButton;
@@ -156,7 +158,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private void handleSignResult(GoogleSignInResult result) {
         if(result.isSuccess()){
-           Toast.makeText(this, result.toString(),Toast.LENGTH_LONG).show();
+            GoogleSignInAccount account = result.getSignInAccount();
+            Intent userRegister = new Intent(LoginActivity.this,RegisterActivity.class);
+            userRegister.putExtra("AccionDatos",ID_REGISTERGOOGLE);
+            if(account.getEmail()!= null)
+                userRegister.putExtra("email",account.getEmail());
+            else
+                userRegister.putExtra("email","");
+            if(account.getGivenName()!= null)
+                userRegister.putExtra("nombre",account.getGivenName());
+            else
+                userRegister.putExtra("nombre","");
+            if(account.getFamilyName()!= null)
+                userRegister.putExtra("apellido",account.getFamilyName());
+            else
+                userRegister.putExtra("apellido","");
+            startActivity(userRegister);
         }else{
             Toast.makeText(this,"No se pudo loguear", Toast.LENGTH_SHORT).show();
         }
