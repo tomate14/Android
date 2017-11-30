@@ -84,12 +84,13 @@
                 tools:text="Registrarse"
                 android:layout_weight="1.13" />
 
-            <Button
+            <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGmail"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/gmailButtonLogin" />
+                android:text="@string/gmailButtonLogin"
+                android:textStyle="bold"></com.google.android.gms.common.SignInButton>
 
         </LinearLayout>
     </ScrollView>
