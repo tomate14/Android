@@ -16,12 +16,12 @@ public class Beca {
     private String pagina;
     private Date fecha_fin_inscripcion;
     private Date fecha_inicio_inscripcion;
-    private String tipoBeca;
-    private String tipoEstudiante;
+    private TipoBeca tipoBeca;
+    private TipoEstudiante tipoEstudiante;
     private boolean subscripta;
     private int id;
 
-    public Beca(int id,String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante, boolean subscripta) {
+    public Beca(int id,String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion,TipoBeca tipoBeca, TipoEstudiante tipoEstudiante, boolean subscripta) {
         this.id                       = id;
         this.nombre                   = nombre;
         this.descripcion              = descripcion;
@@ -34,18 +34,7 @@ public class Beca {
         this.tipoEstudiante           = tipoEstudiante;
         this.subscripta               = subscripta;
     }
-    public Beca(int id,String nombre, String descripcion, String telefono, Bitmap banner, String pagina, Date fecha_fin_inscripcion, Date fecha_inicio_inscripcion, String tipoBeca, String tipoEstudiante) {
-        this.id                       = id;
-        this.nombre                   = nombre;
-        this.descripcion              = descripcion;
-        this.telefono                 = telefono;
-        this.banner                   = banner;
-        this.pagina                   = pagina;
-        this.fecha_fin_inscripcion    = fecha_fin_inscripcion;
-        this.fecha_inicio_inscripcion = fecha_inicio_inscripcion;
-        this.tipoBeca                 = tipoBeca;
-        this.tipoEstudiante           = tipoEstudiante;
-    }
+
 
     public String getNombre() {
         return nombre;
@@ -103,19 +92,19 @@ public class Beca {
         this.fecha_inicio_inscripcion = fecha_inicio_inscripcion;
     }
 
-    public String getTipoBeca() {
+    public TipoBeca getTipoBeca() {
         return tipoBeca;
     }
 
-    public void setTipoBeca(String tipoBeca) {
+    public void setTipoBeca(TipoBeca tipoBeca) {
         this.tipoBeca = tipoBeca;
     }
 
-    public String getTipoEstudiante() {
+    public TipoEstudiante getTipoEstudiante() {
         return tipoEstudiante;
     }
 
-    public void setTipoEstudiante(String tipoEstudiante) {
+    public void setTipoEstudiante(TipoEstudiante tipoEstudiante) {
         this.tipoEstudiante = tipoEstudiante;
     }
 

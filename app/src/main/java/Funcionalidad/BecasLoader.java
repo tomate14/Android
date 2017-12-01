@@ -1,9 +1,10 @@
-package Funcionalidad;
+package funcionalidad;
 
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.content.pm.PackageManager;
+import android.icu.util.Calendar;
+import android.icu.util.GregorianCalendar;
 import android.net.Uri;
 import android.util.Log;
 
@@ -19,10 +20,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import entity.Beca;
+import entity.TipoBeca;
+import entity.TipoEstudiante;
 import ingenio.myapplication.MenuPrincipal;
 
 /**
@@ -32,7 +36,7 @@ import ingenio.myapplication.MenuPrincipal;
 public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
 
     private static final String TAG = "ADP_AppListLoader";
-    private static final String BASE_URL = "http://ing.exa.unicen.edu.ar/becas";
+    private static final String BASE_URL = "http://ing.exa.unicen.edu.ar/ws/becas";
     private static final boolean DEBUG = true;
     private ArrayList<Beca> mApps;
     private int seleccion_usuario;
@@ -46,7 +50,6 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
 
     @Override
     public ArrayList<Beca> loadInBackground() {
-
         Uri builtURI = Uri.parse(BASE_URL + params).buildUpon().build();
         InputStream is = null;
         HttpURLConnection conn = null;
@@ -68,21 +71,25 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                 JSONArray jsonArray = new JSONArray(contentAsString);
                 for(int i = 0; i < jsonArray.length(); i++){
                     JSONObject json = jsonArray.getJSONObject(i);
+                    Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion"));
+                    Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion"));
+
                     Beca p1 = new Beca(json.getInt("idBeca"),
                             json.getString("nombre"),
                             json.getString("descripcion"),
-                            "25487956655",
+                            json.getString("telefono"),
                             null,
                             json.getString("pagina_web"),
-                            null,
-                            null,
-                            json.getString("idTipoBeca"),
-                            json.getString("idTipoEstudiante")
+                            fecha_inicio,
+                            fecha_fin,
+                            new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
+                            new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
+                            false
                     );
                     becas.add(p1);
                 }
             }
-
+            conn.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
