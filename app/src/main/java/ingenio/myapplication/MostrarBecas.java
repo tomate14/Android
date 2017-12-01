@@ -19,10 +19,9 @@ import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewExtended;
-import Adapters.ListViewVerBecas;
-import Funcionalidad.BecasLoader;
-import Funcionalidad.Servicios;
+import adapters.ListViewExtended;
+import adapters.ListViewVerBecas;
+import funcionalidad.BecasLoader;
 import entity.Beca;
 
 public class MostrarBecas extends AppCompatActivity implements

@@ -23,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Funcionalidad.Servicios;
+import funcionalidad.Servicios;
 import entity.Anuncio;
 import entity.Usuario;
 

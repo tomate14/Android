@@ -1,16 +1,9 @@
-package Funcionalidad;
+package funcionalidad;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
-import android.widget.ImageView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,7 +61,7 @@ public class Servicios {
     /********************************************
      * Servicio que retorna las becas sin filtro
      ********************************************/
-    public ArrayList<Beca> getBecasAll(){
+    /*public ArrayList<Beca> getBecasAll(){
         Beca primera = new Beca(1,"Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
                 null,null,null,null,null,"Ingenieria","Universitario",false);
@@ -80,12 +73,12 @@ public class Servicios {
         becas.add(segunda);
         return becas;
         //return new BecasLoader(contexto);//becas;
-    }
+    }*/
 
     /**************************************************************************
      * Servicio que retorna las becas sugeridas en base a los datos del usuario
      **************************************************************************/
-    public ArrayList<Beca> getBecasSugeridas(){
+   /* public ArrayList<Beca> getBecasSugeridas(){
         Beca primera = new Beca(1,"Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
                 null,null,null,null,null,"Ingenieria","Universitario",false);
@@ -96,9 +89,9 @@ public class Servicios {
         becas.add(primera);
         becas.add(segunda);
         return becas;
-    }
+    }*/
 
-    public ArrayList<Beca> getSubscripciones(){
+    /*public ArrayList<Beca> getSubscripciones(){
         Beca primera = new Beca(1,"Beca TICs",
                 "El objetivo es convocar a las instituciones universitarias de gestión pública radicadas en el país, a la presentación de propuestas para la adjudicación de cupos de becas a estudiantes para la finalización de estudios de grado en carreras relacionadas con el sector TIC.",
                 null,null,null,null,null,"Ingenieria","Universitario",false);
@@ -109,7 +102,7 @@ public class Servicios {
         becas.add(primera);
         becas.add(segunda);
         return becas;
-    }
+    }*/
 
     public ArrayList<Notificacion> getAnunciosNotificaciones(){
         Notificacion primera = new Notificacion("Pago Beca TICs",
