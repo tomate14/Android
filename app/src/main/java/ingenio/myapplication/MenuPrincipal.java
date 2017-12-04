@@ -2,9 +2,7 @@ package ingenio.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,13 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewBanner;
-import Funcionalidad.Servicios;
+import funcionalidad.Servicios;
 import entity.Anuncio;
 
 public class MenuPrincipal extends AppCompatActivity
@@ -129,7 +125,7 @@ public class MenuPrincipal extends AppCompatActivity
                 break;
             case R.id.nav_editarDatos:
                 Intent editarDatos = new Intent(MenuPrincipal.this,RegisterActivity.class);
-                editarDatos.putExtra("AccionDatos",ID_EDITARDATOS);
+                editarDatos.putExtra("Accion_Datos",ID_EDITARDATOS);
                 startActivity(editarDatos);
                 break;
             case R.id.nav_verPerfil:

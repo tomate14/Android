@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 Intent userRegister = new Intent(LoginActivity.this,RegisterActivity.class);
-                userRegister.putExtra("AccionDatos",ID_REGISTER);
+                userRegister.putExtra("Accion_Datos",ID_REGISTER);
                 startActivity(userRegister);
             }
         });

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Adapters.ListViewNotificaciones;
 import Adapters.ListViewExtended;
 import entity.Notificacion;
-import Funcionalidad.Servicios;
+import funcionalidad.Servicios;
 
 public class MostrarAnuncios extends AppCompatActivity {
 

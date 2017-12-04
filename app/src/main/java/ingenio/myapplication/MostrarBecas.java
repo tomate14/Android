@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import Adapters.ListViewExtended;
 import Adapters.ListViewVerBecas;
-import Funcionalidad.Servicios;
+import funcionalidad.Servicios;
 import entity.Beca;
 
 public class MostrarBecas extends AppCompatActivity {
