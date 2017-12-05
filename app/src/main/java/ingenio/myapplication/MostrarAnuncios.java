@@ -7,8 +7,8 @@ import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 
-import Adapters.ListViewNotificaciones;
-import Adapters.ListViewExtended;
+import adapters.ListViewNotificaciones;
+import adapters.ListViewExtended;
 import entity.Notificacion;
 import funcionalidad.Servicios;
 

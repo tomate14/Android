@@ -21,23 +21,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import funcionalidad.Servicios;
 import entity.Anuncio;
+import entity.Usuario;
 
 public class MenuPrincipal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private TextView txtNombre;
-    private TextView txtEmail;
+
     //private ListView listView;
-    public static final int ID_VERBECAS = 1;
+    public static final int ID_VERBECAS        = 1;
     public static final int ID_VERBECASINTERES = 2;
-    public static final int ID_VERSUGERENCIAS = 3;
-    public static final int ID_EDITARDATOS = 4;
+    public static final int ID_VERSUGERENCIAS  = 3;
+    public static final int ID_EDITARDATOS     = 4;
+
+    public static final String OPERACION_VERBECAS            = "";
+    //public static final String OPERACION_VERBECAS            = "/verbecas";
+    public static final String OPERACION_VERBECASINTERES     = "/verbecasinteres";
+    public static final String OPERACION_VERBECASSUGERENCIAS = "/verbecassugeridas";
+
 
     private MenuPrincipal.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static ArrayList<Anuncio> anuncios;
+    public static Usuario user = null;
+
+    private TextView txtNombre;
+    private TextView txtEmail;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +69,19 @@ public class MenuPrincipal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //this.listView = (ListView) findViewById(R.id.listViewBanners);
-        //this.listView.setAdapter(new ListViewBanner(new Servicios().getAnuncios(this),this));
+        View datosUsuario = navigationView.getHeaderView(0);
+
         //Informacion del login
+        Intent intUsuario =  getIntent();
+        //user = (Usuario) intUsuario.getSerializableExtra("usuario");
+        user = new Usuario(10,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana");
+
+        this.txtNombre = (TextView) datosUsuario.findViewById(R.id.txtNombreNav);
+        this.txtEmail = (TextView) datosUsuario.findViewById(R.id.txtEmailNav);
+
+        txtNombre.setText(user.getNombre());
+        txtEmail.setText(user.getEmail());
+
         this.anuncios = new Servicios().getAnuncios(this);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -66,10 +89,8 @@ public class MenuPrincipal extends AppCompatActivity
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        this.txtNombre = (TextView) findViewById(R.id.txtNombre);
-        //this.txtNombre.setText("USUARIO LOGUEADO");
-        this.txtEmail = (TextView) findViewById(R.id.txtEmail);
-        //this.txtEmail.setText("usuario@gmail.com");
+
+
     }
 
     @Override
@@ -116,11 +137,13 @@ public class MenuPrincipal extends AppCompatActivity
             case R.id.nav_buscarBecas:
                 Intent filtro = new Intent(MenuPrincipal.this,MostrarBecas.class);
                 filtro.putExtra("listview", ID_VERBECAS);
+                filtro.putExtra("operacion",OPERACION_VERBECAS);
                 startActivity(filtro);
                 break;
             case R.id.nav_becasSugeridas:
                 Intent mostrar = new Intent(MenuPrincipal.this,MostrarBecas.class);
                 mostrar.putExtra("listview", ID_VERSUGERENCIAS);
+                mostrar.putExtra("operacion",OPERACION_VERBECASSUGERENCIAS);
                 startActivity(mostrar);
                 break;
             case R.id.nav_editarDatos:
@@ -135,6 +158,7 @@ public class MenuPrincipal extends AppCompatActivity
             case R.id.nav_misBecas:
                 Intent mostrarse = new Intent(MenuPrincipal.this,MostrarBecas.class);
                 mostrarse.putExtra("listview",ID_VERBECASINTERES);
+                mostrarse.putExtra("operacion",OPERACION_VERBECASINTERES);
                 startActivity(mostrarse);
                 break;
             case R.id.nav_historialNotificaciones:

@@ -1,10 +1,12 @@
-package Adapters;
+package adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.opengl.EGLExt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,20 +60,36 @@ public class ListViewVerBecas extends ListViewExtended {
         txtTipo = (TextView) convertView.findViewById(R.id.txttipo);
         txtEstudiante = (TextView) convertView.findViewById(R.id.txtEstudiante);
         txtTitle.setText(becas.get(groupPosition).getNombre());
-        txtTipo.setText(becas.get(groupPosition).getTipoBeca());
-        txtEstudiante.setText(becas.get(groupPosition).getTipoEstudiante());
+        txtTipo.setText(becas.get(groupPosition).getTipoBeca().getNombre());
+        txtEstudiante.setText(becas.get(groupPosition).getTipoEstudiante().getNombre());
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        final int posicion = groupPosition;
+
         TextView tv = new TextView(contexto);
         TextView txtTexto;
-        View inflate = View.inflate(contexto, R.layout.infobecashijo,null);
-        txtTexto  = (TextView) inflate.findViewById(R.id.txtTexto);
+        if (convertView == null) {
+            convertView = View.inflate(contexto, R.layout.infobecashijo, null);
+
+
+            final Button button = (Button) convertView.findViewById(R.id.btnTelefono);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(android.content.Intent.ACTION_DIAL,Uri.parse("tel:"+becas.get(posicion).getTelefono()));
+                    contexto.startActivity(intent);
+                }
+            });
+
+        }
+        txtTexto = (TextView) convertView.findViewById(R.id.txtTexto);
         txtTexto.setText(becas.get(groupPosition).getDescripcion());
         tv.setTextSize(12);
-        return inflate;
+
+        return convertView;
     }
 
     /*@Override
