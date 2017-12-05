@@ -18,7 +18,6 @@ import android.widget.ExpandableListView;
 
 
 import java.util.ArrayList;
-
 import adapters.ListViewExtended;
 import adapters.ListViewVerBecas;
 import funcionalidad.BecasLoader;

@@ -148,7 +148,7 @@ public class MenuPrincipal extends AppCompatActivity
                 break;
             case R.id.nav_editarDatos:
                 Intent editarDatos = new Intent(MenuPrincipal.this,RegisterActivity.class);
-                editarDatos.putExtra("AccionDatos",ID_EDITARDATOS);
+                editarDatos.putExtra("Accion_Datos",ID_EDITARDATOS);
                 startActivity(editarDatos);
                 break;
             case R.id.nav_verPerfil:
