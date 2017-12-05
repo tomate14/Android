@@ -3,8 +3,6 @@ package funcionalidad;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.icu.util.Calendar;
-import android.icu.util.GregorianCalendar;
 import android.net.Uri;
 import android.util.Log;
 
