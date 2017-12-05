@@ -62,8 +62,8 @@ public class RegistroService extends IntentService {
                     prueba.put("apellido",intent.getStringExtra("apellido"));
                     prueba.put("direccion",intent.getStringExtra("direccion"));
                     prueba.put("email",intent.getStringExtra("email"));
-                    prueba.put("password",intent.getStringExtra("contraseña"));
-                    prueba.put("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1)));
+                    prueba.put("password",intent.getStringExtra("password"));
+                    prueba.put("ciudad",intent.getIntExtra("ciudad",-1));
                     java.util.Calendar cal = java.util.Calendar.getInstance();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
