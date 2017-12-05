@@ -23,6 +23,7 @@ import ingenio.myapplication.RegisterActivity;
 
 public class LocalReciever extends BroadcastReceiver {
 
+
     RegisterActivity registerActivity;
 
     public LocalReciever(RegisterActivity ra){
