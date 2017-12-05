@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.icu.util.Calendar;
+import android.icu.util.TimeZone;
+import android.support.design.widget.TextInputEditText;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,6 +61,9 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner spinnerProvincia;
     private Spinner spinnerCiudad;
     private Button btnConfirmar;
+    private TextInputEditText nombre1;
+    private TextInputEditText apellido1;
+    private TextInputEditText email;
 
 
     @Override
@@ -86,6 +92,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.contexto = this;
+        Button btnConfirmar = (Button)findViewById(R.id.btnConfirmar);
+        editBirthday = (EditText) findViewById(R.id.editBirthday);
+        nombre1 = (TextInputEditText) findViewById(R.id.nombreRegister);
+        apellido1 = (TextInputEditText) findViewById(R.id.apellidoRegister);
+        email = (TextInputEditText) findViewById(R.id.emailRegister);
 
         //falta implementar <---------------
         Intent intent = getIntent();
@@ -99,6 +110,14 @@ public class RegisterActivity extends AppCompatActivity {
                 mail.setVisibility(View.GONE);
                 //disableElements();
                 break;
+            case LoginActivity.ID_REGISTERGOOGLE:
+            {
+                nombre.setText(intent.getStringExtra("nombre"));
+                apellido.setText(intent.getStringExtra("apellido"));
+                email.setText(intent.getStringExtra("email"));
+                break;
+            }
+
         }
 
         /* Definicion y carga del Spinner Pais */

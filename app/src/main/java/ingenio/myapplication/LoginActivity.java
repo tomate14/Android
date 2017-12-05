@@ -29,6 +29,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +47,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, GoogleApiClient.OnConnectionFailedListener {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -64,11 +73,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     protected static final int ID_REGISTER = 1;
+    protected static final int ID_REGISTERGOOGLE = 3;
+    private GoogleApiClient googleApiClient;
+
+    private SignInButton signInButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //agrego la creacion del cliente google
+        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleApiClient = new  GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,options ).build();
+        signInButton = (SignInButton)findViewById(R.id.btnGmail);
+        signInButton.setColorScheme(SignInButton.COLOR_DARK);
+        signInButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                startActivityForResult(intent,777);
+            }
+        });
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -96,7 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
-        Button btnGmail = (Button) findViewById(R.id.btnGmail);
+        /*Button btnGmail = (Button) findViewById(R.id.btnGmail);
         btnGmail.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 finish();
                 //attemptLogin();
             }
-        });
+        });*/
 
         Button mEmailSignInButton = (Button) findViewById(R.id.btnIngresar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
@@ -118,6 +145,39 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 777){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignResult(result);
+        }
+    }
+
+    private void handleSignResult(GoogleSignInResult result) {
+        if(result.isSuccess()){
+            GoogleSignInAccount account = result.getSignInAccount();
+            Intent userRegister = new Intent(LoginActivity.this,RegisterActivity.class);
+            userRegister.putExtra("Accion_Datos",ID_REGISTERGOOGLE);
+            if(account.getEmail()!= null)
+                userRegister.putExtra("email",account.getEmail());
+            else
+                userRegister.putExtra("email","");
+            if(account.getGivenName()!= null)
+                userRegister.putExtra("nombre",account.getGivenName());
+            else
+                userRegister.putExtra("nombre","");
+            if(account.getFamilyName()!= null)
+                userRegister.putExtra("apellido",account.getFamilyName());
+            else
+                userRegister.putExtra("apellido","");
+            startActivity(userRegister);
+        }else{
+            Toast.makeText(this,"No se pudo loguear", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void populateAutoComplete() {
@@ -303,6 +363,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 
 
