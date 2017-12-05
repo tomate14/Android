@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "ingenio.myapplication"
         minSdkVersion 21
@@ -28,4 +28,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.1.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+
 }
+apply plugin:'com.google.gms.google-services'
