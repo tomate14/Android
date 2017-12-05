@@ -57,23 +57,25 @@ public class RegistroService extends IntentService {
                     conn.setRequestMethod("POST");
                     conn.setDoInput(true);
                     conn.setDoOutput(true);
-                    JSONObject prueba = new JSONObject();
-                    prueba.put("nombre",intent.getStringExtra("nombre"));
-                    prueba.put("apellido",intent.getStringExtra("apellido"));
-                    prueba.put("direccion",intent.getStringExtra("direccion"));
-                    prueba.put("email",intent.getStringExtra("email"));
-                    prueba.put("password",intent.getStringExtra("password"));
-                    prueba.put("ciudad",intent.getIntExtra("ciudad",-1));
+                    JSONObject registro = new JSONObject();
+                    registro.put("nombre",intent.getStringExtra("nombre"));
+                    registro.put("apellido",intent.getStringExtra("apellido"));
+                    registro.put("direccion",intent.getStringExtra("direccion"));
+                    registro.put("email",intent.getStringExtra("email"));
+                    registro.put("password",intent.getStringExtra("password"));
+                    registro.put("ciudad",intent.getIntExtra("ciudad",-1));
+                    registro.put("tipo",intent.getIntExtra("tipo",-1));
+                    registro.put("orientacion",intent.getIntExtra("orientacion",-1));
                     java.util.Calendar cal = java.util.Calendar.getInstance();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
-                    prueba.put("fecha_nacimiento",cal.getTimeInMillis());
+                    registro.put("fecha_nacimiento",cal.getTimeInMillis());
 
-                    Log.d(TAG,prueba.toString(1));
+                    Log.d(TAG,registro.toString(1));
                     OutputStream os = conn.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(
                             new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(prueba.toString());
+                    writer.write(registro.toString());
                     writer.flush();
                     writer.close();
                     os.close();

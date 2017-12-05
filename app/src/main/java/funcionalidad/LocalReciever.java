@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Hashtable;
 
+import entity.TipoBeca;
+import entity.TipoEstudiante;
 import ingenio.myapplication.RegisterActivity;
 
 /**
@@ -96,6 +99,42 @@ public class LocalReciever extends BroadcastReceiver {
                 String respuesta= intent.getStringExtra(RegistroService.RESPONSE);
                 if(respuesta.equals("exitosamente")){ // cambiar el String por el correcto <-------------
                     registerActivity.notificarRegistro();
+                }
+            case "tiposestudiantes":
+                try {
+                    JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
+                    ArrayList<TipoEstudiante> tipoEstudiantes = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++){
+
+                        JSONObject json = jsonArray.getJSONObject(i);
+
+                        Integer id = json.getInt("idTipoEstudiante");
+                        String nombre = json.getString("nombre_tipo");
+                        TipoEstudiante tipo = new TipoEstudiante(id,nombre);
+
+                        tipoEstudiantes.add(tipo);
+                    }
+                    registerActivity.setTipoEstudiantes(tipoEstudiantes);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            case "tiposbecas":
+                try {
+                    JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
+                    ArrayList<TipoBeca> tiposbecas = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++){
+
+                        JSONObject json = jsonArray.getJSONObject(i);
+
+                        Integer id = json.getInt("idTipoBeca");
+                        String nombre = json.getString("nombre_beca");
+                        TipoBeca tipo = new TipoBeca(id,nombre);
+
+                        tiposbecas.add(tipo);
+                    }
+                    registerActivity.setTipoBecas(tiposbecas);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
         }
     }
