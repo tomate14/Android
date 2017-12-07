@@ -19,6 +19,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -149,29 +152,40 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 switch (accion_a_realizar) {
                     case LoginActivity.ID_REGISTER:
-                        if (registroVerificado()) { // falta chequeo de tipo y orientacion <-------------------------
+                        if (registroVerificado()) {
                             mServiceIntent.putExtra("email", mail.getText().toString());
                             mServiceIntent.putExtra("ruta", "registro");
                             mServiceIntent.putExtra(OPERACION, "registro");
+                            mServiceIntent.putExtra("nombre", nombre.getText().toString());
+                            mServiceIntent.putExtra("apellido", apellido.getText().toString());
+                            mServiceIntent.putExtra("direccion", direccion.getText().toString());
+                            mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
+                            Log.d("password", password.getText().toString()+ "     " + RegisterActivity.md5(password.getText().toString()));
+                            mServiceIntent.putExtra("password", RegisterActivity.md5(password.getText().toString()));
+                            mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
+                            mServiceIntent.putExtra("tipo", 1); // esto esta hardcode
+                            mServiceIntent.putExtra("orientacion", 1); // esto esta hardcode
+                            startService(mServiceIntent);
                         }
                         break;
                     case MenuPrincipal.ID_EDITARDATOS:
-                        if(edicionVerificada()){ // falta chequeo de tipo y orientacion <-------------------------
+                        if (edicionVerificada()) { // falta chequeo de tipo y orientacion <-------------------------
                             mServiceIntent.putExtra("passwordNew", passwordNew.getText().toString());
                             mServiceIntent.putExtra("ruta", "modUsuario");
                             mServiceIntent.putExtra(OPERACION, "edicion");
+                            mServiceIntent.putExtra("nombre", nombre.getText().toString());
+                            mServiceIntent.putExtra("apellido", apellido.getText().toString());
+                            mServiceIntent.putExtra("direccion", direccion.getText().toString());
+                            mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
+                            mServiceIntent.putExtra("password", md5(password.getText().toString()));
+                            mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
+                            mServiceIntent.putExtra("tipo", 1); // esto esta hardcode
+                            mServiceIntent.putExtra("orientacion", 1); // esto esta hardcode
+                            startService(mServiceIntent);
                         }
                         break;
                 }
-                mServiceIntent.putExtra("nombre", nombre.getText().toString());
-                mServiceIntent.putExtra("apellido", apellido.getText().toString());
-                mServiceIntent.putExtra("direccion", direccion.getText().toString());
-                mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
-                mServiceIntent.putExtra("password", password.getText().toString());
-                mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
-                mServiceIntent.putExtra("tipo", 1); // esto esta hardcode
-                mServiceIntent.putExtra("orientacion", 1); // esto esta hardcode
-                startService(mServiceIntent);
+
             }
         });
 
@@ -205,14 +219,17 @@ public class RegisterActivity extends AppCompatActivity {
             mensajeError = mensajeError + "* Campo Contraseña requerido" + "\n";
             errores++;
         }
+        if (password.getText().toString().length() < 4) {
+            mensajeError = mensajeError + "* Contraseña muy corta" + "\n";
+            errores++;
+        }
 
         if (editBirthday.getText().toString().equals("")) {
             mensajeError = mensajeError + "* Campo Fecha de nacimiento requerido" + "\n";
             errores++;
         }
-
         if (!password.getText().toString().equals(passwordVal.getText().toString())) {
-            mensajeError = mensajeError + "* No coinciden las contraseñas";
+            mensajeError = mensajeError + "* No coinciden las contraseñas" + "\n";
             errores++;
         }
         if (errores > 0) {
@@ -226,7 +243,7 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean edicionVerificada(){
+    private boolean edicionVerificada() {
         int ignores = 0;
         int errores = 0;
         String mensajeError = new String();
@@ -251,7 +268,7 @@ public class RegisterActivity extends AppCompatActivity {
             ignores++;
         }
 
-        if(password.getText().toString().equals("")&&!passwordNew.getText().toString().equals("")){
+        if (password.getText().toString().equals("") && !passwordNew.getText().toString().equals("")) {
             mensajeError = mensajeError + "* Campo Contraseña Actual requerido para el cambio de contraseña" + "\n";
             errores++;
         }
@@ -266,7 +283,7 @@ public class RegisterActivity extends AppCompatActivity {
             errores++;
         }
 
-        if(ignores == 6){
+        if (ignores == 6) {
             mensajeError = mensajeError + "* No se han modificado datos" + "\n";
             errores++;
         }
@@ -281,7 +298,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
 
     @Override
@@ -341,5 +357,24 @@ public class RegisterActivity extends AppCompatActivity {
                 //cerrar esta actividad y volver a la de login <--------------
             }
         });
+    }
+
+    public static String md5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void notificarError() {
     }
 }
