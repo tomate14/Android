@@ -7,6 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -21,6 +31,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import ingenio.myapplication.RegisterActivity;
 
@@ -37,6 +49,7 @@ public class RegistroService extends IntentService {
     final String BASE_URL = "http://ing.exa.unicen.edu.ar/ws/";
     static final String TAG = RegistroService.class.getCanonicalName();
 
+
     public RegistroService() {
         super("RegistroServicesTest");
     }
@@ -48,54 +61,48 @@ public class RegistroService extends IntentService {
         Uri builtURI = Uri.parse(BASE_URL + ruta).buildUpon().build();
         InputStream is = null;
         HttpURLConnection conn = null;
+        Intent response;
         try {
 
             URL requestURL = new URL(builtURI.toString());
             conn = (HttpURLConnection) requestURL.openConnection();
+            List<NameValuePair> params = new ArrayList<>();
 
             switch (operation) {
                 case "registro":
-                    conn.setRequestMethod("POST");
-                    conn.setDoInput(true);
-                    conn.setDoOutput(true);
-                    JSONObject registro = new JSONObject();
-                    registro.put("nombre",intent.getStringExtra("nombre"));
-                    registro.put("apellido",intent.getStringExtra("apellido"));
-                    registro.put("direccion",intent.getStringExtra("direccion"));
-                    registro.put("email",intent.getStringExtra("email"));
-                    registro.put("password",intent.getStringExtra("password"));
-                    registro.put("ciudad",intent.getIntExtra("ciudad",-1));
-                    registro.put("tipo",intent.getIntExtra("tipo",-1));
-                    registro.put("orientacion",intent.getIntExtra("orientacion",-1));
+                    params.clear();
+                    params.add(new BasicNameValuePair("email",intent.getStringExtra("email")));
+                    params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
+                    params.add(new BasicNameValuePair("nombre",intent.getStringExtra("nombre")));
+                    params.add(new BasicNameValuePair("apellido",intent.getStringExtra("apellido")));
+                    params.add(new BasicNameValuePair("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1))));
                     java.util.Calendar cal = java.util.Calendar.getInstance();
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
-                    registro.put("fecha_nacimiento",cal.getTimeInMillis());
+                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis())));
+                    params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
 
-                    Log.d(TAG,registro.toString(1));
-                    OutputStream os = conn.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(
-                            new OutputStreamWriter(os, "UTF-8"));
-                    writer.write(registro.toString());
-                    writer.flush();
-                    writer.close();
-                    os.close();
+                    Log.d(TAG,params.toString());
 
-                    conn.connect();
-
-                    int responseCode = conn.getResponseCode();
-                    Log.d(TAG,Integer.toString(responseCode));
-                    is = conn.getInputStream();
-                    String contentAsString = convertIsToString(is);
-                    Log.d(TAG, contentAsString);
-                    Intent response = new Intent(RESPONSE_ACTION);
-                    response.putExtra(RegisterActivity.OPERACION, operation);
-                    response.putExtra(RESPONSE, contentAsString);
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+                    this.post(BASE_URL + ruta,params);
                     break;
 
                 case "edicion" :
                     break;
+
+                case "login" :
+
+                    params.clear();
+                    params.add(new BasicNameValuePair("email",intent.getStringExtra("email")));
+                    params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
+
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(RegisterActivity.OPERACION, operation);
+                    response.putExtra(RESPONSE, this.post(BASE_URL + ruta,params));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+
+                    break;
+
 
                 default:
                     conn.setRequestMethod("GET");
@@ -111,6 +118,7 @@ public class RegistroService extends IntentService {
                     response1.putExtra(RESPONSE, contentAsString1);
                     LocalBroadcastManager.getInstance(this).sendBroadcast(response1);
                     break;
+
             }
 
 
@@ -137,5 +145,29 @@ public class RegistroService extends IntentService {
         BufferedReader buffer = new BufferedReader(reader);
         String line = buffer.readLine();
         return line;
+    }
+
+    public String post(String posturl, List<NameValuePair> params){
+
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(posturl);
+                    //AÑADIR PARAMETROS
+
+            httppost.setEntity(new UrlEncodedFormEntity(params));
+
+                  //Finalmente ejecutamos enviando la info al server/
+                    HttpResponse resp = httpclient.execute(httppost);
+            HttpEntity ent = resp.getEntity();/*y obtenemos una respuesta*/
+            Log.d(TAG,resp.getEntity().toString() );
+
+            String text = EntityUtils.toString(ent);
+            Log.e(TAG,text);
+            return text;
+
+        }
+        catch(Exception e) { return "error";}
+
     }
 }
