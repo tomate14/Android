@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -84,12 +85,13 @@
                 tools:text="Registrarse"
                 android:layout_weight="1.13" />
 
-            <Button
+            <com.google.android.gms.common.SignInButton
                 android:id="@+id/btnGmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/gmailButtonLogin" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"></com.google.android.gms.common.SignInButton>
 
         </LinearLayout>
     </ScrollView>

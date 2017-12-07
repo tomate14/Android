@@ -45,6 +45,7 @@ public class RegistroService extends IntentService {
     public static final String RESPONSE_ACTION = "Respuesta del servidor";
     public static final String RESPONSE = "DATA RESPONSE";
     public static final String SERVICE_TYPE = "SERVICE_TYPE";
+    private static final String OPERACION = "OPERATION_SERVICE";
     final String BASE_URL = "http://ing.exa.unicen.edu.ar/ws/";
     static final String TAG = RegistroService.class.getCanonicalName();
 
@@ -55,7 +56,7 @@ public class RegistroService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        String operation = intent.getStringExtra(RegisterActivity.OPERACION);
+        String operation = intent.getStringExtra(OPERACION);
         String ruta = intent.getStringExtra("ruta");
         Uri builtURI = Uri.parse(BASE_URL + ruta).buildUpon().build();
         InputStream is = null;
@@ -112,10 +113,10 @@ public class RegistroService extends IntentService {
                     is = conn.getInputStream();
                     String contentAsString1 = convertIsToString(is);
                     Log.d(TAG, contentAsString1);
-                    response = new Intent(RESPONSE_ACTION);
-                    response.putExtra(RegisterActivity.OPERACION, operation);
-                    response.putExtra(RESPONSE, contentAsString1);
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+                    Intent response1 = new Intent(RESPONSE_ACTION);
+                    response1.putExtra(OPERACION, operation);
+                    response1.putExtra(RESPONSE, contentAsString1);
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response1);
                     break;
 
             }
