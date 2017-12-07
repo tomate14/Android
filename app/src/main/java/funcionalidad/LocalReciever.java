@@ -133,6 +133,7 @@ public class LocalReciever extends BroadcastReceiver {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
             case "tiposbecas":
                 try {
                     JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
@@ -151,6 +152,7 @@ public class LocalReciever extends BroadcastReceiver {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                break;
         }
     }
 }

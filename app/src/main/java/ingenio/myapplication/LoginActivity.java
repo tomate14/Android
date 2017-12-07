@@ -141,14 +141,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(RegistroService.RESPONSE_ACTION));
         final Intent mServiceIntent = new Intent(LoginActivity.this, RegistroService.class);
 
-        Button btnGmail = (Button) findViewById(R.id.btnGmail);
+        //Button btnGmail = (Button) findViewById(R.id.btnGmail);
 
 
         final Button mEmailSignInButton = (Button) findViewById(R.id.btnIngresar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 attemptLogin(mServiceIntent);
+
+            }
+        });
+
+        Button btnTest = (Button) findViewById(R.id.button2);
+        btnTest.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent userRegister = new Intent(LoginActivity.this,MenuPrincipal.class);
+                startActivity(userRegister);
 
             }
         });
