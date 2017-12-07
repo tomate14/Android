@@ -86,11 +86,11 @@ public class MostrarBecas extends AppCompatActivity implements
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
                 setTitle(getString(R.string.activity_verbecas_sugeridas));
-                params = MenuPrincipal.OPERACION_VERBECASSUGERENCIAS+"/"+String.valueOf(MenuPrincipal.user.getIdusuario());
+                params = MenuPrincipal.OPERACION_VERBECASSUGERENCIAS+"/"+String.valueOf(MenuPrincipal.usuario.getIdusuario());
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
                 setTitle(getString(R.string.activity_verbecas_interes));
-                params = MenuPrincipal.OPERACION_VERBECASINTERES+"/"+String.valueOf(MenuPrincipal.user.getIdusuario());
+                params = MenuPrincipal.OPERACION_VERBECASINTERES+"/"+String.valueOf(MenuPrincipal.usuario.getIdusuario());
                 break;
         }
         return params;

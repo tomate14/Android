@@ -63,11 +63,16 @@ public class RegistroService extends IntentService {
         InputStream is = null;
         HttpURLConnection conn = null;
         Intent response;
+        String contentAsString;
+        int responseCode = -1;
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        SimpleDateFormat sdf = null;
         try {
 
             URL requestURL = new URL(builtURI.toString());
             conn = (HttpURLConnection) requestURL.openConnection();
             List<NameValuePair> params = new ArrayList<>();
+
 
             switch (operation) {
                 case "registro":
@@ -77,22 +82,41 @@ public class RegistroService extends IntentService {
                     params.add(new BasicNameValuePair("nombre",intent.getStringExtra("nombre")));
                     params.add(new BasicNameValuePair("apellido",intent.getStringExtra("apellido")));
                     params.add(new BasicNameValuePair("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1))));
-                    java.util.Calendar cal = java.util.Calendar.getInstance();
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+                    sdf = new SimpleDateFormat("dd/MM/yy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
                     params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis())));
                     params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
 
                     Log.d(TAG,params.toString());
 
-                    this.post(BASE_URL + ruta,params);
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(RegisterActivity.OPERACION, operation);
+                    response.putExtra(RESPONSE, this.post(BASE_URL + ruta,params));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
                     break;
 
                 case "edicion" :
+                    params.clear();
+                    params.add(new BasicNameValuePair("email",intent.getStringExtra("email")));
+                    params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
+                    params.add(new BasicNameValuePair("passwordNew",intent.getStringExtra("passwordNew")));
+                    params.add(new BasicNameValuePair("nombre",intent.getStringExtra("nombre")));
+                    params.add(new BasicNameValuePair("apellido",intent.getStringExtra("apellido")));
+                    params.add(new BasicNameValuePair("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1))));
+                    sdf = new SimpleDateFormat("dd/MM/yy");
+                    cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
+                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis())));
+                    params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
+
+                    Log.d(TAG,params.toString());
+
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(RegisterActivity.OPERACION, operation);
+                    response.putExtra(RESPONSE, this.post(BASE_URL + ruta,params));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
                     break;
 
                 case "login" :
-
                     params.clear();
                     params.add(new BasicNameValuePair("email",intent.getStringExtra("email")));
                     params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
@@ -125,14 +149,15 @@ public class RegistroService extends IntentService {
                     conn.setDoInput(true);
                     conn.connect();
 
-                    int responseCode1 = conn.getResponseCode();
+                    responseCode = conn.getResponseCode();
                     is = conn.getInputStream();
-                    String contentAsString1 = convertIsToString(is);
-                    Log.d(TAG, contentAsString1);
-                    Intent response1 = new Intent(RESPONSE_ACTION);
-                    response1.putExtra(OPERACION, operation);
-                    response1.putExtra(RESPONSE, contentAsString1);
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(response1);
+                    contentAsString = convertIsToString(is);
+                    Log.d(TAG, contentAsString);
+
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(OPERACION, operation);
+                    response.putExtra(RESPONSE, contentAsString);
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
                     break;
 
             }

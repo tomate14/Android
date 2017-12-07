@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.icu.util.Calendar;
-import android.icu.util.TimeZone;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText nombre;
     private EditText apellido;
     private EditText direccion;
-    private EditText mail;
+    private EditText email;
     private EditText password;
     private EditText passwordNew;
     private EditText passwordVal;
@@ -64,9 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner spinnerProvincia;
     private Spinner spinnerCiudad;
     private Button btnConfirmar;
-    private TextInputEditText nombre1;
-    private TextInputEditText apellido1;
-    private TextInputEditText email;
 
 
     @Override
@@ -77,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         nombre = (EditText) findViewById(R.id.nombreRegister);
         apellido = (EditText) findViewById(R.id.apellidoRegister);
         direccion = (EditText) findViewById(R.id.direccionRegister);
-        mail = (EditText) findViewById(R.id.emailRegister);
+        email = (EditText) findViewById(R.id.emailRegister);
         password = (EditText) findViewById(R.id.passwordRegister);
         passwordNew = (EditText) findViewById(R.id.passwordNewEdit);
         passwordVal = (EditText) findViewById(R.id.passwordValRegister);
@@ -97,9 +92,6 @@ public class RegisterActivity extends AppCompatActivity {
         this.contexto = this;
         Button btnConfirmar = (Button)findViewById(R.id.btnConfirmar);
         editBirthday = (EditText) findViewById(R.id.editBirthday);
-        nombre1 = (TextInputEditText) findViewById(R.id.nombreRegister);
-        apellido1 = (TextInputEditText) findViewById(R.id.apellidoRegister);
-        email = (TextInputEditText) findViewById(R.id.emailRegister);
 
         //falta implementar <---------------
         Intent intent = getIntent();
@@ -110,8 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                 passwordNew.setVisibility(View.GONE);
                 break;
             case MenuPrincipal.ID_EDITARDATOS:
-                mail.setVisibility(View.GONE);
-                //disableElements();
+                email.setVisibility(View.GONE);
                 break;
             case LoginActivity.ID_REGISTERGOOGLE:
             {
@@ -165,6 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         /*pop up de fecha de nacimiento */
+
         editBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,13 +172,14 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         /*Definicion del boton Confirmar */
+
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (accion_a_realizar) {
                     case LoginActivity.ID_REGISTER:
                         if (registroVerificado()) {
-                            mServiceIntent.putExtra("email", mail.getText().toString());
+                            mServiceIntent.putExtra("email", email.getText().toString());
                             mServiceIntent.putExtra("ruta", "registro");
                             mServiceIntent.putExtra(OPERACION, "registro");
                             mServiceIntent.putExtra("nombre", nombre.getText().toString());
@@ -218,17 +211,6 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         break;
                 }
-
-                mServiceIntent.putExtra("nombre", nombre.getText().toString());
-                mServiceIntent.putExtra("apellido", apellido.getText().toString());
-                mServiceIntent.putExtra("direccion", direccion.getText().toString());
-                mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
-                mServiceIntent.putExtra("password", password.getText().toString());
-                mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
-                mServiceIntent.putExtra("tipo", getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())); // esto esta hardcode
-                mServiceIntent.putExtra("orientacion", getIdTipoBeca(spinnerTipoBeca.getSelectedItem())); // esto esta hardcode
-                startService(mServiceIntent);
-              
             }
         });
 
@@ -256,8 +238,8 @@ public class RegisterActivity extends AppCompatActivity {
             errores++;
         }
 
-        if (mail.getText().toString().equals("")) {
-            mensajeError = mensajeError + "* Campo E-mail requerido" + "\n";
+        if (email.getText().toString().equals("")) {
+            mensajeError = mensajeError + "* Campo E-email requerido" + "\n";
             errores++;
         }
 
@@ -365,7 +347,6 @@ public class RegisterActivity extends AppCompatActivity {
         this.paises = paises;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(paises.keySet());
-        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPais.setAdapter(arrayAdapter);
@@ -375,7 +356,6 @@ public class RegisterActivity extends AppCompatActivity {
         this.provincias = provincias;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(provincias.keySet());
-        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProvincia.setAdapter(arrayAdapter);
@@ -385,7 +365,6 @@ public class RegisterActivity extends AppCompatActivity {
         this.ciudades = ciudades;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(ciudades.keySet());
-        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCiudad.setAdapter(arrayAdapter);
@@ -411,6 +390,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return 0;
     }
+
     public void setTipoBecas(ArrayList<TipoBeca> tipoBecas) {
         this.tipoBecas = tipoBecas;
         ArrayList<String> tiposBecas = new ArrayList<>();
@@ -431,18 +411,26 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return 0;
     }
-    public void notificarRegistro() {
+    public void notificarRegistro(String mensaje) {
         AlertDialog.Builder chequeo = new AlertDialog.Builder(this);
         chequeo.setTitle("Registro completo");
         chequeo.setCancelable(true);
-        chequeo.setMessage("El registro se ha completado exitosamente");
+        chequeo.setMessage(mensaje);
         chequeo.show();
         chequeo.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {
-                //cerrar esta actividad y volver a la de login <--------------
+                finish();
             }
         });
+    }
+
+    public void notificarError(String mensaje) {
+        AlertDialog.Builder chequeo = new AlertDialog.Builder(this);
+        chequeo.setTitle("Registro incorrecto");
+        chequeo.setCancelable(true);
+        chequeo.setMessage(mensaje);
+        chequeo.show();
     }
 
     public static String md5(String input) {
@@ -461,7 +449,4 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void notificarError() {
-    }
 }
-

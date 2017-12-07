@@ -77,6 +77,7 @@ public class LocalReciever extends BroadcastReceiver {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
+                break;
             case "ciudades":
                 try{
                     JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
@@ -96,6 +97,7 @@ public class LocalReciever extends BroadcastReceiver {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
+                break;
             case "registro":
 
                 try {
@@ -106,15 +108,16 @@ public class LocalReciever extends BroadcastReceiver {
                     String mensaje = json.getString("mensaje");
 
                     if(respuesta.equals("success")){
-                        registerActivity.notificarRegistro();
+                        registerActivity.notificarRegistro(mensaje);
                     }
                     else
                     {
-                        registerActivity.notificarError();
+                        registerActivity.notificarError(mensaje);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
             case "tiposestudiantes":
                 try {
                     JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
