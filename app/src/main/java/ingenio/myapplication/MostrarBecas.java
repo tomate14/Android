@@ -70,8 +70,7 @@ public class MostrarBecas extends AppCompatActivity implements
         Intent intent = getIntent();
         this.seleccion_usuario     = intent.getIntExtra("listview", 0);
         this.contexto = this;
-
-
+        
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         getLoaderManager().initLoader(0,null,MostrarBecas.this);
@@ -146,11 +145,12 @@ public class MostrarBecas extends AppCompatActivity implements
         ad.setButton(AlertDialog.BUTTON_POSITIVE, "Buscar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        mServiceIntent.putExtra(OPERACION,"becas");
+                        mServiceIntent.putExtra(OPERACION,"filtrobecas");
+                        mServiceIntent.putExtra("ruta","becas");
                         mServiceIntent.putExtra("idTipobeca", getIdTipoBeca(spinnerTipoBecas.getSelectedItem()));
                         mServiceIntent.putExtra("idTipoEstudiante", getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem()));
                         mServiceIntent.putExtra("idPais", paises.get(spinnerPaises.getSelectedItem()));
-                        mServiceIntent.putExtra("ciudad", ciudad.getText());
+                        mServiceIntent.putExtra("ciudad",ciudad.getText());
                         startService(mServiceIntent);
                         //mServiceIntent.putExtra("nombre_entidad", password.getText().toString());
 
@@ -218,6 +218,11 @@ public class MostrarBecas extends AppCompatActivity implements
             Log.d("RESULTADO= ",data.get(i).toString());
         }
         this.becas = data;
+        setAdapterBecas();
+
+    }
+
+    private void setAdapterBecas() {
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         mostrarInfo = new ListViewVerBecas(this, becas);
         this.listView.setAdapter(mostrarInfo);
@@ -268,5 +273,10 @@ public class MostrarBecas extends AppCompatActivity implements
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPaises.setAdapter(arrayAdapter);
+    }
+
+    public void setBecas(ArrayList<Beca> becas) {
+        this.becas = becas;
+        setAdapterBecas();
     }
 }
