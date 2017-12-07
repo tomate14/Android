@@ -97,9 +97,23 @@ public class LocalReciever extends BroadcastReceiver {
                     e.printStackTrace();
                 }
             case "registro":
-                String respuesta= intent.getStringExtra(RegistroService.RESPONSE);
-                if(respuesta.equals("exitosamente")){ // cambiar el String por el correcto <-------------
-                    registerActivity.notificarRegistro();
+
+                try {
+                    String jsonString= intent.getStringExtra(RegistroService.RESPONSE);
+
+                    JSONObject json = new JSONObject(jsonString);
+                    String respuesta = json.getString("respuesta");
+                    String mensaje = json.getString("mensaje");
+
+                    if(respuesta.equals("success")){
+                        registerActivity.notificarRegistro();
+                    }
+                    else
+                    {
+                        registerActivity.notificarError();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             case "tiposestudiantes":
                 try {
