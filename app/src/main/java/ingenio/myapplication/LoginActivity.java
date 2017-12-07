@@ -46,6 +46,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Usuario;
 import funcionalidad.LocalReciever;
 import funcionalidad.LocalRecieverLogin;
 import funcionalidad.RegistroService;
@@ -141,7 +142,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(RegistroService.RESPONSE_ACTION));
         final Intent mServiceIntent = new Intent(LoginActivity.this, RegistroService.class);
 
-        Button btnGmail = (Button) findViewById(R.id.btnGmail);
+        SignInButton btnGmail = (SignInButton) findViewById(R.id.btnGmail);
 
 
         final Button mEmailSignInButton = (Button) findViewById(R.id.btnIngresar);
@@ -386,6 +387,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    public void openMenu(Usuario nuevo) {
+        Intent menu = new Intent(LoginActivity.this,MenuPrincipal.class);
+        menu.putExtra("usuario",nuevo);
+        startActivity(menu);
+        finish();
     }
 
 

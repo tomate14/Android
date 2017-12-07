@@ -45,17 +45,17 @@ public class MenuPrincipal extends AppCompatActivity
     private MenuPrincipal.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static ArrayList<Anuncio> anuncios;
-    public static Usuario user = null;
+    public static Usuario usuario;
 
     private TextView txtNombre;
     private TextView txtEmail;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,14 +73,13 @@ public class MenuPrincipal extends AppCompatActivity
 
         //Informacion del login
         Intent intUsuario =  getIntent();
-        //user = (Usuario) intUsuario.getSerializableExtra("usuario");
-        user = new Usuario(10,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana");
+        usuario = (Usuario) intUsuario.getSerializableExtra("usuario");
 
         this.txtNombre = (TextView) datosUsuario.findViewById(R.id.txtNombreNav);
         this.txtEmail = (TextView) datosUsuario.findViewById(R.id.txtEmailNav);
 
-        txtNombre.setText(user.getNombre());
-        txtEmail.setText(user.getEmail());
+        txtNombre.setText(usuario.getNombre());
+        txtEmail.setText(usuario.getEmail());
 
         this.anuncios = new Servicios().getAnuncios(this);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
