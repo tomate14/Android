@@ -70,10 +70,7 @@ public class MostrarBecas extends AppCompatActivity implements
         Intent intent = getIntent();
         this.seleccion_usuario     = intent.getIntExtra("listview", 0);
         this.contexto = this;
-
-        //openSearch();
-
-        //NO MOSTRAR LAS BECAS
+        
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         getLoaderManager().initLoader(0,null,MostrarBecas.this);
