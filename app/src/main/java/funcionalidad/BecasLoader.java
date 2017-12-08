@@ -84,6 +84,11 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                             new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
                             false
                     );
+                    switch (seleccion_usuario){
+                        case MenuPrincipal.ID_VERBECASINTERES:
+                            p1.setSubscripta(true);
+                            break;
+                    }
                     becas.add(p1);
                     becas.toString();
                 }

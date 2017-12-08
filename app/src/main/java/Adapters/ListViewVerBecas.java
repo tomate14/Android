@@ -50,6 +50,11 @@ public class ListViewVerBecas extends ListViewExtended {
                     }
                 }
             });
+            if (becas.get(groupPosition).isSubscripta()){
+                button.setBackgroundResource(android.R.drawable.btn_star_big_on);
+            }else{
+                button.setBackgroundResource(android.R.drawable.btn_star_big_off);
+            }
 
         }
         TextView txtTitle;
