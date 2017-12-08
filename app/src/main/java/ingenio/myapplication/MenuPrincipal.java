@@ -23,6 +23,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Date;
 
+import funcionalidad.LocalRecieverAnuncio;
+import funcionalidad.LocalRecieverFiltro;
 import funcionalidad.Servicios;
 import entity.Anuncio;
 import entity.Usuario;
@@ -36,16 +38,17 @@ public class MenuPrincipal extends AppCompatActivity
     public static final int ID_VERSUGERENCIAS  = 3;
     public static final int ID_EDITARDATOS     = 4;
 
-    public static final String OPERACION_VERBECAS            = "";
-    //public static final String OPERACION_VERBECAS            = "/verbecas";
-    public static final String OPERACION_VERBECASINTERES     = "/verbecasinteres";
-    public static final String OPERACION_VERBECASSUGERENCIAS = "/verbecassugeridas";
+    public static final String OPERACION_VERBECAS            = "/becas";
+    public static final String OPERACION_VERBECASINTERES     = "/becasinteresadas";
+    public static final String OPERACION_VERBECASSUGERENCIAS = "/becassugeridas";
 
 
     private MenuPrincipal.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static ArrayList<Anuncio> anuncios;
     public static Usuario user = null;
+    private LocalRecieverAnuncio reciever = new LocalRecieverAnuncio(this);
+
 
     private TextView txtNombre;
     private TextView txtEmail;
@@ -74,7 +77,7 @@ public class MenuPrincipal extends AppCompatActivity
         //Informacion del login
         Intent intUsuario =  getIntent();
         //user = (Usuario) intUsuario.getSerializableExtra("usuario");
-        user = new Usuario(10,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana");
+        user = new Usuario(3,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana",1);
 
         this.txtNombre = (TextView) datosUsuario.findViewById(R.id.txtNombreNav);
         this.txtEmail = (TextView) datosUsuario.findViewById(R.id.txtEmailNav);

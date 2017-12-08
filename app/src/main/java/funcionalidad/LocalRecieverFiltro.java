@@ -98,37 +98,43 @@ public class LocalRecieverFiltro extends BroadcastReceiver {
                     e.printStackTrace();
                 }
                 break;
+            case "becassugeridas":
+                parsearBecas(intent);
+                break;
             case "filtrobecas":
-                try {
-                    JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
-                    ArrayList<Beca> becas = new ArrayList<>();
-                    for(int i = 0; i < jsonArray.length(); i++){
-                        JSONObject json = jsonArray.getJSONObject(i);
-                        Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion"));
-                        Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion"));
-
-                        Beca p1 = new Beca(json.getInt("idBeca"),
-                                json.getString("nombre"),
-                                json.getString("descripcion"),
-                                json.getString("telefono"),
-                                null,
-                                json.getString("pagina_web"),
-                                fecha_inicio,
-                                fecha_fin,
-                                new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
-                                new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
-                                false
-                        );
-                        becas.add(p1);
-                    }
-                    mostrarBecasActivity.setBecas(becas);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                parsearBecas(intent);
                 break;
 
         }
 
 
+    }
+    private void parsearBecas(Intent intent){
+        try {
+            JSONArray jsonArray = new JSONArray(intent.getStringExtra(RegistroService.RESPONSE));
+            ArrayList<Beca> becas = new ArrayList<>();
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject json = jsonArray.getJSONObject(i);
+                Date fecha_inicio = new Date();//json.getLong("fecha_ini_inscripcion"));
+                Date fecha_fin = new Date();//json.getLong("fecha_fin_inscripcion"));
+
+                Beca p1 = new Beca(json.getInt("idBeca"),
+                        json.getString("nombre"),
+                        json.getString("descripcion"),
+                        json.getString("telefono"),
+                        null,
+                        json.getString("pagina_web"),
+                        fecha_inicio,
+                        fecha_fin,
+                        new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
+                        new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
+                        false
+                );
+                becas.add(p1);
+            }
+            mostrarBecasActivity.setBecas(becas);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

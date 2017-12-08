@@ -34,7 +34,7 @@ import ingenio.myapplication.MenuPrincipal;
 public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
 
     private static final String TAG = "ADP_AppListLoader";
-    private static final String BASE_URL = "http://ing.exa.unicen.edu.ar/ws/becas";
+    private static final String BASE_URL = "http://ing.exa.unicen.edu.ar/ws";
     private static final boolean DEBUG = true;
     private ArrayList<Beca> mApps;
     private int seleccion_usuario;
@@ -85,6 +85,7 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                             false
                     );
                     becas.add(p1);
+                    becas.toString();
                 }
             }
             conn.disconnect();
