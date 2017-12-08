@@ -96,7 +96,7 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
         if(becas.size()>0){
             return becas;
         }
-        return null;
+        return becas;
     }
 
     public String convertIsToString(InputStream stream)

@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class MostrarBecas extends AppCompatActivity implements
     private Spinner spinnerTipoBecas;
     private Spinner spinnerTipoEstudiante;
     private int seleccion_usuario;
+    private TextView nobecas;
     private LocalRecieverFiltro reciever = new LocalRecieverFiltro(this);
 
 
@@ -70,7 +72,7 @@ public class MostrarBecas extends AppCompatActivity implements
         Intent intent = getIntent();
         this.seleccion_usuario     = intent.getIntExtra("listview", 0);
         this.contexto = this;
-        
+        this.nobecas = (TextView) findViewById(R.id.textViewNoBecas);
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         getLoaderManager().initLoader(0,null,MostrarBecas.this);
@@ -90,7 +92,7 @@ public class MostrarBecas extends AppCompatActivity implements
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
                 setTitle(getString(R.string.activity_verbecas_interes));
-                params = MenuPrincipal.OPERACION_VERBECASINTERES+"/"+String.valueOf(MenuPrincipal.usuario.getIdusuario());
+                params = MenuPrincipal.OPERACION_VERBECASINTERES+"/"+String.valueOf(MenuPrincipal.user.getIdusuario());
                 break;
         }
         return params;
@@ -218,6 +220,10 @@ public class MostrarBecas extends AppCompatActivity implements
             Log.d("RESULTADO= ",data.get(i).toString());
         }
         this.becas = data;
+        if(becas.size()==0)
+            nobecas.setVisibility(View.VISIBLE);
+        else
+            nobecas.setVisibility(View.INVISIBLE);
         setAdapterBecas();
 
     }
@@ -277,6 +283,10 @@ public class MostrarBecas extends AppCompatActivity implements
 
     public void setBecas(ArrayList<Beca> becas) {
         this.becas = becas;
+        if(becas.size()==0)
+            nobecas.setVisibility(View.VISIBLE);
+        else
+            nobecas.setVisibility(View.INVISIBLE);
         setAdapterBecas();
     }
 }
