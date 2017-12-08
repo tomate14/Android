@@ -28,6 +28,11 @@ public class Usuario implements Serializable{
         this.idTipoEstudiante = idTipoEstudiante;
     }
 
+    public Usuario(int idusuario,String email){
+        this.idusuario = idusuario;
+        this.email = email;
+    }
+
     public int getIdusuario() {
         return idusuario;
     }
