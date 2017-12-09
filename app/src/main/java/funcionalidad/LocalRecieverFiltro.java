@@ -104,6 +104,9 @@ public class LocalRecieverFiltro extends BroadcastReceiver {
             case "filtrobecas":
                 parsearBecas(intent);
                 break;
+            case "subscribir":
+                //No se hace nada con la respuesta
+                break;
 
         }
 
