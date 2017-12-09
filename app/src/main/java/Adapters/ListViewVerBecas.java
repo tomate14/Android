@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import entity.Beca;
@@ -118,6 +119,17 @@ public class ListViewVerBecas extends ListViewExtended {
         ImageView mImg;
         mImg = (ImageView) convertView.findViewById(R.id.imageView2);
         mImg.setImageBitmap(becas.get(groupPosition).getBanner());
+
+        SimpleDateFormat mdyFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+
+        TextView fechaIni = (TextView)convertView.findViewById(R.id.txtFechaIni);
+        fechaIni.setText(mdyFormat.format(becas.get(groupPosition).getFecha_inicio_inscripcion()));
+
+
+        TextView fechaFin = (TextView)convertView.findViewById(R.id.txtFechaFin);
+        fechaFin.setText(mdyFormat.format(becas.get(groupPosition).getFecha_fin_inscripcion()));
+
+
 
         return convertView;
     }
