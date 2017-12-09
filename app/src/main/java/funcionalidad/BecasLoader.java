@@ -3,13 +3,17 @@ package funcionalidad;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -71,12 +75,12 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                     JSONObject json = jsonArray.getJSONObject(i);
                     Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion"));
                     Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion"));
-
+                    String jsonBanner = json.getString("banner");
                     Beca p1 = new Beca(json.getInt("idBeca"),
                             json.getString("nombre"),
                             json.getString("descripcion"),
                             json.getString("telefono"),
-                            null,
+                            getBitmapFromString(jsonBanner),
                             json.getString("pagina_web"),
                             fecha_inicio,
                             fecha_fin,
@@ -142,5 +146,12 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
         }
+    }
+
+    private Bitmap getBitmapFromString(String jsonString) {
+        String pureBase64Encoded = jsonString.substring(jsonString.indexOf(",")  + 1);
+        byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
     }
 }

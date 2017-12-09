@@ -1,5 +1,6 @@
 package adapters;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -7,11 +8,14 @@ import android.opengl.EGLExt;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import entity.Beca;
+import ingenio.myapplication.MenuPrincipal;
+import ingenio.myapplication.MostrarBecas;
 import ingenio.myapplication.R;
 
 /**
@@ -21,6 +25,8 @@ import ingenio.myapplication.R;
 public class ListViewVerBecas extends ListViewExtended {
 
     public static final int ID_LISTVIEW = 1;
+    private Intent servicioSubscripcion;
+
 
     public ListViewVerBecas(Context contexto, ArrayList<Beca> becas) {
         this.becas = becas;
@@ -55,7 +61,13 @@ public class ListViewVerBecas extends ListViewExtended {
             }else{
                 button.setBackgroundResource(android.R.drawable.btn_star_big_off);
             }
-
+            //servicioSubscripcion.putExtra(MostrarBecas.OPERACION,"subscribir");
+            //servicioSubscripcion.putExtra("ruta","suscribe");
+            //servicioSubscripcion.putExtra("idUsuario", MenuPrincipal.user.getIdusuario());
+            //servicioSubscripcion.putExtra("idBeca", becas.get(groupPosition).getId());
+            //NO hay que hacer nada con la respuesta. Se envia el servicio y nos manejamos.
+            //O habria que actualizar las becas?
+            //contexto.startService(servicioSubscripcion);
         }
         TextView txtTitle;
         TextView txtTipo;
@@ -71,7 +83,7 @@ public class ListViewVerBecas extends ListViewExtended {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final int posicion = groupPosition;
 
         TextView tv = new TextView(contexto);
@@ -89,18 +101,33 @@ public class ListViewVerBecas extends ListViewExtended {
                 }
             });
 
+            final Button button2 = (Button) convertView.findViewById(R.id.btnInfo);
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openChrome(becas.get(groupPosition).getPagina());
+                }
+            });
+
+
         }
         txtTexto = (TextView) convertView.findViewById(R.id.txtTexto);
         txtTexto.setText(becas.get(groupPosition).getDescripcion());
         tv.setTextSize(12);
 
+        ImageView mImg;
+        mImg = (ImageView) convertView.findViewById(R.id.imageView2);
+        mImg.setImageBitmap(becas.get(groupPosition).getBanner());
+
         return convertView;
     }
 
-    /*@Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeArray(this.header);
-        dest.writeArray(this.subHeader);
-        dest.writeArray(this.footer);
-    }*/
+    void openChrome(String url) {
+        Uri uri = Uri.parse("googlechrome://navigate?url=" + url);
+        Intent i = new Intent(Intent.ACTION_VIEW, uri);
+        if (i.resolveActivity(contexto.getPackageManager()) == null) {
+            i.setData(Uri.parse(url));
+        }
+        contexto.startActivity(i);
+    }
 }
