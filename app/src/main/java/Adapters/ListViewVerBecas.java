@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import entity.Beca;
+import funcionalidad.RegistroService;
 import ingenio.myapplication.MenuPrincipal;
 import ingenio.myapplication.MostrarBecas;
 import ingenio.myapplication.R;
@@ -40,7 +41,7 @@ public class ListViewVerBecas extends ListViewExtended {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView( int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         final int posicion = groupPosition;
         if (convertView == null) {
             convertView = View.inflate(contexto, R.layout.infobecas,null);
@@ -54,6 +55,14 @@ public class ListViewVerBecas extends ListViewExtended {
                     }else{
                         button.setBackgroundResource(android.R.drawable.btn_star_big_on);
                         becas.get(posicion).setSubscripta(true);
+                        servicioSubscripcion = new Intent(contexto, RegistroService.class);
+                        servicioSubscripcion.putExtra(MostrarBecas.OPERACION,"subscribir");
+                        servicioSubscripcion.putExtra("ruta","suscribe");
+                        servicioSubscripcion.putExtra("idUsuario", MenuPrincipal.user.getIdusuario());
+                        servicioSubscripcion.putExtra("idBeca", becas.get(posicion).getId());
+                        //NO hay que hacer nada con la respuesta. Se envia el servicio y nos manejamos.
+                        //O habria que actualizar las becas?
+                        contexto.startService(servicioSubscripcion);
                     }
                 }
             });
@@ -62,13 +71,7 @@ public class ListViewVerBecas extends ListViewExtended {
             }else{
                 button.setBackgroundResource(android.R.drawable.btn_star_big_off);
             }
-            //servicioSubscripcion.putExtra(MostrarBecas.OPERACION,"subscribir");
-            //servicioSubscripcion.putExtra("ruta","suscribe");
-            //servicioSubscripcion.putExtra("idUsuario", MenuPrincipal.user.getIdusuario());
-            //servicioSubscripcion.putExtra("idBeca", becas.get(groupPosition).getId());
-            //NO hay que hacer nada con la respuesta. Se envia el servicio y nos manejamos.
-            //O habria que actualizar las becas?
-            //contexto.startService(servicioSubscripcion);
+
         }
         TextView txtTitle;
         TextView txtTipo;
