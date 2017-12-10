@@ -52,6 +52,14 @@ public class ListViewVerBecas extends ListViewExtended {
                     if (becas.get(posicion).isSubscripta()){
                         button.setBackgroundResource(android.R.drawable.btn_star_big_off);
                         becas.get(posicion).setSubscripta(false);
+                        servicioSubscripcion = new Intent(contexto, RegistroService.class);
+                        servicioSubscripcion.putExtra(MostrarBecas.OPERACION,"subscribir");
+                        servicioSubscripcion.putExtra("ruta","deletesuscripcion");
+                        servicioSubscripcion.putExtra("idUsuario", MenuPrincipal.user.getIdusuario());
+                        servicioSubscripcion.putExtra("idBeca", becas.get(posicion).getId());
+                        //NO hay que hacer nada con la respuesta. Se envia el servicio y nos manejamos.
+                        //O habria que actualizar las becas?
+                        contexto.startService(servicioSubscripcion);
                     }else{
                         button.setBackgroundResource(android.R.drawable.btn_star_big_on);
                         becas.get(posicion).setSubscripta(true);
