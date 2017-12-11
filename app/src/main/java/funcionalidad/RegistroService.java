@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingenio.myapplication.MostrarBecas;
 import ingenio.myapplication.RegisterActivity;
 
 /**
@@ -131,7 +132,37 @@ public class RegistroService extends IntentService {
                     LocalBroadcastManager.getInstance(this).sendBroadcast(response);
 
                     break;
+                case "filtrobecas" :
 
+                    params.clear();
+                    params.add(new BasicNameValuePair("idTipobeca",String.valueOf(intent.getIntExtra("idTipobeca",0))));
+                    params.add(new BasicNameValuePair("idTipoEstudiante",String.valueOf(intent.getIntExtra("idTipoEstudiante",0))));
+                    params.add(new BasicNameValuePair("idPais",String.valueOf(intent.getIntExtra("idPais",0))));
+                    String ciudad = intent.getStringExtra("ciudad");
+                    params.add(new BasicNameValuePair("ciudad",ciudad));
+
+                    Log.d(TAG,params.toString());
+
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(MostrarBecas.OPERACION, operation);
+                    response.putExtra(RESPONSE, this.post(BASE_URL + ruta,params));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+
+                    break;
+                case "subscribir" :
+
+                    params.clear();
+                    params.add(new BasicNameValuePair("idUsuario",String.valueOf(intent.getIntExtra("idUsuario",0))));
+                    params.add(new BasicNameValuePair("idBeca",String.valueOf(intent.getIntExtra("idBeca",0))));
+
+                    Log.d(TAG,params.toString());
+
+                    response = new Intent(RESPONSE_ACTION);
+                    response.putExtra(MostrarBecas.OPERACION, operation);
+                    response.putExtra(RESPONSE, this.post(BASE_URL + ruta,params));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+
+                    break;
 
                 default:
                     conn.setRequestMethod("GET");

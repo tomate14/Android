@@ -16,6 +16,7 @@ public class Usuario implements Serializable{
     private Calendar fecha_nacimiento;
     private String password;
     private String direccion;
+
     private int idCiudad;
     private int idTipoEstudiante;
     private int idTipoBeca;
@@ -31,6 +32,7 @@ public class Usuario implements Serializable{
         this.idCiudad = idCiudad;
         this.idTipoEstudiante = idTipoEstudiante;
         this.idTipoBeca = idTipoBeca;
+
     }
 
     public Usuario(int idusuario,String email){
@@ -109,7 +111,6 @@ public class Usuario implements Serializable{
     public void setIdTipoEstudiante(int idTipoEstudiante) {
         this.idTipoEstudiante = idTipoEstudiante;
     }
-
     public int getIdTipoBeca() {
         return idTipoBeca;
     }
@@ -118,18 +119,4 @@ public class Usuario implements Serializable{
         this.idTipoBeca = idTipoBeca;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "idusuario='" + idusuario +
-                ", email='" + email + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", fecha_nacimiento='" + fecha_nacimiento +
-                ", password='" + password + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", tipoEstudiante='" + idTipoEstudiante + '\'' +
-                ",tipoOrientacion='" + idTipoBeca + '\'' +
-                '}';
-    }
 }

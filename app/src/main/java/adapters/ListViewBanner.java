@@ -53,7 +53,7 @@ public class ListViewBanner extends BaseAdapter {
 
 
         ImageView image = (ImageView) itemView.findViewById(R.id.imageBanner);
-        image.setImageBitmap(anuncios.get(position).getImagen());
+        image.setImageBitmap(anuncios.get(position).getBanner());
 
         return itemView;
     }
