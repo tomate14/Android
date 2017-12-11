@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.util.Base64;
 import android.util.Log;
 
@@ -148,13 +149,14 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
         }
     }
 
+    @Nullable
     private Bitmap getBitmapFromString(String jsonString) {
         if(jsonString.equals("")) {
-            String pureBase64Encoded = jsonString.substring(jsonString.indexOf(",") + 1);
-            byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            return decodedByte;
+            return null;
         }
-        return null;
+        String pureBase64Encoded = jsonString.substring(jsonString.indexOf(",") + 1);
+        byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
     }
 }
