@@ -39,7 +39,7 @@ public class MostrarAnuncios extends AppCompatActivity {
         this.listView = (ExpandableListView) findViewById(R.id.listView);
 
         mServiceIntent.putExtra(OPERACION, "veranuncios");
-        mServiceIntent.putExtra("ruta", OPERACION_VERNOTIFICACIONES);
+        mServiceIntent.putExtra("ruta", OPERACION_VERNOTIFICACIONES+"/"+MenuPrincipal.user.getIdusuario());
         startService(mServiceIntent);
 
 

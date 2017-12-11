@@ -33,6 +33,7 @@ public class Notificacion {
         this.banner = banne;
     }
 
+
     public int getIdAnuncio() {
         return idAnuncio;
     }

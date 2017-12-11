@@ -90,19 +90,19 @@ public class ListViewNotificaciones extends ListViewExtended {
 
         TextView textView4;
         textView4 = (TextView) inflate.findViewById(R.id.textView4);
-        textView4.setVisibility(View.INVISIBLE);
+        textView4.setVisibility(View.GONE);
 
         TextView txtFechaFin;
         txtFechaFin = (TextView) inflate.findViewById(R.id.txtFechaFin);
-        txtFechaFin.setVisibility(View.INVISIBLE);
+        txtFechaFin.setVisibility(View.GONE);
 
         TextView textView3;
         textView3 = (TextView) inflate.findViewById(R.id.textView3);
-        textView3.setVisibility(View.INVISIBLE);
+        textView3.setVisibility(View.GONE);
 
         TextView txtFechaIni;
         txtFechaIni = (TextView) inflate.findViewById(R.id.txtFechaIni);
-        txtFechaIni.setVisibility(View.INVISIBLE);
+        txtFechaIni.setVisibility(View.GONE);
 
         txtTexto  = (TextView) inflate.findViewById(R.id.txtTexto);
         txtTexto.setText(anuncios.get(groupPosition).getInformacion());
