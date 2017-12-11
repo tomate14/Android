@@ -42,12 +42,12 @@ public class FCMService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-        generateNotification(this);
+        generateNotification(this,remoteMessage);
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
     }
 
-    private void generateNotification(Context context) {
+    private void generateNotification(Context context,RemoteMessage remoteMessage) {
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,
@@ -56,7 +56,7 @@ public class FCMService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.mipmap.icono)
                 .setContentTitle("ArgEs")
-                .setContentText("Notificacion nueva!")
+                .setContentText(remoteMessage.getNotification().getBody())
                 .setAutoCancel(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setVibrate(new long[]{0, 300, 200, 300})
