@@ -1,17 +1,26 @@
 package ingenio.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,11 +29,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import funcionalidad.LocalRecieverAnuncio;
 import funcionalidad.LocalRecieverFiltro;
+import funcionalidad.RegistroService;
 import funcionalidad.Servicios;
 import entity.Anuncio;
 import entity.Usuario;
@@ -41,17 +52,26 @@ public class MenuPrincipal extends AppCompatActivity
     public static final String OPERACION_VERBECAS            = "/becas";
     public static final String OPERACION_VERBECASINTERES     = "/becasinteresadas";
     public static final String OPERACION_VERBECASSUGERENCIAS = "/becassugeridas";
+    public static final String OPERACION_VERANUNCIOS = "anuncios";
 
+    public static final String OPERACION = "OPERATION_SERVICE";
 
     private MenuPrincipal.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     public static ArrayList<Anuncio> anuncios;
     public static Usuario user = null;
+    private static Context contexto;
+
+
     private LocalRecieverAnuncio reciever = new LocalRecieverAnuncio(this);
+    DisplayMetrics displayMetrics = new DisplayMetrics();
 
 
     private TextView txtNombre;
     private TextView txtEmail;
+    private static int height_cellPhone;
+    private static int width_cellPhone;
+
 
 
 
@@ -59,7 +79,7 @@ public class MenuPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
-
+        this.contexto = this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -85,14 +105,17 @@ public class MenuPrincipal extends AppCompatActivity
         txtNombre.setText(user.getNombre());
         txtEmail.setText(user.getEmail());
 
-        this.anuncios = new Servicios().getAnuncios(this);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(RegistroService.RESPONSE_ACTION));
+        final Intent mServiceIntent = new Intent(MenuPrincipal.this, RegistroService.class);
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        mServiceIntent.putExtra(OPERACION, "veranuncios");
+        mServiceIntent.putExtra("ruta", OPERACION_VERANUNCIOS);
+        startService(mServiceIntent);
 
 
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        this.height_cellPhone = displayMetrics.heightPixels;
+        this.width_cellPhone = displayMetrics.widthPixels;
 
     }
 
@@ -184,6 +207,8 @@ public class MenuPrincipal extends AppCompatActivity
         return true;
     }
 
+
+
     /**
      * CARROUSEL DE LOS ANUNCIOS. HAY QUE PONER UN TOPE MAXIMO DE ANUNCIOS, PONELE LOS PRIMEROS 5
      * PARA DEJAR FIJO EL TAMAÑO DE LAS IMAGENES QUE SE VAN A GENERAR
@@ -214,12 +239,47 @@ public class MenuPrincipal extends AppCompatActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_pruebaactivity, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            int posicion = getArguments().getInt(ARG_SECTION_NUMBER);
+
+
             ImageView image = (ImageView) rootView.findViewById(R.id.imageViewBanner);
-            int aux = getArguments().getInt(ARG_SECTION_NUMBER);
-            image.setImageBitmap(MenuPrincipal.anuncios.get(getArguments().getInt(ARG_SECTION_NUMBER)).getImagen());
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            image.setImageBitmap(MenuPrincipal.anuncios.get(posicion).getBanner());
+            //image.setImageDrawable(renderizarImg(MenuPrincipal.anuncios.get(posicion).getBanner()));
+
+            SimpleDateFormat mdyFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy");
+            TextView fecha = (TextView) rootView.findViewById(R.id.txtMostrarFecha);
+            fecha.setText(mdyFormat.format(anuncios.get(posicion).getFecha()));
+
+            TextView titulo = (TextView) rootView.findViewById(R.id.txtTituloBanner);
+            titulo.setText(anuncios.get(posicion).getInformacion());
+
             return rootView;
+        }
+
+        private Drawable renderizarImg(Bitmap imagen) {
+            // cargamos la imagen de origen
+            Bitmap BitmapOrg = imagen;
+
+            int width = BitmapOrg.getWidth();
+            int height = BitmapOrg.getHeight();
+
+            // calculamos el escalado de la imagen destino
+            float scaleWidth = (float) (((float) width_cellPhone) / (width+0.2));
+            float scaleHeight = (float) (((float) height_cellPhone) / (height+0.2));
+
+            // para poder manipular la imagen
+            // debemos crear una matriz
+
+            Matrix matrix = new Matrix();
+            // resize the Bitmap
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            // volvemos a crear la imagen con los nuevos valores
+            Bitmap resizedBitmap = Bitmap.createBitmap(BitmapOrg, 0, 0,width, height, matrix, true);
+
+            // si queremos poder mostrar nuestra imagen tenemos que crear un
+            // objeto drawable y así asignarlo a un botón, imageview...
+            return new BitmapDrawable(resizedBitmap);
         }
     }
 
@@ -244,7 +304,7 @@ public class MenuPrincipal extends AppCompatActivity
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 6;
+            return anuncios.size();
         }
 
         @Override
@@ -265,5 +325,13 @@ public class MenuPrincipal extends AppCompatActivity
             }
             return null;
         }
+    }
+    public void setAnuncios(ArrayList<Anuncio> anuncios) {
+        this.anuncios = anuncios;
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 }

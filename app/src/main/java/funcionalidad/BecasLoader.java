@@ -86,7 +86,7 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                             fecha_fin,
                             new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
                             new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
-                            false
+                            Boolean.valueOf(json.getString("estado"))
                     );
                     switch (seleccion_usuario){
                         case MenuPrincipal.ID_VERBECASINTERES:
@@ -149,9 +149,12 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
     }
 
     private Bitmap getBitmapFromString(String jsonString) {
-        String pureBase64Encoded = jsonString.substring(jsonString.indexOf(",")  + 1);
-        byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        return decodedByte;
+        if(jsonString.equals("")) {
+            String pureBase64Encoded = jsonString.substring(jsonString.indexOf(",") + 1);
+            byte[] decodedString = Base64.decode(pureBase64Encoded, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedByte;
+        }
+        return null;
     }
 }
