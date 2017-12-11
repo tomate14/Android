@@ -15,8 +15,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //checkIntent();
         login();
     }
+
+
+    /*private void checkIntent() {
+        if(getIntent()!=null){
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                String user_name = bundle.getString("notificacion");
+                Log.d ("myApplication", user_name + " is a key in the bundle");
+            }
+        }
+    }*/
 
     private void login() {
         TimerTask task = new TimerTask() {
