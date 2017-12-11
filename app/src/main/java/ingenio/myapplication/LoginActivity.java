@@ -3,6 +3,7 @@ package ingenio.myapplication;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -406,6 +407,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         menu.putExtra("usuario",nuevo);
         startActivity(menu);
         finish();
+    }
+
+    public void loginError(String mensaje) {
+        AlertDialog.Builder chequeo = new AlertDialog.Builder(this);
+        chequeo.setTitle("Error al ingresar");
+        chequeo.setCancelable(true);
+        chequeo.setMessage(mensaje);
+        chequeo.show();
     }
 
 

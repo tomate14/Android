@@ -26,6 +26,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import entity.TipoBeca;
 import entity.TipoEstudiante;
@@ -189,8 +191,8 @@ public class RegisterActivity extends AppCompatActivity {
                             Log.d("password", password.getText().toString()+ "     " + RegisterActivity.md5(password.getText().toString()));
                             mServiceIntent.putExtra("password", RegisterActivity.md5(password.getText().toString()));
                             mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
-                            mServiceIntent.putExtra("tipo", 1); // esto esta hardcode
-                            mServiceIntent.putExtra("orientacion", 1); // esto esta hardcode
+                            mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
+                            mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
                             startService(mServiceIntent);
                         }
                         break;
@@ -205,8 +207,8 @@ public class RegisterActivity extends AppCompatActivity {
                             mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
                             mServiceIntent.putExtra("password", md5(password.getText().toString()));
                             mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
-                            mServiceIntent.putExtra("tipo", 1); // esto esta hardcode
-                            mServiceIntent.putExtra("orientacion", 1); // esto esta hardcode
+                            mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
+                            mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
                             startService(mServiceIntent);
                         }
                         break;
@@ -347,6 +349,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.paises = paises;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(paises.keySet());
+        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPais.setAdapter(arrayAdapter);
@@ -356,6 +359,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.provincias = provincias;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(provincias.keySet());
+        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProvincia.setAdapter(arrayAdapter);
@@ -365,6 +369,7 @@ public class RegisterActivity extends AppCompatActivity {
         this.ciudades = ciudades;
         ArrayList<String> list = new ArrayList<>();
         list.addAll(ciudades.keySet());
+        Collections.sort(list);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCiudad.setAdapter(arrayAdapter);
@@ -417,12 +422,8 @@ public class RegisterActivity extends AppCompatActivity {
         chequeo.setCancelable(true);
         chequeo.setMessage(mensaje);
         chequeo.show();
-        chequeo.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                finish();
-            }
-        });
+
+        finish();
     }
 
     public void notificarError(String mensaje) {
@@ -431,6 +432,7 @@ public class RegisterActivity extends AppCompatActivity {
         chequeo.setCancelable(true);
         chequeo.setMessage(mensaje);
         chequeo.show();
+        backToLogin();
     }
 
     public static String md5(String input) {
@@ -447,6 +449,19 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void backToLogin() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                // Start the next activity
+                finish();
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, 2500);
     }
 
 }
