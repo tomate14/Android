@@ -94,24 +94,18 @@
                     android:typeface="sans" />
 
             </LinearLayout>
-
         </LinearLayout>
-
         <Button
             android:id="@+id/btnbutton"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="0.5"
+            android:layout_gravity="end|center_vertical"
             android:background="@android:drawable/btn_star_big_off"
-            android:elevation="0dp"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:padding="0dp"
             android:scaleX="0.5"
             android:scaleY="0.5" />
-
     </LinearLayout>
 
 </LinearLayout>
