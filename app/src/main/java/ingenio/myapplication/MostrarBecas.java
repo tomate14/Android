@@ -73,7 +73,7 @@ public class MostrarBecas extends AppCompatActivity implements
         this.seleccion_usuario     = intent.getIntExtra("listview", 0);
         this.contexto = this;
         this.nobecas = (TextView) findViewById(R.id.textViewNoBecas);
-
+        this.nobecas.setVisibility(View.GONE);
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         getLoaderManager().initLoader(0,null,MostrarBecas.this);
 
