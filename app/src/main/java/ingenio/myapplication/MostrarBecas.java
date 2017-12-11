@@ -34,6 +34,7 @@ import entity.TipoBeca;
 import entity.TipoEstudiante;
 import funcionalidad.BecasLoader;
 import entity.Beca;
+import funcionalidad.FiltroService;
 import funcionalidad.LocalRecieverFiltro;
 import funcionalidad.RegistroService;
 
