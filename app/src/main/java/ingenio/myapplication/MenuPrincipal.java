@@ -96,8 +96,7 @@ public class MenuPrincipal extends AppCompatActivity
 
         //Informacion del login
         Intent intUsuario =  getIntent();
-        //user = (Usuario) intUsuario.getSerializableExtra("usuario");
-        user = new Usuario(3,"maxiroselli@gmail.com","Maximiliano","Roselli",new Date(),"tucolaloca","tu hermana",1);
+        user = (Usuario) intUsuario.getSerializableExtra("usuario");
 
         this.txtNombre = (TextView) datosUsuario.findViewById(R.id.txtNombreNav);
         this.txtEmail = (TextView) datosUsuario.findViewById(R.id.txtEmailNav);

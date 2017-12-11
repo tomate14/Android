@@ -8,8 +8,11 @@ import android.support.v4.content.LocalBroadcastManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 import entity.Usuario;
 import ingenio.myapplication.LoginActivity;
+import ingenio.myapplication.RegisterActivity;
 
 /**
  * Created by Flia. Ferreira on 05/12/2017.
@@ -28,12 +31,32 @@ public class LocalRecieverLogin extends BroadcastReceiver{
         String jsonString= intent.getStringExtra(RegistroService.RESPONSE);
 
         try {
-            JSONObject json = new JSONObject(jsonString);
-            String respuesta = json.getString("status");
-            String usuario = json.getString("idUsuario");
-            String email = json.getString("email");
-            if(respuesta.equals("200")){
-                loginActivity.openMenu(new Usuario(Integer.valueOf(usuario),email));
+
+            if(intent.getStringExtra(RegisterActivity.OPERACION).equals("login")) {
+                JSONObject json = new JSONObject(jsonString);
+                String respuesta = json.getString("status");
+                if (respuesta.equals("200")) {
+                    int usuario = Integer.valueOf(json.getString("idUsuario"));
+                    String email = json.getString("email");
+                    String password = json.getString("password");
+                    String nombre = json.getString("nombre");
+                    String apellido = json.getString("apellido");
+                    int ciudad = Integer.valueOf(json.getString("idCiudad"));
+                    String direccion = json.getString("direccion");
+                    Calendar fecha = java.util.Calendar.getInstance();
+
+                    fecha.setTimeInMillis(json.getLong("fecha_nacimiento")*100);
+                    int tipoEstudiante = -1;
+                    if(!json.getString("idTipoEstudiante").equals("null"))
+                        tipoEstudiante = Integer.valueOf(json.getString("idTipoEstudiante"));
+                    int orientacion = -1;
+                    if(!json.getString("idTipoBeca").equals("null"))
+                        orientacion = Integer.valueOf(json.getString("idTipoBeca"));
+                    loginActivity.openMenu(new Usuario(usuario, email, nombre, apellido, fecha, password, ciudad, direccion, tipoEstudiante, orientacion));
+                } else {
+                    String mensaje = json.getString("mensaje");
+                    loginActivity.loginError(mensaje);
+                }
             }
 
         } catch (JSONException e) {

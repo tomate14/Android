@@ -34,15 +34,6 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/edadPerfilText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/edadTextPerfil"
-                android:textSize="18sp"
-                android:textStyle="italic" />
-
-            <TextView
                 android:id="@+id/fechaPerfilText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

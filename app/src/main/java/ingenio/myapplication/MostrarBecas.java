@@ -48,6 +48,7 @@ public class MostrarBecas extends AppCompatActivity implements
     private ArrayList<TipoEstudiante> tipoEstudiantes;
     private ArrayList<TipoBeca> tipoBecas;
     private Hashtable<String, Integer> paises;
+    private LocalRecieverFiltro reciever = new LocalRecieverFiltro(this);
 
     private Context contexto;
     private ExpandableListView listView;
@@ -57,7 +58,6 @@ public class MostrarBecas extends AppCompatActivity implements
     private Spinner spinnerTipoEstudiante;
     private int seleccion_usuario;
     private TextView nobecas;
-    private LocalRecieverFiltro reciever = new LocalRecieverFiltro(this);
 
 
 
@@ -88,7 +88,7 @@ public class MostrarBecas extends AppCompatActivity implements
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
                 setTitle(getString(R.string.activity_verbecas_sugeridas));
-                params = MenuPrincipal.OPERACION_VERBECASSUGERENCIAS+"/"+String.valueOf(MenuPrincipal.user.getIdTipoEstudiante());
+                params = MenuPrincipal.OPERACION_VERBECASSUGERENCIAS+"/"+String.valueOf(MenuPrincipal.user.getIdTipoEstudiante()+"/"+String.valueOf(MenuPrincipal.user.getIdusuario()));
                 break;
             case MenuPrincipal.ID_VERBECASINTERES:
                 setTitle(getString(R.string.activity_verbecas_interes));
@@ -148,11 +148,12 @@ public class MostrarBecas extends AppCompatActivity implements
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         mServiceIntent.putExtra(OPERACION,"filtrobecas");
+                        mServiceIntent.putExtra("idUsuario",MenuPrincipal.user.getIdusuario());
                         mServiceIntent.putExtra("ruta","becas");
                         mServiceIntent.putExtra("idTipobeca", getIdTipoBeca(spinnerTipoBecas.getSelectedItem()));
                         mServiceIntent.putExtra("idTipoEstudiante", getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem()));
                         mServiceIntent.putExtra("idPais", paises.get(spinnerPaises.getSelectedItem()));
-                        mServiceIntent.putExtra("ciudad",ciudad.getText());
+                        mServiceIntent.putExtra("ciudad",ciudad.getText().toString());
                         startService(mServiceIntent);
                         //mServiceIntent.putExtra("nombre_entidad", password.getText().toString());
 
