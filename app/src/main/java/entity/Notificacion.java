@@ -1,7 +1,5 @@
 package entity;
 
-import android.graphics.Bitmap;
-
 import java.util.Date;
 
 /**
@@ -10,51 +8,22 @@ import java.util.Date;
 
 public class Notificacion {
 
-    private int    idAnuncio;
-    private String informacion;
-    private String nombreEntidad;
     private String titulo;
-    private Date   fecha;
-    private String web;
-    private int idBeca;
-    private String telefono;
-    private Bitmap banner;
+    private String entidad;
+    private Date fecha;
+    private String informacion;
 
-
-    public Notificacion(int idAnuncio, String informacion, String nombreEntidad, String titulo, Date fecha, String web, int idBeca, String telefono, Bitmap banne) {
-        this.idAnuncio = idAnuncio;
-        this.informacion = informacion;
-        this.nombreEntidad = nombreEntidad;
+    public Notificacion(String titulo, String entidad, Date fecha) {
         this.titulo = titulo;
+        this.entidad = entidad;
         this.fecha = fecha;
-        this.web = web;
-        this.idBeca = idBeca;
-        this.telefono = telefono;
-        this.banner = banne;
+        this.informacion = null;
     }
-
-    public int getIdAnuncio() {
-        return idAnuncio;
-    }
-
-    public void setIdAnuncio(int idAnuncio) {
-        this.idAnuncio = idAnuncio;
-    }
-
-    public String getInformacion() {
-        return informacion;
-    }
-
-    public void setInformacion(String informacion) {
+    public Notificacion(String titulo, String entidad, Date fecha, String informacion) {
+        this.titulo = titulo;
+        this.entidad = entidad;
+        this.fecha = fecha;
         this.informacion = informacion;
-    }
-
-    public String getNombreEntidad() {
-        return nombreEntidad;
-    }
-
-    public void setNombreEntidad(String nombreEntidad) {
-        this.nombreEntidad = nombreEntidad;
     }
 
     public String getTitulo() {
@@ -65,6 +34,14 @@ public class Notificacion {
         this.titulo = titulo;
     }
 
+    public String getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(String entidad) {
+        this.entidad = entidad;
+    }
+
     public Date getFecha() {
         return fecha;
     }
@@ -73,50 +50,11 @@ public class Notificacion {
         this.fecha = fecha;
     }
 
-    public String getWeb() {
-        return web;
+    public String getInformacion() {
+        return informacion;
     }
 
-    public void setWeb(String web) {
-        this.web = web;
-    }
-
-    public int getIdBeca() {
-        return idBeca;
-    }
-
-    public void setIdBeca(int idBeca) {
-        this.idBeca = idBeca;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public Bitmap getBanne() {
-        return banner;
-    }
-
-    public void setBanne(Bitmap banne) {
-        this.banner = banne;
-    }
-
-    @Override
-    public String toString() {
-        return "Notificacion{" +
-                "idAnuncio=" + idAnuncio +
-                ", informacion='" + informacion + '\'' +
-                ", nombreEntidad='" + nombreEntidad + '\'' +
-                ", titulo='" + titulo + '\'' +
-                ", fecha=" + fecha +
-                ", web='" + web + '\'' +
-                ", idBeca='" + idBeca + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", banne=" + banner +
-                '}';
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
 }

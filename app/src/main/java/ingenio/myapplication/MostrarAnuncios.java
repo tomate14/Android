@@ -1,8 +1,5 @@
 package ingenio.myapplication;
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,19 +10,12 @@ import java.util.ArrayList;
 import adapters.ListViewNotificaciones;
 import adapters.ListViewExtended;
 import entity.Notificacion;
-import funcionalidad.LocalRecieverNotificaciones;
-import funcionalidad.RegistroService;
 import funcionalidad.Servicios;
 
 public class MostrarAnuncios extends AppCompatActivity {
 
     private ListViewExtended mostrarInfo = null;
     private ExpandableListView listView;
-    public static final String OPERACION = "OPERATION_SERVICE";
-    public static final String OPERACION_VERNOTIFICACIONES = "notificaciones";
-
-    private LocalRecieverNotificaciones reciever = new LocalRecieverNotificaciones(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,16 +23,11 @@ public class MostrarAnuncios extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(reciever, new IntentFilter(RegistroService.RESPONSE_ACTION));
-        final Intent mServiceIntent = new Intent(MostrarAnuncios.this, RegistroService.class);
+        ArrayList<Notificacion> anuncios = new Servicios().getAnunciosNotificaciones();
+        mostrarInfo= new ListViewNotificaciones(this,anuncios);
 
         this.listView = (ExpandableListView) findViewById(R.id.listView);
-
-        mServiceIntent.putExtra(OPERACION, "veranuncios");
-        mServiceIntent.putExtra("ruta", OPERACION_VERNOTIFICACIONES);
-        startService(mServiceIntent);
-
-
+        this.listView.setAdapter(mostrarInfo);
     }
 
     @Override
@@ -54,11 +39,5 @@ public class MostrarAnuncios extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void setNotificaciones(ArrayList<Notificacion> notificaciones) {
-        ArrayList<Notificacion> notificacions = notificaciones;
-        mostrarInfo= new ListViewNotificaciones(this,notificacions);
-        this.listView.setAdapter(mostrarInfo);
     }
 }
