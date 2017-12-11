@@ -242,6 +242,7 @@ public class MenuPrincipal extends AppCompatActivity
             int posicion = getArguments().getInt(ARG_SECTION_NUMBER);
 
 
+            // renderizar la imagen
             ImageView image = (ImageView) rootView.findViewById(R.id.imageViewBanner);
             image.setImageBitmap(MenuPrincipal.anuncios.get(posicion).getBanner());
             //image.setImageDrawable(renderizarImg(MenuPrincipal.anuncios.get(posicion).getBanner()));
