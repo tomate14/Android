@@ -41,7 +41,7 @@ public class LocalRecieverAnuncio  extends BroadcastReceiver {
                     for(int i = 0; i < jsonArray.length(); i++) {
                         JSONObject json = jsonArray.getJSONObject(i);
                         String jsonBanner = json.getString("banner");
-                        Date fecha = new Date(json.getLong("fecha"));
+                        Date fecha = new Date(json.getLong("fecha")*1000);
 
                         Anuncio anuncio = new Anuncio(
                                 getBitmapFromString(jsonBanner),
