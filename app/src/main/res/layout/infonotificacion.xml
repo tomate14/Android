@@ -14,8 +14,8 @@
             android:layout_width="30dp"
             android:layout_height="55dp"
             android:layout_weight="0.17"
-            android:background="@android:color/background_dark"
-            app:srcCompat="@android:drawable/ic_dialog_info" />
+            android:background="@android:color/transparent"
+            app:srcCompat="?android:attr/alertDialogIcon" />
 
         <LinearLayout
             android:layout_width="wrap_content"
