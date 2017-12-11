@@ -148,6 +148,7 @@ public class MostrarBecas extends AppCompatActivity implements
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         mServiceIntent.putExtra(OPERACION,"filtrobecas");
+                        mServiceIntent.putExtra("idUsuario",MenuPrincipal.user.getIdusuario());
                         mServiceIntent.putExtra("ruta","becas");
                         mServiceIntent.putExtra("idTipobeca", getIdTipoBeca(spinnerTipoBecas.getSelectedItem()));
                         mServiceIntent.putExtra("idTipoEstudiante", getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem()));

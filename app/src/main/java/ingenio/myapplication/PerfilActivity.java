@@ -25,12 +25,12 @@ public class PerfilActivity extends AppCompatActivity {
         TextView tipoEstudiante = (TextView) findViewById(R.id.tipoEstPerfilText);
         TextView orientacion = (TextView) findViewById(R.id.orientacionPerfilText);
 
-        nombre.setText(nombre.getText() + " " + MenuPrincipal.usuario.getNombre() );
-        apellido.setText(apellido.getText() + " " + MenuPrincipal.usuario.getApellido());
+        nombre.setText(nombre.getText() + " " + MenuPrincipal.user.getNombre() );
+        apellido.setText(apellido.getText() + " " + MenuPrincipal.user.getApellido());
         SimpleDateFormat fechaformat = new SimpleDateFormat("dd/MM/yyyy");
-        fecha.setText(fecha.getText() + " " +  fechaformat.format(MenuPrincipal.usuario.getFecha_nacimiento().getTime()) );
-        direccion.setText(direccion.getText() + " " + MenuPrincipal.usuario.getDireccion());
-        email.setText(direccion.getText() + " " + MenuPrincipal.usuario.getDireccion());
+        fecha.setText(fecha.getText() + " " +  fechaformat.format(MenuPrincipal.user.getFecha_nacimiento().getTime()) );
+        direccion.setText(direccion.getText() + " " + MenuPrincipal.user.getDireccion());
+        email.setText(direccion.getText() + " " + MenuPrincipal.user.getDireccion());
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
