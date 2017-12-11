@@ -73,7 +73,7 @@ public class MostrarBecas extends AppCompatActivity implements
         this.seleccion_usuario     = intent.getIntExtra("listview", 0);
         this.contexto = this;
         this.nobecas = (TextView) findViewById(R.id.textViewNoBecas);
-
+        this.nobecas.setVisibility(View.GONE);
         this.listView = (ExpandableListView) findViewById(R.id.listView);
         getLoaderManager().initLoader(0,null,MostrarBecas.this);
 
@@ -84,7 +84,7 @@ public class MostrarBecas extends AppCompatActivity implements
         switch (accion) {
             case MenuPrincipal.ID_VERBECAS:
                 setTitle(getString(R.string.activity_verbecas_buscar));
-                params = MenuPrincipal.OPERACION_VERBECAS;
+                params = MenuPrincipal.OPERACION_VERBECAS+"/"+String.valueOf(MenuPrincipal.user.getIdusuario());
                 break;
             case MenuPrincipal.ID_VERSUGERENCIAS:
                 setTitle(getString(R.string.activity_verbecas_sugeridas));

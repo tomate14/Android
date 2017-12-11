@@ -31,6 +31,7 @@ import entity.Beca;
 import entity.TipoBeca;
 import entity.TipoEstudiante;
 import ingenio.myapplication.MenuPrincipal;
+import ingenio.myapplication.MostrarBecas;
 
 /**
  * Created by Maxi on 23/11/2017.
@@ -77,6 +78,14 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                     Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion"));
                     Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion"));
                     String jsonBanner = json.getString("banner");
+                    String sus ="";
+                    if(MenuPrincipal.ID_VERBECASINTERES == seleccion_usuario)
+                        sus="1";
+                    else
+                        sus=json.getString("estado");
+                    Boolean val = false;
+                    if(sus.equals("1"))
+                        val=true;
                     Beca p1 = new Beca(json.getInt("idBeca"),
                             json.getString("nombre"),
                             json.getString("descripcion"),
@@ -87,13 +96,8 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                             fecha_fin,
                             new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
                             new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
-                            Boolean.valueOf(json.getString("estado"))
+                            val
                     );
-                    switch (seleccion_usuario){
-                        case MenuPrincipal.ID_VERBECASINTERES:
-                            p1.setSubscripta(true);
-                            break;
-                    }
                     becas.add(p1);
                     becas.toString();
                 }
