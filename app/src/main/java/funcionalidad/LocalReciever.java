@@ -104,7 +104,7 @@ public class LocalReciever extends BroadcastReceiver {
                     String jsonString= intent.getStringExtra(RegistroService.RESPONSE);
 
                     JSONObject json = new JSONObject(jsonString);
-                    String respuesta = json.getString("respuesta");
+                    String respuesta = json.getString("status");
                     String mensaje = json.getString("mensaje");
 
                     if(respuesta.equals("success")){
