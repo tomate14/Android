@@ -133,7 +133,8 @@ public class RegistroService extends IntentService {
                     params.add(new BasicNameValuePair("idTipobeca",String.valueOf(intent.getIntExtra("idTipobeca",0))));
                     params.add(new BasicNameValuePair("idTipoEstudiante",String.valueOf(intent.getIntExtra("idTipoEstudiante",0))));
                     params.add(new BasicNameValuePair("idPais",String.valueOf(intent.getIntExtra("idPais",0))));
-                    params.add(new BasicNameValuePair("ciudad",intent.getStringExtra("ciudad")));
+                    String ciudad = intent.getStringExtra("ciudad");
+                    params.add(new BasicNameValuePair("ciudad",ciudad));
 
                     Log.d(TAG,params.toString());
 

@@ -48,6 +48,7 @@ public class MostrarBecas extends AppCompatActivity implements
     private ArrayList<TipoEstudiante> tipoEstudiantes;
     private ArrayList<TipoBeca> tipoBecas;
     private Hashtable<String, Integer> paises;
+    private LocalRecieverFiltro reciever = new LocalRecieverFiltro(this);
 
     private Context contexto;
     private ExpandableListView listView;
@@ -57,7 +58,6 @@ public class MostrarBecas extends AppCompatActivity implements
     private Spinner spinnerTipoEstudiante;
     private int seleccion_usuario;
     private TextView nobecas;
-    private LocalRecieverFiltro reciever = new LocalRecieverFiltro(this);
 
 
 
@@ -152,7 +152,7 @@ public class MostrarBecas extends AppCompatActivity implements
                         mServiceIntent.putExtra("idTipobeca", getIdTipoBeca(spinnerTipoBecas.getSelectedItem()));
                         mServiceIntent.putExtra("idTipoEstudiante", getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem()));
                         mServiceIntent.putExtra("idPais", paises.get(spinnerPaises.getSelectedItem()));
-                        mServiceIntent.putExtra("ciudad",ciudad.getText());
+                        mServiceIntent.putExtra("ciudad",ciudad.getText().toString());
                         startService(mServiceIntent);
                         //mServiceIntent.putExtra("nombre_entidad", password.getText().toString());
 
