@@ -74,8 +74,8 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                 JSONArray jsonArray = new JSONArray(contentAsString);
                 for(int i = 0; i < jsonArray.length(); i++){
                     JSONObject json = jsonArray.getJSONObject(i);
-                    Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion"));
-                    Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion"));
+                    Date fecha_inicio = new Date(json.getLong("fecha_ini_inscripcion")*1000);
+                    Date fecha_fin = new Date(json.getLong("fecha_fin_inscripcion")*1000);
                     String jsonBanner = json.getString("banner");
                     Beca p1 = new Beca(json.getInt("idBeca"),
                             json.getString("nombre"),
@@ -83,8 +83,8 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
                             json.getString("telefono"),
                             getBitmapFromString(jsonBanner),
                             json.getString("pagina_web"),
-                            fecha_inicio,
                             fecha_fin,
+                            fecha_inicio,
                             new TipoBeca(json.getInt("idTipoBeca"),json.getString("nombre_beca")),
                             new TipoEstudiante(json.getInt("idTipoEstudiante"),json.getString("nombre_tipo")),
                             Boolean.valueOf(json.getString("estado"))
@@ -135,18 +135,6 @@ public class BecasLoader extends AsyncTaskLoader<ArrayList<Beca>> {
     @Override
     protected void onStopLoading() {
         cancelLoad();
-    }
-
-    private void setPorAccion(HttpURLConnection conn){
-        switch (seleccion_usuario){
-            case MenuPrincipal.ID_VERBECAS:
-
-                break;
-            case MenuPrincipal.ID_VERSUGERENCIAS:
-
-                break;
-            case MenuPrincipal.ID_VERBECASINTERES:
-        }
     }
 
     @Nullable
