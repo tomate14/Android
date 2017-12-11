@@ -104,18 +104,6 @@ public class Servicios {
         return becas;
     }*/
 
-    public ArrayList<Notificacion> getAnunciosNotificaciones(){
-        Notificacion primera = new Notificacion("Pago Beca TICs",
-                "Santander Rio",
-                new Date());
-        Notificacion segunda = new Notificacion("Pago Beca FONCyT",
-                "Ministerio de Educacion",
-                new Date());
-        ArrayList<Notificacion> anuncios = new ArrayList<Notificacion>();
-        anuncios.add(primera);
-        anuncios.add(segunda);
-        return anuncios;
-    }
 
     public ArrayList<Anuncio> getAnuncios(Context contexto){
         /*Drawable drawable = new BitmapDrawable(String.valueOf(R.drawable.banner1));
