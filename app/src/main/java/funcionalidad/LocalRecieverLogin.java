@@ -53,7 +53,10 @@ public class LocalRecieverLogin extends BroadcastReceiver{
                     int orientacion = -1;
                     if(!json.getString("idTipoBeca").equals("null"))
                         orientacion = Integer.valueOf(json.getString("idTipoBeca"));
-                    loginActivity.openMenu(new Usuario(usuario, email, nombre, apellido, fecha, password, ciudad, direccion, tipoEstudiante, orientacion));
+                    String nombreCiudad = json.getString("nombre_ciudad");
+                    String nombreProvincia = json.getString("nombre_provincia");
+                    String nombrePais = json.getString("nombre_pais");
+                    loginActivity.openMenu(new Usuario(usuario, email, nombre, apellido, fecha, password, ciudad, direccion, tipoEstudiante, orientacion,nombreCiudad,nombreProvincia,nombrePais));
                 } else {
                     String mensaje = json.getString("mensaje");
                     loginActivity.loginError(mensaje);

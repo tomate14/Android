@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import ingenio.myapplication.MenuPrincipal;
 import ingenio.myapplication.MostrarBecas;
 import ingenio.myapplication.RegisterActivity;
 
@@ -87,8 +88,8 @@ public class RegistroService extends IntentService {
                     Log.d(TAG, Long.toString(cal.getTime().getTime()));
                     params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTime().getTime()).substring(0,9)));
                     params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
-                    params.add(new BasicNameValuePair("tipoBeca",intent.getStringExtra("tipo")));
-                    params.add(new BasicNameValuePair("orientacion",intent.getStringExtra("orientacion")));
+                    params.add(new BasicNameValuePair("idTipoBeca",intent.getStringExtra("tipo")));
+                    params.add(new BasicNameValuePair("idTipoEstudiante",intent.getStringExtra("orientacion")));
 
                     Log.d(TAG,params.toString());
 
@@ -102,16 +103,23 @@ public class RegistroService extends IntentService {
                     params.clear();
                     params.add(new BasicNameValuePair("idUsuario",intent.getStringExtra("idUsuario")));
                     params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
-                    params.add(new BasicNameValuePair("passwordNew",intent.getStringExtra("passwordNew")));
+                    params.add(new BasicNameValuePair("newpassword",intent.getStringExtra("passwordNew")));
                     params.add(new BasicNameValuePair("nombre",intent.getStringExtra("nombre")));
                     params.add(new BasicNameValuePair("apellido",intent.getStringExtra("apellido")));
                     params.add(new BasicNameValuePair("ciudad", intent.getStringExtra("idCiudad")));
                     sdf = new SimpleDateFormat("dd/MM/yyyy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
-                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis())));
+                    Log.d(TAG, Long.toString(cal.getTime().getTime()));
+                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTime().getTime()).substring(0,9)));
                     params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
                     params.add(new BasicNameValuePair("tipoBeca",intent.getStringExtra("tipo")));
                     params.add(new BasicNameValuePair("orientacion",intent.getStringExtra("orientacion")));
+
+
+                    MenuPrincipal.user.setNombre(intent.getStringExtra("nombre"));
+                    MenuPrincipal.user.setApellido(intent.getStringExtra("apellido"));
+                    MenuPrincipal.user.setDireccion(intent.getStringExtra("direccion"));
+                    MenuPrincipal.user.setFecha_nacimiento(cal);
 
                     Log.d(TAG,params.toString());
 

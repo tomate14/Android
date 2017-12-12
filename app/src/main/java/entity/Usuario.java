@@ -21,7 +21,11 @@ public class Usuario implements Serializable{
     private int idTipoEstudiante;
     private int idTipoBeca;
 
-    public Usuario(int idusuario, String email, String nombre, String apellido, Calendar fecha_nacimiento, String password, int idCiudad, String direccion, int idTipoEstudiante, int idTipoBeca) {
+    private String nombre_ciudad;
+    private String nombre_provincia;
+    private String nombre_pais;
+
+    public Usuario(int idusuario, String email, String nombre, String apellido, Calendar fecha_nacimiento, String password, int idCiudad, String direccion, int idTipoEstudiante, int idTipoBeca, String nombre_ciudad, String nombre_provincia, String nombre_pais) {
         this.idusuario = idusuario;
         this.email = email;
         this.nombre = nombre;
@@ -32,6 +36,9 @@ public class Usuario implements Serializable{
         this.idCiudad = idCiudad;
         this.idTipoEstudiante = idTipoEstudiante;
         this.idTipoBeca = idTipoBeca;
+        this.nombre_ciudad = nombre_ciudad;
+        this.nombre_provincia = nombre_provincia;
+        this.nombre_pais = nombre_pais;
 
     }
 
@@ -119,4 +126,27 @@ public class Usuario implements Serializable{
         this.idTipoBeca = idTipoBeca;
     }
 
+    public String getNombre_ciudad() {
+        return nombre_ciudad;
+    }
+
+    public void setNombre_ciudad(String nombre_ciudad) {
+        this.nombre_ciudad = nombre_ciudad;
+    }
+
+    public String getNombre_provincia() {
+        return nombre_provincia;
+    }
+
+    public void setNombre_provincia(String nombre_provincia) {
+        this.nombre_provincia = nombre_provincia;
+    }
+
+    public String getNombre_pais() {
+        return nombre_pais;
+    }
+
+    public void setNombre_pais(String nombre_pais) {
+        this.nombre_pais = nombre_pais;
+    }
 }

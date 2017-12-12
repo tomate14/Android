@@ -198,7 +198,6 @@ public class RegisterActivity extends AppCompatActivity {
                             mServiceIntent.putExtra("apellido", apellido.getText().toString());
                             mServiceIntent.putExtra("direccion", direccion.getText().toString());
                             mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
-                            Log.d("password", password.getText().toString()+ "     " + RegisterActivity.md5(password.getText().toString()));
                             mServiceIntent.putExtra("password", RegisterActivity.md5(password.getText().toString()));
                             mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
                             mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
@@ -217,13 +216,14 @@ public class RegisterActivity extends AppCompatActivity {
                             mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
                             mServiceIntent.putExtra("idCiudad", Integer.toString(MenuPrincipal.user.getIdCiudad()));
                             Log.d(RegisterActivity.class.getCanonicalName(),"password: " + passwordNew.getText().toString());
-                            if(passwordNew.getText().toString().equals(" ")) {
+                            if(!passwordNew.getText().toString().equals(" ")) {
                                 mServiceIntent.putExtra("password", md5(password.getText().toString()));
                                 mServiceIntent.putExtra("passwordNew", md5(passwordNew.getText().toString()));
                             }
                             mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
                             mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
                             startService(mServiceIntent);
+                            finish();
                         }
                         break;
                     case LoginActivity.ID_REGISTERGOOGLE:

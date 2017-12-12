@@ -28,6 +28,8 @@ public class PerfilActivity extends AppCompatActivity {
         TextView email = (TextView) findViewById(R.id.emailPerfilText);
         TextView tipoEstudiante = (TextView) findViewById(R.id.tipoEstPerfilText);
         TextView orientacion = (TextView) findViewById(R.id.orientacionPerfilText);
+        tipoEstudiante.setVisibility(View.GONE);
+        orientacion.setVisibility(View.GONE);
 
         nombre.setText(nombre.getText() + " " + MenuPrincipal.user.getNombre() );
         apellido.setText(apellido.getText() + " " + MenuPrincipal.user.getApellido());
@@ -35,6 +37,9 @@ public class PerfilActivity extends AppCompatActivity {
         fecha.setText(fecha.getText() + " " +  fechaformat.format(MenuPrincipal.user.getFecha_nacimiento().getTime()) );
         direccion.setText(direccion.getText() + " " + MenuPrincipal.user.getDireccion());
         email.setText(email.getText() + " " + MenuPrincipal.user.getEmail());
+        pais.setText(pais.getText() + " " + MenuPrincipal.user.getNombre_pais());
+        provincia.setText(provincia.getText() + " "+ MenuPrincipal.user.getNombre_provincia());
+        ciudad.setText(ciudad.getText() + " "+ MenuPrincipal.user.getNombre_ciudad());
 
         Button editar = (Button) findViewById(R.id.btnEditPerfil);
         editar.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +49,7 @@ public class PerfilActivity extends AppCompatActivity {
                 Intent intent = new Intent(PerfilActivity.this,RegisterActivity.class);
                 intent.putExtra("Accion_Datos", MenuPrincipal.ID_EDITARDATOS);
                 startActivity(intent);
+                finish();
             }
         });
     }
