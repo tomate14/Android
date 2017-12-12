@@ -1,8 +1,12 @@
 package ingenio.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +34,18 @@ public class PerfilActivity extends AppCompatActivity {
         SimpleDateFormat fechaformat = new SimpleDateFormat("dd/MM/yyyy");
         fecha.setText(fecha.getText() + " " +  fechaformat.format(MenuPrincipal.user.getFecha_nacimiento().getTime()) );
         direccion.setText(direccion.getText() + " " + MenuPrincipal.user.getDireccion());
-        email.setText(direccion.getText() + " " + MenuPrincipal.user.getDireccion());
+        email.setText(email.getText() + " " + MenuPrincipal.user.getEmail());
+
+        Button editar = (Button) findViewById(R.id.btnEditPerfil);
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(PerfilActivity.this,RegisterActivity.class);
+                intent.putExtra("Accion_Datos", MenuPrincipal.ID_EDITARDATOS);
+                startActivity(intent);
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
