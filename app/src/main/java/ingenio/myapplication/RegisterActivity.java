@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                 nombre.setText(intent.getStringExtra("nombre"));
                 apellido.setText(intent.getStringExtra("apellido"));
                 email.setText(intent.getStringExtra("email"));
+                passwordNew.setVisibility(View.GONE);
                 break;
             }
 
