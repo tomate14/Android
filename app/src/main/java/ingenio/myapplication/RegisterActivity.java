@@ -107,13 +107,11 @@ public class RegisterActivity extends AppCompatActivity {
                 email.setVisibility(View.GONE);
                 break;
             case LoginActivity.ID_REGISTERGOOGLE:
-            {
                 nombre.setText(intent.getStringExtra("nombre"));
                 apellido.setText(intent.getStringExtra("apellido"));
                 email.setText(intent.getStringExtra("email"));
                 passwordNew.setVisibility(View.GONE);
                 break;
-            }
 
         }
 
@@ -207,6 +205,23 @@ public class RegisterActivity extends AppCompatActivity {
                             mServiceIntent.putExtra("direccion", direccion.getText().toString());
                             mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
                             mServiceIntent.putExtra("password", md5(password.getText().toString()));
+                            mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
+                            mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
+                            mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
+                            startService(mServiceIntent);
+                        }
+                        break;
+                    case LoginActivity.ID_REGISTERGOOGLE:
+                        if (registroVerificado()) {
+                            mServiceIntent.putExtra("email", email.getText().toString());
+                            mServiceIntent.putExtra("ruta", "registro");
+                            mServiceIntent.putExtra(OPERACION, "registro");
+                            mServiceIntent.putExtra("nombre", nombre.getText().toString());
+                            mServiceIntent.putExtra("apellido", apellido.getText().toString());
+                            mServiceIntent.putExtra("direccion", direccion.getText().toString());
+                            mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
+                            Log.d("password", password.getText().toString()+ "     " + RegisterActivity.md5(password.getText().toString()));
+                            mServiceIntent.putExtra("password", RegisterActivity.md5(password.getText().toString()));
                             mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
                             mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
                             mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
