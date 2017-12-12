@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import entity.Usuario;
 import ingenio.myapplication.LoginActivity;
@@ -45,7 +46,7 @@ public class LocalRecieverLogin extends BroadcastReceiver{
                     String direccion = json.getString("direccion");
                     Calendar fecha = java.util.Calendar.getInstance();
 
-                    fecha.setTimeInMillis(json.getLong("fecha_nacimiento")*100);
+                    fecha.setTime(new Date((json.getLong("fecha_nacimiento")*1000))); // el servidor me un long con digitos faltantes por lo que necesito correr el lumero 3 lugares a la izquierda.
                     int tipoEstudiante = -1;
                     if(!json.getString("idTipoEstudiante").equals("null"))
                         tipoEstudiante = Integer.valueOf(json.getString("idTipoEstudiante"));

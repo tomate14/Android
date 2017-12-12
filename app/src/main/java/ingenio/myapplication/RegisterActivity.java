@@ -11,6 +11,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,11 +19,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -105,6 +108,14 @@ public class RegisterActivity extends AppCompatActivity {
                 break;
             case MenuPrincipal.ID_EDITARDATOS:
                 email.setVisibility(View.GONE);
+                nombre.setText(MenuPrincipal.user.getNombre());
+                apellido.setText(MenuPrincipal.user.getApellido());
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                editBirthday.setText(format.format(MenuPrincipal.user.getFecha_nacimiento().getTime()));
+                LinearLayout lugar = (LinearLayout) findViewById(R.id.lugarLayout);
+                lugar.setVisibility(View.GONE);
+                direccion.setText(MenuPrincipal.user.getDireccion());
+
                 break;
             case LoginActivity.ID_REGISTERGOOGLE:
                 nombre.setText(intent.getStringExtra("nombre"));
@@ -196,16 +207,20 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         break;
                     case MenuPrincipal.ID_EDITARDATOS:
-                        if (edicionVerificada()) { // falta chequeo de tipo y orientacion <-------------------------
-                            mServiceIntent.putExtra("passwordNew", passwordNew.getText().toString());
+                        if (edicionVerificada()) {
                             mServiceIntent.putExtra("ruta", "modUsuario");
                             mServiceIntent.putExtra(OPERACION, "edicion");
+                            mServiceIntent.putExtra("idUsuario",Integer.toString(MenuPrincipal.user.getIdusuario()));
                             mServiceIntent.putExtra("nombre", nombre.getText().toString());
                             mServiceIntent.putExtra("apellido", apellido.getText().toString());
                             mServiceIntent.putExtra("direccion", direccion.getText().toString());
                             mServiceIntent.putExtra("fecha", editBirthday.getText().toString());
-                            mServiceIntent.putExtra("password", md5(password.getText().toString()));
-                            mServiceIntent.putExtra("ciudad", ciudades.get(spinnerCiudad.getSelectedItem()));
+                            mServiceIntent.putExtra("idCiudad", Integer.toString(MenuPrincipal.user.getIdCiudad()));
+                            Log.d(RegisterActivity.class.getCanonicalName(),"password: " + passwordNew.getText().toString());
+                            if(passwordNew.getText().toString().equals(" ")) {
+                                mServiceIntent.putExtra("password", md5(password.getText().toString()));
+                                mServiceIntent.putExtra("passwordNew", md5(passwordNew.getText().toString()));
+                            }
                             mServiceIntent.putExtra("tipo", Integer.toString(getIdTipoBeca(spinnerTipoBeca.getSelectedItem())));
                             mServiceIntent.putExtra("orientacion", Integer.toString(getIdTipoEstudiante(spinnerTipoEstudiante.getSelectedItem())));
                             startService(mServiceIntent);
@@ -294,15 +309,15 @@ public class RegisterActivity extends AppCompatActivity {
         int errores = 0;
         String mensajeError = new String();
 
-        if (nombre.getText().toString().equals("")) {
+        if (nombre.getText().toString().equals(MenuPrincipal.user.getNombre())) {
             ignores++;
         }
 
-        if (apellido.getText().toString().equals("")) {
+        if (apellido.getText().toString().equals(MenuPrincipal.user.getApellido())) {
             ignores++;
         }
 
-        if (direccion.getText().toString().equals("")) {
+        if (direccion.getText().toString().equals(MenuPrincipal.user.getDireccion())) {
             ignores++;
         }
 
@@ -319,9 +334,10 @@ public class RegisterActivity extends AppCompatActivity {
             errores++;
         }
 
-        if (editBirthday.getText().toString().equals("")) {
+        /*if (editBirthday.getText().toString().equals(format.format(MenuPrincipal.user.getFecha_nacimiento()).toString())) {
             ignores++;
         }
+        */
 
 
         if (!passwordNew.getText().toString().equals(passwordVal.getText().toString())) {
@@ -329,7 +345,8 @@ public class RegisterActivity extends AppCompatActivity {
             errores++;
         }
 
-        if (ignores == 6) {
+        if (ignores == 5
+                ) {
             mensajeError = mensajeError + "* No se han modificado datos" + "\n";
             errores++;
         }
@@ -438,8 +455,15 @@ public class RegisterActivity extends AppCompatActivity {
         chequeo.setCancelable(true);
         chequeo.setMessage(mensaje);
         chequeo.show();
+        chequeo.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
 
-        finish();
+            }
+        });
+        backToLogin();
+
+        //finish();
     }
 
     public void notificarError(String mensaje) {
@@ -448,7 +472,6 @@ public class RegisterActivity extends AppCompatActivity {
         chequeo.setCancelable(true);
         chequeo.setMessage(mensaje);
         chequeo.show();
-        backToLogin();
     }
 
     public static String md5(String input) {

@@ -84,8 +84,8 @@ public class RegistroService extends IntentService {
                     params.add(new BasicNameValuePair("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1))));
                     sdf = new SimpleDateFormat("dd/MM/yyyy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
-                    Log.d(TAG, Long.toString(cal.getTimeInMillis()));
-                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis()).substring(0,9)));
+                    Log.d(TAG, Long.toString(cal.getTime().getTime()));
+                    params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTime().getTime()).substring(0,9)));
                     params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));
                     params.add(new BasicNameValuePair("tipoBeca",intent.getStringExtra("tipo")));
                     params.add(new BasicNameValuePair("orientacion",intent.getStringExtra("orientacion")));
@@ -100,13 +100,13 @@ public class RegistroService extends IntentService {
 
                 case "edicion" :
                     params.clear();
-                    params.add(new BasicNameValuePair("email",intent.getStringExtra("email")));
+                    params.add(new BasicNameValuePair("idUsuario",intent.getStringExtra("idUsuario")));
                     params.add(new BasicNameValuePair("password",intent.getStringExtra("password")));
                     params.add(new BasicNameValuePair("passwordNew",intent.getStringExtra("passwordNew")));
                     params.add(new BasicNameValuePair("nombre",intent.getStringExtra("nombre")));
                     params.add(new BasicNameValuePair("apellido",intent.getStringExtra("apellido")));
-                    params.add(new BasicNameValuePair("ciudad",Integer.toString(intent.getIntExtra("ciudad",-1))));
-                    sdf = new SimpleDateFormat("dd/MM/yy");
+                    params.add(new BasicNameValuePair("ciudad", intent.getStringExtra("idCiudad")));
+                    sdf = new SimpleDateFormat("dd/MM/yyyy");
                     cal.setTime(sdf.parse(intent.getStringExtra("fecha")));
                     params.add(new BasicNameValuePair("fecha_nacimiento",Long.toString(cal.getTimeInMillis())));
                     params.add(new BasicNameValuePair("direccion",intent.getStringExtra("direccion")));

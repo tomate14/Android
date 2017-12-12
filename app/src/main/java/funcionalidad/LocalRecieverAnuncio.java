@@ -33,6 +33,7 @@ public class LocalRecieverAnuncio  extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String operation = intent.getStringExtra(OPERACION);
+      //  if(intent.getStringExtra(RegisterActivity.OPERACION).equals("login")) {
         switch (operation){
             case "veranuncios":
                 try {
