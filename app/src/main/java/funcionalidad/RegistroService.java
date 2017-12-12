@@ -176,9 +176,11 @@ public class RegistroService extends IntentService {
                     Log.d(TAG, contentAsString);
 
                     response = new Intent(RESPONSE_ACTION);
+                    
                     response.putExtra(OPERACION, operation);
                     response.putExtra(RESPONSE, contentAsString);
                     LocalBroadcastManager.getInstance(this).sendBroadcast(response);
+
                     break;
 
             }

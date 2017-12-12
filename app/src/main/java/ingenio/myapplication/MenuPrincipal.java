@@ -124,7 +124,7 @@ public class MenuPrincipal extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-                super.onBackPressed();
+                super.finish();
         }
     }
     @Override

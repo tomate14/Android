@@ -158,6 +158,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Button btnTest = (Button) findViewById(R.id.button2);
+        btnTest.setVisibility(View.GONE);
         btnTest.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
